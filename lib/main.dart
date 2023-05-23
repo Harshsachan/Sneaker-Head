@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testproject/pages/nav_bar/nav_bar.dart';
 import 'package:testproject/pages/product/product_details.dart';
 import 'package:testproject/pages/splashScreen.dart';
 
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Product8Widget();
+    return NavBarPage();
     // return Scaffold(
     //   appBar: AppBar(
     //     // Here we take the value from the MyHomePage object that was created by
