@@ -70,6 +70,7 @@ flutter:
     - assets/icons/cart.png
     - assets/icons/explore.png
     - assets/icons/home.png
+    - assets/images/Blue_Gradient_Login_Page_Wireframe_Mobile_Prototype.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
