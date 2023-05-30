@@ -46,7 +46,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: CustomTheme.of(context).primaryBackground,
       body: SafeArea(
         top: true,
         child: Container(
@@ -77,7 +77,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.2,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: CustomTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(48),
                         bottomRight: Radius.circular(48),
@@ -96,17 +96,17 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               FlutterFlowIconButton(
-                                borderColor: FlutterFlowTheme.of(context)
+                                borderColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 borderRadius: 20,
                                 borderWidth: 0,
                                 buttonSize: 40,
-                                fillColor: FlutterFlowTheme.of(context)
+                                fillColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 icon: FaIcon(
                                   FontAwesomeIcons.gripLines,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  CustomTheme.of(context).primaryText,
                                   size: 24,
                                 ),
                                 onPressed: () {
@@ -119,25 +119,25 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                   Text(
                                     'Hi ! Harshit',
                                     style:
-                                    FlutterFlowTheme.of(context).bodyMedium,
+                                    CustomTheme.of(context).bodyMedium,
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Icon(
                                         Icons.location_on_sharp,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .alternate,
                                         size: 12,
                                       ),
                                       Text(
                                         'Hyderabad',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: CustomTheme.of(context)
                                             .bodyMedium
                                             .override(
                                           fontFamily: 'Poppins',
                                           color:
-                                          FlutterFlowTheme.of(context)
+                                          CustomTheme.of(context)
                                               .secondaryText,
                                         ),
                                       ),
@@ -146,17 +146,17 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 ],
                               ),
                               FlutterFlowIconButton(
-                                borderColor: FlutterFlowTheme.of(context)
+                                borderColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 borderRadius: 20,
                                 borderWidth: 0,
                                 buttonSize: 40,
-                                fillColor: FlutterFlowTheme.of(context)
+                                fillColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 icon: Icon(
                                   Icons.account_circle_outlined,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  CustomTheme.of(context).primaryText,
                                   size: 24,
                                 ),
                                 onPressed: () {
@@ -176,17 +176,17 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                             decoration: InputDecoration(
                               isDense: true,
                               labelText: 'Looking For shoes..',
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: CustomTheme.of(context)
                                   .bodySmall
                                   .override(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w200,
                               ),
                               hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium,
+                              CustomTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: CustomTheme.of(context)
                                       .secondaryBackground,
                                   width: 2,
                                 ),
@@ -194,7 +194,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: CustomTheme.of(context)
                                       .secondaryBackground,
                                   width: 2,
                                 ),
@@ -202,29 +202,29 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: CustomTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: CustomTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
+                              fillColor: CustomTheme.of(context)
                                   .primaryBackground,
                               prefixIcon: Icon(
                                 Icons.search,
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                CustomTheme.of(context).secondaryText,
                                 size: 12,
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: CustomTheme.of(context).bodyMedium,
                             validator: _model.textControllerValidator
                                 .asValidator(context),
                           ),
@@ -251,7 +251,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         Text(
                           'Popular Shoes',
                           style:
-                          FlutterFlowTheme.of(context).bodyLarge.override(
+                          CustomTheme.of(context).bodyLarge.override(
                             fontFamily: 'Poppins',
                             fontSize: 18,
                           ),
@@ -259,9 +259,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         Text(
                           'View all',
                           style:
-                          FlutterFlowTheme.of(context).bodySmall.override(
+                          CustomTheme.of(context).bodySmall.override(
                             fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.of(context).accent1,
+                            color: CustomTheme.of(context).accent1,
                             fontSize: 12,
                           ),
                         ),
@@ -281,7 +281,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                       width: double.infinity,
                       height: MediaQuery.of(context).size.height * 0.35,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: CustomTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Column(
@@ -315,22 +315,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                   children: [
                                     Text(
                                       'Jordan Classic',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: CustomTheme.of(context)
                                           .titleSmall
                                           .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .primaryText,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Text(
                                       '\$89.93',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: CustomTheme.of(context)
                                           .bodyMedium
                                           .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .primaryText,
                                       ),
                                     ),
@@ -340,21 +340,21 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
+                                    color: CustomTheme.of(context)
                                         .secondaryBackground,
                                     shape: BoxShape.circle,
                                   ),
                                   child: FlutterFlowIconButton(
                                     borderColor:
-                                    FlutterFlowTheme.of(context).primary,
+                                    CustomTheme.of(context).primary,
                                     borderRadius: 200,
                                     borderWidth: 1,
                                     buttonSize: 30,
-                                    fillColor: FlutterFlowTheme.of(context)
+                                    fillColor: CustomTheme.of(context)
                                         .primaryText,
                                     icon: Icon(
                                       Icons.add,
-                                      color: FlutterFlowTheme.of(context)
+                                      color: CustomTheme.of(context)
                                           .primaryBackground,
                                       size: 24,
                                     ),
@@ -379,16 +379,16 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     children: [
                       Text(
                         'New Arrivals',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: CustomTheme.of(context).bodyMedium.override(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                         ),
                       ),
                       Text(
                         'View all',
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                        style: CustomTheme.of(context).bodySmall.override(
                           fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.of(context).accent1,
+                          color: CustomTheme.of(context).accent1,
                         ),
                       ),
                     ],
@@ -410,7 +410,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.2,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
+                            color: CustomTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -448,24 +448,24 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       children: [
                                         Text(
                                           'Jordan Classic',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .titleSmall
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 10,
                                           ),
                                         ),
                                         Text(
                                           '\$89.93',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .bodyMedium
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 9,
                                           ),
@@ -479,22 +479,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       MediaQuery.of(context).size.width *
                                           0.08,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .secondaryBackground,
                                         shape: BoxShape.circle,
                                       ),
                                       child: FlutterFlowIconButton(
                                         borderColor:
-                                        FlutterFlowTheme.of(context)
+                                        CustomTheme.of(context)
                                             .primary,
                                         borderRadius: 800,
                                         borderWidth: 1,
                                         buttonSize: 15,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: CustomTheme.of(context)
                                             .primaryText,
                                         icon: Icon(
                                           Icons.add,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: CustomTheme.of(context)
                                               .primaryBackground,
                                           size: 16,
                                         ),
@@ -520,7 +520,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.2,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
+                            color: CustomTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -558,24 +558,24 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       children: [
                                         Text(
                                           'Jordan Classic',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .titleSmall
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 10,
                                           ),
                                         ),
                                         Text(
                                           '\$89.93',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .bodyMedium
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 9,
                                           ),
@@ -589,22 +589,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       MediaQuery.of(context).size.width *
                                           0.08,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .secondaryBackground,
                                         shape: BoxShape.circle,
                                       ),
                                       child: FlutterFlowIconButton(
                                         borderColor:
-                                        FlutterFlowTheme.of(context)
+                                        CustomTheme.of(context)
                                             .primary,
                                         borderRadius: 800,
                                         borderWidth: 1,
                                         buttonSize: 15,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: CustomTheme.of(context)
                                             .primaryText,
                                         icon: Icon(
                                           Icons.add,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: CustomTheme.of(context)
                                               .primaryBackground,
                                           size: 16,
                                         ),
@@ -639,7 +639,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.2,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
+                            color: CustomTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -677,24 +677,24 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       children: [
                                         Text(
                                           'Jordan Classic',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .titleSmall
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 10,
                                           ),
                                         ),
                                         Text(
                                           '\$89.93',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .bodyMedium
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 9,
                                           ),
@@ -708,22 +708,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       MediaQuery.of(context).size.width *
                                           0.08,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .secondaryBackground,
                                         shape: BoxShape.circle,
                                       ),
                                       child: FlutterFlowIconButton(
                                         borderColor:
-                                        FlutterFlowTheme.of(context)
+                                        CustomTheme.of(context)
                                             .primary,
                                         borderRadius: 800,
                                         borderWidth: 1,
                                         buttonSize: 15,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: CustomTheme.of(context)
                                             .primaryText,
                                         icon: Icon(
                                           Icons.add,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: CustomTheme.of(context)
                                               .primaryBackground,
                                           size: 16,
                                         ),
@@ -749,7 +749,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.2,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
+                            color: CustomTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -787,24 +787,24 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       children: [
                                         Text(
                                           'Jordan Classic',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .titleSmall
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 10,
                                           ),
                                         ),
                                         Text(
                                           '\$89.93',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: CustomTheme.of(context)
                                               .bodyMedium
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                            FlutterFlowTheme.of(context)
+                                            CustomTheme.of(context)
                                                 .primaryText,
                                             fontSize: 9,
                                           ),
@@ -818,22 +818,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                       MediaQuery.of(context).size.width *
                                           0.08,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
+                                        color: CustomTheme.of(context)
                                             .secondaryBackground,
                                         shape: BoxShape.circle,
                                       ),
                                       child: FlutterFlowIconButton(
                                         borderColor:
-                                        FlutterFlowTheme.of(context)
+                                        CustomTheme.of(context)
                                             .primary,
                                         borderRadius: 800,
                                         borderWidth: 1,
                                         buttonSize: 15,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: CustomTheme.of(context)
                                             .primaryText,
                                         icon: Icon(
                                           Icons.add,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: CustomTheme.of(context)
                                               .primaryBackground,
                                           size: 16,
                                         ),

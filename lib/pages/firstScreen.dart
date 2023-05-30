@@ -44,13 +44,13 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: CustomTheme.of(context).primaryBackground,
         body: SafeArea(
           child: Container(
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).lineColor,
+              color: CustomTheme.of(context).lineColor,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -72,19 +72,19 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.13,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).lineColor,
+                      color: CustomTheme.of(context).lineColor,
                     ),
                   ),
                   Text(
                     'Welcome ',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    style: CustomTheme.of(context).headlineMedium.override(
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     'Some other description of the project',
-                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                    style: CustomTheme.of(context).titleMedium.override(
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w300,
                     ),
@@ -93,7 +93,7 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                     thickness: 1,
                     indent: 40,
                     endIndent: 40,
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: CustomTheme.of(context).secondaryText,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
@@ -101,7 +101,7 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.1,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).lineColor,
+                        color: CustomTheme.of(context).lineColor,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Row(
@@ -124,7 +124,7 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                                 iconPadding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: Color(0xFFFA6A68),
-                                textStyle: FlutterFlowTheme.of(context)
+                                textStyle: CustomTheme.of(context)
                                     .titleSmall
                                     .override(
                                   fontFamily: 'Poppins',
@@ -135,10 +135,10 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
-                                hoverColor: FlutterFlowTheme.of(context)
+                                hoverColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 hoverTextColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                                CustomTheme.of(context).primaryText,
                               ),
                             ),
                           ),
@@ -158,7 +158,7 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                                 iconPadding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: Color(0xFFFA6A68),
-                                textStyle: FlutterFlowTheme.of(context)
+                                textStyle: CustomTheme.of(context)
                                     .titleSmall
                                     .override(
                                   fontFamily: 'Poppins',
@@ -169,10 +169,10 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
-                                hoverColor: FlutterFlowTheme.of(context)
+                                hoverColor: CustomTheme.of(context)
                                     .secondaryBackground,
                                 hoverTextColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                                CustomTheme.of(context).primaryText,
                               ),
                             ),
                           ),

@@ -46,13 +46,13 @@ class _ExplorePageState extends State<ExplorePage> {
                           children: [
                             Icon(
                               Icons.close_outlined,
-                              color: FlutterFlowTheme.of(context)
+                              color: CustomTheme.of(context)
                                   .secondaryBackground,
                               size: 24,
                             ),
                             FaIcon(
                               FontAwesomeIcons.filter,
-                              color: FlutterFlowTheme.of(context)
+                              color: CustomTheme.of(context)
                                   .secondaryBackground,
                               size: 24,
                             ),
@@ -67,30 +67,30 @@ class _ExplorePageState extends State<ExplorePage> {
                           children: [
                             Text(
                               'Mens Shoes',
-                              style: FlutterFlowTheme.of(context)
+                              style: CustomTheme.of(context)
                                   .titleLarge
                                   .override(
                                 fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.of(context)
+                                color: CustomTheme.of(context)
                                     .primaryBackground,
                               ),
                             ),
                             Text(
                               'Women Shoes',
-                              style: FlutterFlowTheme.of(context)
+                              style: CustomTheme.of(context)
                                   .titleMedium
                                   .override(
                                 fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.of(context).accent1,
+                                color: CustomTheme.of(context).accent1,
                               ),
                             ),
                             Text(
                               'Kids Sh',
-                              style: FlutterFlowTheme.of(context)
+                              style: CustomTheme.of(context)
                                   .titleMedium
                                   .override(
                                 fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.of(context).accent1,
+                                color: CustomTheme.of(context).accent1,
                               ),
                             ),
                           ],
@@ -107,7 +107,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.25,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -115,7 +115,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.22,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -133,7 +133,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.22,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -141,7 +141,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.25,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -159,7 +159,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.25,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -167,7 +167,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               width: MediaQuery.of(context).size.width * 0.4,
                               height: MediaQuery.of(context).size.height * 0.22,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: CustomTheme.of(context).alternate,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
