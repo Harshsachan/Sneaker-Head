@@ -47,7 +47,7 @@ class _Product8WidgetState extends State<Product8Widget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: CustomTheme.of(context).secondaryBackground,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -156,7 +156,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 10, 24, 0),
@@ -166,11 +166,11 @@ class _Product8WidgetState extends State<Product8Widget>
                         children: [
                           Text(
                             'Zion Limited',
-                            style: FlutterFlowTheme.of(context).headlineMedium,
+                            style: CustomTheme.of(context).headlineMedium,
                           ),
                           Text(
                             '\$156.00',
-                            style: FlutterFlowTheme.of(context)
+                            style: CustomTheme.of(context)
                                 .headlineMedium
                                 .override(
                               fontFamily: 'Poppins',
@@ -184,7 +184,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
@@ -194,7 +194,7 @@ class _Product8WidgetState extends State<Product8Widget>
                         children: [
                           Text(
                             'Retailed by Nike',
-                            style: FlutterFlowTheme.of(context).labelMedium,
+                            style: CustomTheme.of(context).labelMedium,
                           ),
                         ],
                       ),
@@ -203,7 +203,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
@@ -226,7 +226,7 @@ class _Product8WidgetState extends State<Product8Widget>
                             EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                             child: Text(
                               '4/5 Reviews',
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                              style: CustomTheme.of(context).labelMedium,
                             ),
                           ),
                         ],
@@ -236,7 +236,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
@@ -246,7 +246,7 @@ class _Product8WidgetState extends State<Product8Widget>
                           Text(
                             'DESCRIPTION',
                             style:
-                            FlutterFlowTheme.of(context).bodySmall.override(
+                            CustomTheme.of(context).bodySmall.override(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.bold,
                             ),
@@ -258,7 +258,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
@@ -268,7 +268,7 @@ class _Product8WidgetState extends State<Product8Widget>
                           Expanded(
                             child: Text(
                               'With a down-to-earth persona and abilities that are out of this world, Zion is unlike anybody else. On court, the gentle spirit who\'s all about family transforms into an unmatched force of unstoppable athleticism and speed.',
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                              style: CustomTheme.of(context).labelMedium,
                             ),
                           ),
                         ],
@@ -278,7 +278,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
@@ -288,7 +288,7 @@ class _Product8WidgetState extends State<Product8Widget>
                           Text(
                             'SIZE',
                             style:
-                            FlutterFlowTheme.of(context).bodySmall.override(
+                            CustomTheme.of(context).bodySmall.override(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.bold,
                             ),
@@ -300,7 +300,7 @@ class _Product8WidgetState extends State<Product8Widget>
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: CustomTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(12, 12, 16, 0),
@@ -335,9 +335,9 @@ class _Product8WidgetState extends State<Product8Widget>
                                       () => _model.choiceChipsValue = val?.first),
                               selectedChipStyle: ChipStyle(
                                 backgroundColor:
-                                FlutterFlowTheme.of(context).alternate,
+                                CustomTheme.of(context).alternate,
                                 textStyle:
-                                FlutterFlowTheme.of(context).titleSmall,
+                                CustomTheme.of(context).titleSmall,
                                 iconColor: Colors.white,
                                 iconSize: 18,
                                 labelPadding: EdgeInsetsDirectional.fromSTEB(
@@ -347,9 +347,9 @@ class _Product8WidgetState extends State<Product8Widget>
                               unselectedChipStyle: ChipStyle(
                                 backgroundColor: Color(0xFF80C3F3),
                                 textStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
+                                CustomTheme.of(context).labelMedium,
                                 iconColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                                CustomTheme.of(context).primaryText,
                                 iconSize: 18,
                                 labelPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 4, 12, 4),
@@ -376,7 +376,7 @@ class _Product8WidgetState extends State<Product8Widget>
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: CustomTheme.of(context).primaryText,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 4,
@@ -404,7 +404,7 @@ class _Product8WidgetState extends State<Product8Widget>
                     text: 'Apple Pay',
                     icon: FaIcon(
                       FontAwesomeIcons.apple,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: CustomTheme.of(context).secondaryBackground,
                       size: 20,
                     ),
                     options: FFButtonOptions(
@@ -412,18 +412,18 @@ class _Product8WidgetState extends State<Product8Widget>
                       height: 50,
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: FlutterFlowTheme.of(context).primaryText,
+                      color: CustomTheme.of(context).primaryText,
                       textStyle:
-                      FlutterFlowTheme.of(context).titleSmall.override(
+                      CustomTheme.of(context).titleSmall.override(
                         fontFamily: 'Outfit',
-                        color: FlutterFlowTheme.of(context)
+                        color: CustomTheme.of(context)
                             .secondaryBackground,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                       elevation: 0,
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: CustomTheme.of(context).alternate,
                         width: 2,
                       ),
                     ),
@@ -442,9 +442,9 @@ class _Product8WidgetState extends State<Product8Widget>
                       height: 50,
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: CustomTheme.of(context).alternate,
                       textStyle:
-                      FlutterFlowTheme.of(context).titleSmall.override(
+                      CustomTheme.of(context).titleSmall.override(
                         fontFamily: 'Outfit',
                         color: Colors.white,
                         fontSize: 16,
