@@ -49,7 +49,7 @@ class NoInternetScreen extends StatelessWidget {
                   onPressed: () {
                     print('Button pressed ...');
                   },
-                  text: 'Sign In',
+                  text: 'Try Again',
                   options: FFButtonOptions(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.width * 0.1,
