@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../flutter_flow/flutter_flow_model.dart';
+import '../../../flutter_flow/flutter_flow_model.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -233,6 +233,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     ),
                   ),
                 ),
+
+                // Popular shoes text
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 20, 24, 0),
                   child: Container(
@@ -269,6 +271,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     ),
                   ),
                 ),
+
+                // Popular Shoes Container
+
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
                   child: Material(
@@ -293,7 +298,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Image.network(
-                                'https://picsum.photos/seed/471/600',
+                                'https://picsum.photos/seed/472/601',
                                 width: double.infinity,
                                 height: 200,
                                 fit: BoxFit.cover,
@@ -371,6 +376,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     ),
                   ),
                 ),
+
+                // New Arrivals Text
+
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
                   child: Row(
@@ -394,6 +402,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     ],
                   ),
                 ),
+
+                // New Arrivals Container
+
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
                   child: Row(
@@ -423,7 +434,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
-                                    'https://picsum.photos/seed/471/600',
+                                    'https://picsum.photos/seed/474/600',
                                     width: double.infinity,
                                     height: MediaQuery.of(context).size.height *
                                         0.1,
@@ -623,6 +634,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                     ],
                   ),
                 ),
+
+                // TO Remove
+
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
                   child: Row(
@@ -652,7 +666,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
-                                    'https://picsum.photos/seed/471/600',
+                                    'https://picsum.photos/seed/478/600',
                                     width: double.infinity,
                                     height: MediaQuery.of(context).size.height *
                                         0.1,
