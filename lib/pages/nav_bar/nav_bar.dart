@@ -1,11 +1,14 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';
-import '../explore/explore_screen.dart';
-import '../home/home_screen.dart';
+import '../explore/bloc/explore_bloc.dart';
+import '../explore/bloc/explore_event.dart';
+import '../explore/ui/explore_screen.dart';
+import '../home/ui/home_screen.dart';
 
 
 class NavBarPage extends StatefulWidget {
@@ -23,6 +26,16 @@ class _NavBarPageState extends State<NavBarPage> {
     CartPage(),
     Accountpage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Add the event to fetch data when ExplorePage is loaded
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      final exploreBloc = BlocProvider.of<ExploreBloc>(context);
+      exploreBloc.add(ExplorePageFetchProductEvent());
+    });
+  }
 
   @override
   void dispose() {
@@ -55,8 +68,8 @@ class _NavBarPageState extends State<NavBarPage> {
           Image.asset('assets/icons/cart.png'),
           Image.asset('assets/icons/acc.png'),
         ],
-        color: Colors.white,
-        circleColor: Colors.white,
+        color: Colors.black,
+        circleColor: Colors.black,
         height: 60,
         circleWidth: 60,
         activeIndex: _currentIndex,
@@ -77,4 +90,39 @@ class _NavBarPageState extends State<NavBarPage> {
     );
   }
 }
+
+// Wrap the NavBarPage widget with BlocProvider for both ExploreBloc and HomeBloc:
+// dart
+
+// Copy code
+
+// MultiBlocProvider(
+// providers: [
+// BlocProvider<ExploreBloc>(
+// create: (context) => ExploreBloc(),
+// ),
+// BlocProvider<HomeBloc>(
+// create: (context) => HomeBloc(),
+// ),
+// ],
+// child: NavBarPage(),
+// ),
+
+// Modify the initState method in _NavBarPageState:
+// dart
+
+// Copy code
+
+// @override
+// void initState() {
+// super.initState();
+// // Add the event to fetch data when ExplorePage is loaded
+// WidgetsBinding.instance?.addPostFrameCallback((_) {
+// final exploreBloc = BlocProvider.of<ExploreBloc>(context);
+// exploreBloc.add(ExplorePageFetchProductEvent());
+//
+// final homeBloc = BlocProvider.of<HomeBloc>(context);
+// homeBloc.add(HomePageFetchDataEvent());
+// });
+// }
 

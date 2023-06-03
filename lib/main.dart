@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/pages/explore/bloc/explore_bloc.dart';
+import 'package:testproject/pages/explore/repo/explore_repo.dart';
+import 'package:testproject/pages/explore/ui/explore_screen.dart';
 import 'package:testproject/pages/nav_bar/nav_bar.dart';
 import 'package:testproject/pages/no_Internet/bloc/no_internet_state.dart';
+import 'package:testproject/pages/product/product_details.dart';
 
 
 import 'pages/no_Internet/bloc/no_internet_bloc.dart';
@@ -17,10 +21,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      //home: NoInternetScreen(),
-      home:   MyHomePage(),
+      // home: NavBarPage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -38,23 +43,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
-          if(state is InternetGainedState) {
-            return NavBarPage();
+          if (state is InternetGainedState) {
+            return BlocProvider(
+              create: (context) => ExploreBloc(AllProductDetails()),
+              child: NavBarPage(),
+            );
           }
           // else if(state is InternetLostState){
           //   return NoInternetScreen();
           // }
           // else {
-            return NoInternetScreen();
+          return NoInternetScreen();
           //}
         },
       ),
     );
   }
 }
+
+// MultiBlocProvider(
+// @override
+// Widget build(BuildContext context) {
+//   return MultiBlocProvider(
+//     providers: [
+//       BlocProvider<ExploreBloc>(
+//         create: (context) => ExploreBloc(exploreRepository),
+//       ),
+//       BlocProvider<OtherBloc>(
+//         create: (context) => OtherBloc(otherRepository),
+//       ),
+//       // Add more BlocProviders for other pages if needed
+//     ],
+//     child: MaterialApp(
+//       title: 'My App',
+//       home: NavBarPage(),
+//     ),
+//   );
+// }
 
