@@ -15,14 +15,16 @@ class InternetBloc extends Bloc<InternetEvents,InternetState>{
     on<InternetGainedEvent>((event, emit) => emit(InternetGainedState()));
 
     checkConnectivity = _connectivity.onConnectivityChanged.listen((result) {
-      if(result==ConnectivityResult.wifi || result==ConnectivityResult.mobile)
+      print(ConnectivityResult);
+      if(result==ConnectivityResult.wifi || result==ConnectivityResult.mobile )
         {
           add(InternetGainedEvent());
           print('Connected to the internet via ${ConnectivityResult}');
         }
       else{
         add(InternetLostEvent());
-        print("Please check your internet Connection");
+
+        print("Please check your internet Connection  ${ConnectivityResult}");
       }
     });
   }

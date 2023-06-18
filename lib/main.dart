@@ -6,6 +6,10 @@ import 'package:testproject/pages/explore/ui/explore_screen.dart';
 import 'package:testproject/pages/nav_bar/nav_bar.dart';
 import 'package:testproject/pages/no_Internet/bloc/no_internet_state.dart';
 import 'package:testproject/pages/product/product_details.dart';
+import 'package:testproject/pages/sign_in/sign_in.dart';
+import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
+import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
+import 'package:testproject/pages/sign_up/ui/sign_up_widget.dart';
 
 
 import 'pages/no_Internet/bloc/no_internet_bloc.dart';
@@ -22,16 +26,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.pink,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      // home: NavBarPage(),
-      home: MyHomePage(),
+       home: SignInWidget(),
+       //home: CreateUserPage(SignUpRepo()),
+      //home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final SignUp userDetails;
+  const MyHomePage({super.key,required this.userDetails});
 
 
   @override
@@ -47,16 +54,19 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
+          final details =widget.userDetails;
+          print(details.email.toString());
           if (state is InternetGainedState) {
             return BlocProvider(
               create: (context) => ExploreBloc(AllProductDetails()),
               child: NavBarPage(),
             );
           }
-          // else if(state is InternetLostState){
+          // else if(state is InternetLostState){x
           //   return NoInternetScreen();
           // }
           // else {
+          // TODO
           return NoInternetScreen();
           //}
         },
@@ -67,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // MultiBlocProvider(
 // @override
-// Widget build(BuildContext context) {
+// Widget build(BuildContext context) {x
 //   return MultiBlocProvider(
 //     providers: [
 //       BlocProvider<ExploreBloc>(

@@ -13,10 +13,7 @@ class ExploreBloc extends Bloc<ExplorePageEvent,ExplorePageState>{
   Future<void> _fetchAllProducts(ExplorePageFetchProductEvent event, Emitter<ExplorePageState> emit,) async {
     emit(ExplorePageLoadingState());
     try {
-      print("Awaiting api call");
       final products = await _repository.fetchAllProduct();
-
-      print("call done");
       emit(ExplorePageLoadedState(products));
     } catch (error) {
       emit(ExplorePageErrorState(error.toString()));

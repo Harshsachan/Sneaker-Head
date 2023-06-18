@@ -12,6 +12,7 @@ import '../home/ui/home_screen.dart';
 
 
 class NavBarPage extends StatefulWidget {
+
   @override
   _NavBarPageState createState() => _NavBarPageState();
 }
@@ -31,7 +32,7 @@ class _NavBarPageState extends State<NavBarPage> {
   void initState() {
     super.initState();
     // Add the event to fetch data when ExplorePage is loaded
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final exploreBloc = BlocProvider.of<ExploreBloc>(context);
       exploreBloc.add(ExplorePageFetchProductEvent());
     });
