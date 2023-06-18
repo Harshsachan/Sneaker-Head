@@ -151,7 +151,7 @@ class SingleProductWidget extends StatelessWidget {
                           color: CustomTheme.of(context).primaryText,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

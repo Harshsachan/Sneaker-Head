@@ -6,9 +6,8 @@ class AllProductDetails {
 
    Future<List<ProductDetails>> fetchAllProduct() async {
       try {
-         print("functiona called");
          final response = await _dio.post(
-            'https://54c3-183-82-1-143.ngrok-free.app/graphql',
+            'https://24b3-122-171-124-171.ngrok-free.app/graphql',
             data: {
                'query': '''
             query {
@@ -27,13 +26,8 @@ class AllProductDetails {
           ''',
             },
          );
-
-         print("query correct");
          final List<dynamic> results = response.data['data']['findAllProduct'];
-         print(results);
-
          final products = results.map((item) => ProductDetails.fromJson(item)).toList();
-
          return products;
       } catch (error) {
          print("Error occurred: $error");

@@ -83,7 +83,14 @@ class ExplorePage extends StatelessWidget {
                       else if(state is ExplorePageErrorState)
                         {
                           return  Center(
-                              child: Text("An error occurred ${state.error}"),);
+                              child: Text("An error occurred ${state.error}", style: CustomTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                fontFamily: 'Poppins',
+                                color:
+                                CustomTheme.of(context)
+                                    .secondaryBackground,
+                              ) ,),);
                         }
                       else{
                         return const Center(
