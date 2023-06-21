@@ -1,3 +1,5 @@
+import 'package:testproject/pages/sign_up/bloc/signUp_bloc.dart';
+import 'package:testproject/pages/sign_up/bloc/signUp_event.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 import 'package:testproject/pages/sign_up/ui/sign_up_widget.dart';
 
