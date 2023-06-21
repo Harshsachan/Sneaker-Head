@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:testproject/endPoint.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
 
 class SignUpRepo{
   final Dio _dio =Dio();
 
   Future<Response<dynamic>> createUser(String email, String password) async {
-    final endpoint = 'https://24b3-122-171-124-171.ngrok-free.app/graphql';
-
+    //final endpoint = 'https://24b3-122-171-124-171.ngrok-free.app/graphql';
+    print("in sign up repo");
     try {
       final response = await _dio.post(
         endpoint,

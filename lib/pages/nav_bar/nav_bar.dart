@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';
@@ -12,6 +13,8 @@ import '../home/ui/home_screen.dart';
 
 
 class NavBarPage extends StatefulWidget {
+  final LoggedInData userDetails;
+  const NavBarPage({Key? key, required this.userDetails}) : super(key: key);
 
   @override
   _NavBarPageState createState() => _NavBarPageState();
@@ -20,17 +23,17 @@ class NavBarPage extends StatefulWidget {
 class _NavBarPageState extends State<NavBarPage> {
   PageController _pageController = PageController(initialPage: 0);
   int _currentIndex = 0;
-
-  final List<Widget> _screens = [
-    ProductDetailsWidget(),
-    ExplorePage(),
-    CartPage(),
-    Accountpage(),
-  ];
+  late final List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
+    _screens = [
+      ProductDetailsWidget(),
+      ExplorePage(),
+      CartPage(),
+      Accountpage(userDetails: widget.userDetails),
+    ];
     // Add the event to fetch data when ExplorePage is loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final exploreBloc = BlocProvider.of<ExploreBloc>(context);
