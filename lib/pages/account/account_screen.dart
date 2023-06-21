@@ -1,11 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class Accountpage extends StatelessWidget {
-  const Accountpage({Key? key}) : super(key: key);
+  final LoggedInData userDetails;
+  const Accountpage({Key? key,required this.userDetails}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class Accountpage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              'User Name',
+                              '${userDetails.fName}${userDetails.lName}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -55,7 +57,7 @@ class Accountpage extends StatelessWidget {
                                       ),
                             ),
                             AutoSizeText(
-                              'examplemail@gmail.com',
+                              '${userDetails.email}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -65,7 +67,7 @@ class Accountpage extends StatelessWidget {
                                       ),
                             ),
                             AutoSizeText(
-                              '+91 8400370072',
+                              '+91 ${userDetails.number}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',

@@ -460,7 +460,7 @@ import 'package:testproject/pages/sign_up/bloc/signUp_event.dart';
 import 'package:testproject/pages/sign_up/bloc/signUp_state.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 
-import '../../explore/ui/explore_screen.dart';
+
 import '../repo/signUp_model.dart';
 
 
@@ -500,12 +500,12 @@ class _CreateUserPageState extends State<CreateUserPage> {
               print("User Created Successfully");
               print(state.signup);
               print(userDetails);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(userDetails:userDetails),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => MyHomePage(userDetails:userDetails),
+              //   ),
+              // );
               // User created successfully, navigate to another page or show a success message
             } else if (state is SignUpPageErrorState) {
               print("in error state");
@@ -549,6 +549,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: () {
+                        print("sign up clicked");
                         if (_formKey.currentState!.validate()) {
                           final email = _emailController.text;
                           final password = _passwordController.text;

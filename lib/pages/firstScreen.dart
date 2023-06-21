@@ -1,3 +1,4 @@
+import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'sign_in/sign_in.dart';
+import 'sign_in/ui/sign_in.dart';
 import 'sign_up/ui/sign_up_widget.dart';
 
 // import 'first_screen_model.dart';
@@ -149,7 +150,7 @@ class _FirstScreenWidgetState extends State<FirstScreenWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                             child: FFButtonWidget(
                               onPressed: () async{
-                                await Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInWidget()));
+                                await Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInWidget(SignInrepo())));
                                 print('Button pressed ...');
                               },
                               text: 'SIGN IN',
