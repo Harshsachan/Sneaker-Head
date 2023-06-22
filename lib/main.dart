@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
 import 'package:testproject/pages/explore/bloc/explore_bloc.dart';
 import 'package:testproject/pages/explore/repo/explore_repo.dart';
 import 'package:testproject/pages/explore/ui/explore_screen.dart';
@@ -27,13 +28,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       color: Colors.pink,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: SignInWidget(SignInrepo()),
       // home: CreateUserPage(SignUpRepo()),
-      //home: MyHomePage(),
     );
   }
 }

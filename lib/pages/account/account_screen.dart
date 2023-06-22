@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
+import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
@@ -104,35 +105,43 @@ class Accountpage extends StatelessWidget {
             // Settings Options
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.09,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: CustomTheme.of(context).secondaryBackground,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AutoSizeText(
-                          "Account Settings",
-                          style: CustomTheme.of(context).titleMedium.override(
-                                fontFamily: 'Poppins',
-                                color: CustomTheme.of(context).primaryText,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: CustomTheme.of(context).primaryText,
-                          size: 24,
-                        )
-                      ],
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: userDetails,)),
+                  );
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.09,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: CustomTheme.of(context).secondaryBackground,
                     ),
-                  )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(
+                            "User Details",
+                            style: CustomTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Poppins',
+                                  color: CustomTheme.of(context).primaryText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: CustomTheme.of(context).primaryText,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                    )),
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
