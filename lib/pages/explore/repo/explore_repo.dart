@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:testproject/endPoint.dart';
 import 'explore_model.dart';
 
 class AllProductDetails {
@@ -7,7 +8,7 @@ class AllProductDetails {
    Future<List<ProductDetails>> fetchAllProduct() async {
       try {
          final response = await _dio.post(
-            'https://24b3-122-171-124-171.ngrok-free.app/graphql',
+            endpoint,
             data: {
                'query': '''
             query {

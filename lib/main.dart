@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/form.dart';
 import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
 import 'package:testproject/pages/explore/bloc/explore_bloc.dart';
 import 'package:testproject/pages/explore/repo/explore_repo.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: SignInWidget(SignInrepo()),
       // home: CreateUserPage(SignUpRepo()),
+      //home: CardForm(),
     );
   }
 }

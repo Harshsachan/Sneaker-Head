@@ -277,7 +277,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
                   child: Material(
-                    color: Colors.transparent,
+                    //color: Colors.red,
+                    shadowColor:Colors.purple,
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),

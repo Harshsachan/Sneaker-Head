@@ -39,7 +39,7 @@ class LoggedInData {
   String? fName;
   String? lName;
   String? email;
-  String? number;
+  int? number;
   String? houseNo;
   String? street;
   String? area;

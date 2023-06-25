@@ -28,7 +28,7 @@ class YourDetails extends StatelessWidget {
                   size: 30,
                 ),
                 onPressed: () async {
-
+                    Navigator.pop(context);
                 },
               ),
               title:AutoSizeText(
