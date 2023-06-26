@@ -21,7 +21,6 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
-  List<ProductDetails> cartItems = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,12 +70,12 @@ class _ExplorePageState extends State<ExplorePage> {
                       child: GestureDetector(
                         onTap: () {
                           //Navigate to CartPage
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CartPage(cartItems: cartItems),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => CartPage(cartItems: cartItems),
+                          //   ),
+                          // );
                         },
                         child: Icon(
                           Icons.shopping_cart,
@@ -99,11 +98,6 @@ class _ExplorePageState extends State<ExplorePage> {
                           List<ProductDetails> products =state.productDetails;
                           return DataLoad(
                             productDetails: products,
-                            updateCartItems: (updatedCartItems) {
-                              setState(() {
-                                cartItems = updatedCartItems;
-                              });
-                            },
                           );
                         }
                       else if(state is ExplorePageErrorState)
@@ -135,12 +129,12 @@ class _ExplorePageState extends State<ExplorePage> {
 
 class DataLoad extends StatefulWidget {
   final List<ProductDetails> productDetails;
-  final Function(List<ProductDetails>) updateCartItems;
+  //final Function(List<ProductDetails>) updateCartItems;
 
   const DataLoad({
     Key? key,
     required this.productDetails,
-    required this.updateCartItems,
+    //required this.updateCartItems,
   }) : super(key: key);
 
   @override
@@ -154,16 +148,16 @@ class _DataLoadState extends State<DataLoad> {
   @override
   void initState() {
     super.initState();
-    //loadCartItems();
-    cartItems = widget.productDetails;
+    loadCartItems();
+    //cartItems = widget.productDetails;
   }
 
-  // void loadCartItems() async {
-  //   List<ProductDetails> items = await cartService.getCartItems();
-  //   setState(() {
-  //     cartItems = items;
-  //   });
-  // }
+  void loadCartItems() async {
+    List<ProductDetails> items = await cartService.getCartItems();
+    setState(() {
+      cartItems = items;
+    });
+  }
 
   void addToCart(ProductDetails product) async {
     if (!cartItems.contains(product)) {
@@ -308,7 +302,6 @@ class _DataLoadState extends State<DataLoad> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  print('${cartItems.length}');
                                   if (isProductInCart(product)) {
                                     removeFromCart(product);
                                   } else {
