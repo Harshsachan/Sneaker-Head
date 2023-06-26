@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CartPage extends StatelessWidget {
-  //final List<ProductDetails> cartItems;,, required this.cartItems
+import '../explore/repo/explore_model.dart';
 
-  const CartPage({Key? key}) : super(key: key);
+class CartPage extends StatelessWidget {
+  final List<ProductDetails> cartItems;
+
+  const CartPage({Key? key, required this.cartItems}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +14,11 @@ class CartPage extends StatelessWidget {
         title: Text('Cart'),
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: cartItems.length,
         itemBuilder: (context, index) {
-         // final product = cartItems[index];
+          final product = cartItems[index];
           return ListTile(
-            title: Text("product.name"),
+            title: Text('${product.name}'),
             subtitle: Text("product.company"),
             trailing: Text('\product.price'),
           );

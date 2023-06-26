@@ -21,6 +21,7 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
+  List<ProductDetails> cartItems = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,13 +70,13 @@ class _ExplorePageState extends State<ExplorePage> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 15, 0),
                       child: GestureDetector(
                         onTap: () {
-                          // Navigate to CartPage
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => CartPage(cartItems: cartItems),
-                          //   ),
-                          // );
+                          //Navigate to CartPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CartPage(cartItems: cartItems),
+                            ),
+                          );
                         },
                         child: Icon(
                           Icons.shopping_cart,
@@ -96,7 +97,14 @@ class _ExplorePageState extends State<ExplorePage> {
                       else if(state is ExplorePageLoadedState)
                         {
                           List<ProductDetails> products =state.productDetails;
-                          return DataLoad(productDetails:products);
+                          return DataLoad(
+                            productDetails: products,
+                            updateCartItems: (updatedCartItems) {
+                              setState(() {
+                                cartItems = updatedCartItems;
+                              });
+                            },
+                          );
                         }
                       else if(state is ExplorePageErrorState)
                         {
@@ -127,7 +135,13 @@ class _ExplorePageState extends State<ExplorePage> {
 
 class DataLoad extends StatefulWidget {
   final List<ProductDetails> productDetails;
-  const DataLoad({Key? key, required this.productDetails}) : super(key: key);
+  final Function(List<ProductDetails>) updateCartItems;
+
+  const DataLoad({
+    Key? key,
+    required this.productDetails,
+    required this.updateCartItems,
+  }) : super(key: key);
 
   @override
   State<DataLoad> createState() => _DataLoadState();
@@ -140,15 +154,16 @@ class _DataLoadState extends State<DataLoad> {
   @override
   void initState() {
     super.initState();
-    loadCartItems();
+    //loadCartItems();
+    cartItems = widget.productDetails;
   }
 
-  void loadCartItems() async {
-    List<ProductDetails> items = await cartService.getCartItems();
-    setState(() {
-      cartItems = items;
-    });
-  }
+  // void loadCartItems() async {
+  //   List<ProductDetails> items = await cartService.getCartItems();
+  //   setState(() {
+  //     cartItems = items;
+  //   });
+  // }
 
   void addToCart(ProductDetails product) async {
     if (!cartItems.contains(product)) {

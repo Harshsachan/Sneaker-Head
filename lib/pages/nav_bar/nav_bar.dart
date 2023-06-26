@@ -13,6 +13,7 @@ import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';
 import '../explore/bloc/explore_bloc.dart';
 import '../explore/bloc/explore_event.dart';
+import '../explore/repo/explore_model.dart';
 import '../explore/ui/explore_screen.dart';
 import '../home/ui/home_screen.dart';
 
