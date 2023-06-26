@@ -1,7 +1,12 @@
+
+
+
+
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/pages/emptyScreen.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../account/account_screen.dart';
@@ -31,7 +36,7 @@ class _NavBarPageState extends State<NavBarPage> {
     _screens = [
       ProductDetailsWidget(),
       ExplorePage(),
-      CartPage(),
+      EmptyScreen(),
       Accountpage(userDetails: widget.userDetails),
     ];
     // Add the event to fetch data when ExplorePage is loaded
