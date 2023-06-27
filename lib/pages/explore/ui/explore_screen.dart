@@ -69,13 +69,13 @@ class _ExplorePageState extends State<ExplorePage> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 15, 0),
                       child: GestureDetector(
                         onTap: () {
-                          //Navigate to CartPage
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => CartPage(cartItems: cartItems),
-                          //   ),
-                          // );
+                          // Navigate to CartPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CartPage(),
+                            ),
+                          );
                         },
                         child: Icon(
                           Icons.shopping_cart,
@@ -148,8 +148,14 @@ class _DataLoadState extends State<DataLoad> {
   @override
   void initState() {
     super.initState();
-    loadCartItems();
     //cartItems = widget.productDetails;
+  }
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    loadCartItems();
+    super.didChangeDependencies();
+
   }
 
   void loadCartItems() async {
@@ -160,7 +166,8 @@ class _DataLoadState extends State<DataLoad> {
   }
 
   void addToCart(ProductDetails product) async {
-    if (!cartItems.contains(product)) {
+    if (!cartItems.any((item) => item.id == product.id)) {
+      print("cartItems add");
       cartItems.add(product);
       await cartService.saveCartItems(cartItems);
       setState(() {
@@ -177,9 +184,13 @@ class _DataLoadState extends State<DataLoad> {
   }
 
   void removeFromCart(ProductDetails product) async {
-    if (cartItems.contains(product)) {
-      cartItems.remove(product);
+    print("removeFromCart called");
+    if (cartItems.any((item) => item.id == product.id)) {
+      print("cartItem removed");
+      cartItems.removeWhere((element) => element.id == product.id);
+      // cartItems.remove(product);
       await cartService.saveCartItems(cartItems);
+      print("cartItems");
       setState(() {
         // Update the UI
       });
@@ -190,13 +201,8 @@ class _DataLoadState extends State<DataLoad> {
   }
 
   bool isProductInCart(ProductDetails product) {
-    if(cartItems.contains(product)){
-      return true;
-    }
-    else{
-      return false;
-    }
-    //return cartItems.contains(product);
+
+    return cartItems.any((item) => item.id == product.id);
   }
 
   @override
@@ -331,10 +337,11 @@ class _DataLoadState extends State<DataLoad> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  print(isProductInCart(product));
                                   print('${cartItems.length}');
-                                  for(int i=0;i<cartItems.length;i++){
-                                    print('${cartItems[i].name}');
-                                  }
+                                  // for(int i=0;i<cartItems.length;i++){
+                                  //   print('${cartItems[i].name}');
+                                  // }
                                 },
                                 child: AutoSizeText(
                                   'c',

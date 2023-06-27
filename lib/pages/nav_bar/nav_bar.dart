@@ -37,7 +37,7 @@ class _NavBarPageState extends State<NavBarPage> {
     _screens = [
       ProductDetailsWidget(),
       ExplorePage(),
-      EmptyScreen(),
+      CartPage(),
       Accountpage(userDetails: widget.userDetails),
     ];
     // Add the event to fetch data when ExplorePage is loaded
