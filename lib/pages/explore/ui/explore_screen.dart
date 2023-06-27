@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../flutter_flow/flutter_flow_icon_button.dart';
 import '../../../flutter_flow/flutter_flow_widgets.dart';
+import '../../cart/cart_screen.dart';
 import '../../product/product_details.dart';
 import '../bloc/explore_bloc.dart';
 import '../bloc/explore_state.dart';
@@ -10,9 +11,16 @@ import '../repo/explore_model.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ExplorePage extends StatelessWidget {
+import 'add_to_cart.dart';
+
+class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key}) : super(key: key);
 
+  @override
+  State<ExplorePage> createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +67,21 @@ class ExplorePage extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 15, 0),
-                      child: Icon(
-                        Icons.favorite_sharp,
-                        color: CustomTheme.of(context)
-                            .secondaryBackground,
-                        size: 35,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigate to CartPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CartPage(),
+                            ),
+                          );
+                        },
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: CustomTheme.of(context).secondaryBackground,
+                          size: 35,
+                        ),
                       ),
                     ),
                   ],
@@ -78,7 +96,9 @@ class ExplorePage extends StatelessWidget {
                       else if(state is ExplorePageLoadedState)
                         {
                           List<ProductDetails> products =state.productDetails;
-                          return DataLoad(productDetails:products);
+                          return DataLoad(
+                            productDetails: products,
+                          );
                         }
                       else if(state is ExplorePageErrorState)
                         {
@@ -107,10 +127,83 @@ class ExplorePage extends StatelessWidget {
   }
 }
 
-class DataLoad extends StatelessWidget {
-
+class DataLoad extends StatefulWidget {
   final List<ProductDetails> productDetails;
-  const DataLoad({Key? key, required this.productDetails}) : super(key: key);
+  //final Function(List<ProductDetails>) updateCartItems;
+
+  const DataLoad({
+    Key? key,
+    required this.productDetails,
+    //required this.updateCartItems,
+  }) : super(key: key);
+
+  @override
+  State<DataLoad> createState() => _DataLoadState();
+}
+
+class _DataLoadState extends State<DataLoad> {
+  CartService cartService = CartService();
+  List<ProductDetails> cartItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    //cartItems = widget.productDetails;
+  }
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    loadCartItems();
+    super.didChangeDependencies();
+
+  }
+
+  void loadCartItems() async {
+    List<ProductDetails> items = await cartService.getCartItems();
+    setState(() {
+      cartItems = items;
+    });
+  }
+
+  void addToCart(ProductDetails product) async {
+    if (!cartItems.any((item) => item.id == product.id)) {
+      print("cartItems add");
+      cartItems.add(product);
+      await cartService.saveCartItems(cartItems);
+      setState(() {
+        // Update the UI
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Added to cart')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Product already in cart')),
+      );
+    }
+  }
+
+  void removeFromCart(ProductDetails product) async {
+    print("removeFromCart called");
+    if (cartItems.any((item) => item.id == product.id)) {
+      print("cartItem removed");
+      cartItems.removeWhere((element) => element.id == product.id);
+      // cartItems.remove(product);
+      await cartService.saveCartItems(cartItems);
+      print("cartItems");
+      setState(() {
+        // Update the UI
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Removed from cart')),
+      );
+    }
+  }
+
+  bool isProductInCart(ProductDetails product) {
+
+    return cartItems.any((item) => item.id == product.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +212,9 @@ class DataLoad extends StatelessWidget {
        // padding: EdgeInsets.zero,
        // shrinkWrap: true,
        // scrollDirection: Axis.vertical,
-        itemCount: productDetails.length,
+        itemCount: widget.productDetails.length,
         itemBuilder: ( context, index) {
-          final product = productDetails[index];
+          final product = widget.productDetails[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -213,35 +306,62 @@ class DataLoad extends StatelessWidget {
                                       .secondaryBackground,
                                 ),
                               ),
-                              FFButtonWidget(
+                              ElevatedButton(
                                 onPressed: () {
-                                  print('Button pressed ...');
+                                  if (isProductInCart(product)) {
+                                    removeFromCart(product);
+                                  } else {
+                                    addToCart(product);
+                                  }
                                 },
-                                text: 'Add To Cart',
-                                options: FFButtonOptions(
-                                  height: 40,
-                                  padding:
-                                  EdgeInsetsDirectional.fromSTEB(
-                                      24, 0, 24, 0),
-                                  iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  color: CustomTheme.of(context)
-                                      .primary,
-                                  textStyle:
-                                  CustomTheme.of(context)
-                                      .titleSmall
-                                      .override(
+                                child: AutoSizeText(
+                                  isProductInCart(product) ? 'R' : 'A',
+                                  style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
+                                    fontSize: CustomTheme.of(context).titleSmall.fontSize,
                                   ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: CustomTheme.of(context).primary,
+                                  onPrimary: Colors.white,
                                   elevation: 3,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  borderRadius:
-                                  BorderRadius.circular(8),
+                                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                  textStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  print(isProductInCart(product));
+                                  print('${cartItems.length}');
+                                  // for(int i=0;i<cartItems.length;i++){
+                                  //   print('${cartItems[i].name}');
+                                  // }
+                                },
+                                child: AutoSizeText(
+                                  'c',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                    fontSize: CustomTheme.of(context).titleSmall.fontSize,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: CustomTheme.of(context).primary,
+                                  onPrimary: Colors.white,
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                  textStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                  ),
                                 ),
                               ),
                             ],
@@ -260,4 +380,5 @@ class DataLoad extends StatelessWidget {
     );
   }
 }
+
 

@@ -1,54 +1,35 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testproject/pages/explore/repo/explore_model.dart';
-
-class CartHelper {
-  static const String _cartKey = 'cart';
+class CartService {
+  static const String CART_KEY = 'cart';
 
   Future<List<ProductDetails>> getCartItems() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartData = prefs.getString(_cartKey);
-    if (cartData != null) {
-      final List<dynamic> decodedData = json.decode(cartData);
-      final List<ProductDetails> cartItems = decodedData
-          .map((item) => ProductDetails.fromJson(item))
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? cartJson = prefs.getString(CART_KEY);
+    if (cartJson != null) {
+      List<dynamic> cartData = jsonDecode(cartJson);
+      List<ProductDetails> cartItems = cartData
+          .map((data) => ProductDetails.fromJson(data))
           .toList();
       return cartItems;
+    } else {
+      return [];
     }
-    return [];
   }
 
-  Future<bool> addToCart(ProductDetails product) async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartData = prefs.getString(_cartKey);
-    List<ProductDetails> cartItems = [];
-
-    if (cartData != null) {
-      final List<dynamic> decodedData = json.decode(cartData);
-      cartItems = decodedData
-          .map((item) => ProductDetails.fromJson(item))
-          .toList();
-    }
-
-    cartItems.add(product);
-    final encodedData = json.encode(cartItems);
-    return prefs.setString(_cartKey, encodedData);
+  Future<void> saveCartItems(List<ProductDetails> cartItems) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<Map<String, dynamic>> cartData = cartItems
+        .map((item) => item.toJson())
+        .toList();
+    String cartJson = jsonEncode(cartData);
+    await prefs.setString(CART_KEY, cartJson);
   }
 
-  Future<bool> removeFromCart(ProductDetails product) async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartData = prefs.getString(_cartKey);
-    List<ProductDetails> cartItems = [];
-
-    if (cartData != null) {
-      final List<dynamic> decodedData = json.decode(cartData);
-      cartItems = decodedData
-          .map((item) => ProductDetails.fromJson(item))
-          .toList();
-    }
-
+  Future<void> removeCartItem(ProductDetails product) async {
+    List<ProductDetails> cartItems = await getCartItems();
     cartItems.removeWhere((item) => item.id == product.id);
-    final encodedData = json.encode(cartItems);
-    return prefs.setString(_cartKey, encodedData);
+    await saveCartItems(cartItems);
   }
 }
