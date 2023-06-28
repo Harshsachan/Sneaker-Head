@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:testproject/pages/explore/ui/add_to_cart.dart';
 
 import '../../flutter_flow/flutter_flow_model.dart';
 import '../explore/repo/explore_model.dart';
@@ -17,9 +18,72 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class SingleProductWidget extends StatelessWidget {
+class SingleProductWidget extends StatefulWidget {
   final ProductDetails product;
+
    SingleProductWidget({Key? key,required this.product}) : super(key: key);
+
+  @override
+  State<SingleProductWidget> createState() => _SingleProductWidgetState();
+}
+
+class _SingleProductWidgetState extends State<SingleProductWidget> {
+  CartService cartService = CartService();
+  List<ProductDetails> cartItems = [];
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    loadCartItems();
+    //super.didChangeDependencies();
+
+  }
+
+  void loadCartItems() async {
+    List<ProductDetails> items = await cartService.getCartItems();
+    setState(() {
+      cartItems = items;
+    });
+  }
+
+  void addToCart(ProductDetails product) async {
+    if (!cartItems.any((item) => item.id == product.id)) {
+      print("cartItems add");
+      cartItems.add(product);
+      await cartService.saveCartItems(cartItems);
+      setState(() {
+        // Update the UI
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Added to cart')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Product already in cart')),
+      );
+    }
+  }
+
+  void removeFromCart(ProductDetails product) async {
+    print("removeFromCart called");
+    if (cartItems.any((item) => item.id == product.id)) {
+      print("cartItem removed");
+      cartItems.removeWhere((element) => element.id == product.id);
+      // cartItems.remove(product);
+      await cartService.saveCartItems(cartItems);
+      print("cartItems");
+      setState(() {
+        // Update the UI
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Removed from cart')),
+      );
+    }
+  }
+
+  bool isProductInCart(ProductDetails product) {
+    return cartItems.any((item) => item.id == product.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +106,7 @@ class SingleProductWidget extends StatelessWidget {
                       //Image
                       Container(
                         width: double.infinity,
-                        height: 400,
+                        height: MediaQuery.of(context).size.height*0.4,
                         decoration: BoxDecoration(
                           color: CustomTheme.of(context)
                               .primaryBackground,
@@ -58,7 +122,7 @@ class SingleProductWidget extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(0),
                                   child: Image.network(
-                                     product.image??'',
+                                     widget.product.image??'',
                                     width: double.infinity,
                                     height: double.infinity,
                                     fit: BoxFit.contain,
@@ -93,8 +157,9 @@ class SingleProductWidget extends StatelessWidget {
                                                 .primaryText,
                                             size: 35,
                                           ),
-                                          onPressed: () async {
-                                            Navigator.pop(context);
+                                          onPressed: ()  {
+
+                                            Navigator.pop(context, cartItems);
                                           },
                                         ),
                                       ),
@@ -133,10 +198,9 @@ class SingleProductWidget extends StatelessWidget {
 
                       Container(
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: MediaQuery.of(context).size.height * 0.5,
                         decoration: BoxDecoration(
-                          color: CustomTheme.of(context)
-                              .primaryText,
+                          color: CustomTheme.of(context).primaryText,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0),
@@ -144,20 +208,15 @@ class SingleProductWidget extends StatelessWidget {
                             topRight: Radius.circular(32),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          padding:  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              SizedBox( height: MediaQuery.of(context).size.height * 0.03,),
                               AutoSizeText(
-                                product.name??'',
+                                widget.product.name??'',
                                 style: CustomTheme.of(context)
                                     .headlineSmall
                                     .override(
@@ -169,76 +228,33 @@ class SingleProductWidget extends StatelessWidget {
                                 ),
                                 maxLines: 1,
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              AutoSizeText(
-                                'Retailed by ',
-                                style: CustomTheme.of(context).titleLarge.override(
-                                  fontFamily: 'Poppins',
-                                  color: CustomTheme.of(context).primaryBackground,
-                                ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  AutoSizeText(
+                                    'Retailed by ',
+                                    style: CustomTheme.of(context).titleLarge.override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context).primaryBackground,
+                                    ),
+                                  ),
+                                  AutoSizeText(
+                                    widget.product.company??'',
+                                    style: CustomTheme.of(context).titleLarge.override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context).primaryBackground,
+                                    ),
+                                  ),
+                                ],
                               ),
                               AutoSizeText(
-                                product.company??'',
-                                style: CustomTheme.of(context).titleLarge.override(
-                                  fontFamily: 'Poppins',
-                                  color: CustomTheme.of(context).primaryBackground,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                          child: Row(
-                            children: [
-                              AutoSizeText(
-                                '\$ - ',
+                                '\$ - ${widget.product.price}',
                                 style: CustomTheme.of(context).titleLarge.override(
                                   fontFamily: 'Poppins',
                                   color: CustomTheme.of(context).alternate,
                                 ),
                               ),
-                              AutoSizeText(
-                                product.price.toString()??'',
-                                  style: CustomTheme.of(context).titleLarge.override(
-                                      fontFamily: 'Poppins',
-                                      color: CustomTheme.of(context)
-                                          .alternate)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24,0, 24, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
                               AutoSizeText(
                                 'DESCRIPTION',
                                 style:
@@ -249,58 +265,189 @@ class SingleProductWidget extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
+                              Padding(
+                                padding:  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: AutoSizeText(
-                                  product.description??'',
-                                  style: CustomTheme.of(context).labelMedium.override(
+                                  '${widget.product.description}',
+                                  textAlign:TextAlign.justify,
+                                  style:
+                                  CustomTheme.of(context).titleSmall.override(
                                     fontFamily: 'Poppins',
                                     color: CustomTheme.of(context)
                                         .primaryBackground,
+                                    //fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
+
                             ],
                           ),
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.of(context).primaryText,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: AutoSizeText(
-                                  product.description??'',
-                                  style: CustomTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Poppins',
-                                    color: CustomTheme.of(context)
-                                        .primaryBackground,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   height: MediaQuery.of(context).size.height * 0.03,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context)
+                      //         .primaryText,
+                      //     borderRadius: BorderRadius.only(
+                      //       bottomLeft: Radius.circular(0),
+                      //       bottomRight: Radius.circular(0),
+                      //       topLeft: Radius.circular(32),
+                      //       topRight: Radius.circular(32),
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                      //     child: AutoSizeText(
+                      //       product.name??'',
+                      //       style: CustomTheme.of(context)
+                      //           .headlineSmall
+                      //           .override(
+                      //         fontFamily: 'Poppins',
+                      //         color: CustomTheme.of(context)
+                      //             .primaryBackground,
+                      //         // fontSize: 16,
+                      //         fontWeight: FontWeight.w500,
+                      //       ),
+                      //       maxLines: 1,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      //     child: Row(
+                      //       mainAxisSize: MainAxisSize.max,
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       children: [
+                      //         AutoSizeText(
+                      //           'Retailed by ',
+                      //           style: CustomTheme.of(context).titleLarge.override(
+                      //             fontFamily: 'Poppins',
+                      //             color: CustomTheme.of(context).primaryBackground,
+                      //           ),
+                      //         ),
+                      //         AutoSizeText(
+                      //           product.company??'',
+                      //           style: CustomTheme.of(context).titleLarge.override(
+                      //             fontFamily: 'Poppins',
+                      //             color: CustomTheme.of(context).primaryBackground,
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      //     child: Row(
+                      //       children: [
+                      //         AutoSizeText(
+                      //           '\$ - ',
+                      //           style: CustomTheme.of(context).titleLarge.override(
+                      //             fontFamily: 'Poppins',
+                      //             color: CustomTheme.of(context).alternate,
+                      //           ),
+                      //         ),
+                      //         AutoSizeText(
+                      //           product.price.toString()??'',
+                      //             style: CustomTheme.of(context).titleLarge.override(
+                      //                 fontFamily: 'Poppins',
+                      //                 color: CustomTheme.of(context)
+                      //                     .alternate)
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24,0, 24, 0),
+                      //     child: Row(
+                      //       mainAxisSize: MainAxisSize.max,
+                      //       children: [
+                      //         AutoSizeText(
+                      //           'DESCRIPTION',
+                      //           style:
+                      //           CustomTheme.of(context).titleMedium.override(
+                      //             fontFamily: 'Poppins',
+                      //             color: CustomTheme.of(context)
+                      //                 .primaryBackground,
+                      //             fontWeight: FontWeight.bold,
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                      //     child: Row(
+                      //       mainAxisSize: MainAxisSize.max,
+                      //       children: [
+                      //         Expanded(
+                      //           child: AutoSizeText(
+                      //             product.description??'',
+                      //             style: CustomTheme.of(context).labelMedium.override(
+                      //               fontFamily: 'Poppins',
+                      //               color: CustomTheme.of(context)
+                      //                   .primaryBackground,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: CustomTheme.of(context).primaryText,
+                      //   ),
+                      //   child: Padding(
+                      //     padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                      //     child: Row(
+                      //       mainAxisSize: MainAxisSize.max,
+                      //       children: [
+                      //         Expanded(
+                      //           child: AutoSizeText(
+                      //             product.description??'',
+                      //             style: CustomTheme.of(context).labelMedium.override(
+                      //               fontFamily: 'Poppins',
+                      //               color: CustomTheme.of(context)
+                      //                   .primaryBackground,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       //TODO
                       // Size functinaolity to build
                       // Container(
@@ -326,7 +473,6 @@ class SingleProductWidget extends StatelessWidget {
                       //   ),
                       // ),
                       //Chips
-
                     ],
                   ),
                 ),
@@ -358,9 +504,15 @@ class SingleProductWidget extends StatelessWidget {
                   children: [
                     FFButtonWidget(
                       onPressed: () {
-                        print('Button pressed ...');
+                        if(isProductInCart(widget.product))
+                          {
+                            removeFromCart(widget.product);
+                          }
+                        else{
+                          addToCart(widget.product);
+                        }
                       },
-                      text: 'Apple Pay',
+                      text: isProductInCart(widget.product) ? 'Remove From Cart' : 'Add To cart',
                       icon: FaIcon(
                         FontAwesomeIcons.apple,
                         color: CustomTheme.of(context).secondaryBackground,
@@ -391,7 +543,7 @@ class SingleProductWidget extends StatelessWidget {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: 'Add to Cart',
+                      text: 'Buy Now',
                       icon: Icon(
                         Icons.shopping_cart_outlined,
                         size: 15,
