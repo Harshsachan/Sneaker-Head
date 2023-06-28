@@ -75,7 +75,7 @@ class _ExplorePageState extends State<ExplorePage> {
                             MaterialPageRoute(
                               builder: (context) => const CartPage(),
                             ),
-                          );
+                          ).then((value) => null);
                         },
                         child: Icon(
                           Icons.shopping_cart,
@@ -199,10 +199,23 @@ class _DataLoadState extends State<DataLoad> {
       );
     }
   }
-
   bool isProductInCart(ProductDetails product) {
-
     return cartItems.any((item) => item.id == product.id);
+  }
+
+  Future<void> _navigateToSecondPage(product) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SingleProductWidget(product: product),
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        cartItems = result;
+      });
+    }
   }
 
   @override
@@ -217,12 +230,13 @@ class _DataLoadState extends State<DataLoad> {
           final product = widget.productDetails[index];
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SingleProductWidget(product: product),
-                ),
-              );
+              _navigateToSecondPage(product);
+              // Navigator.push(
+              //   context
+              //   MaterialPageRoute(
+              //     builder: (context) => SingleProductWidget(product: product),
+              //   ),
+              // );
             },
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 0),
