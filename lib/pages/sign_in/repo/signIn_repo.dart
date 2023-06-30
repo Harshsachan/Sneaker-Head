@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:testproject/endPoint.dart';
 
-class SignInrepo{
+class  SignInrepo{
   final Dio _dio = Dio();
 
   Future<Response<dynamic>> fetchUserDetais(String email,String password) async{
