@@ -7,9 +7,17 @@ import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
-class Accountpage extends StatelessWidget {
+class Accountpage extends StatefulWidget {
   final LoggedInData userDetails;
   const Accountpage({Key? key,required this.userDetails}) : super(key: key);
+
+  @override
+  State<Accountpage> createState() => _AccountpageState();
+}
+
+class _AccountpageState extends State<Accountpage> {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class Accountpage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              '${userDetails.fName}${userDetails.lName}',
+                              '${widget.userDetails.fName}${widget.userDetails.lName}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -59,7 +67,7 @@ class Accountpage extends StatelessWidget {
                                       ),
                             ),
                             AutoSizeText(
-                              '${userDetails.email}',
+                              '${widget.userDetails.email}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -69,7 +77,7 @@ class Accountpage extends StatelessWidget {
                                       ),
                             ),
                             AutoSizeText(
-                              '+91 ${userDetails.number}',
+                              '+91 ${widget.userDetails.number}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -110,7 +118,7 @@ class Accountpage extends StatelessWidget {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: userDetails,)),
+                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: widget.userDetails,)),
                   );
                 },
                 child: Container(

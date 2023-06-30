@@ -1,6 +1,8 @@
 import 'package:blurry/blurry.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testproject/main.dart';
+import 'package:testproject/pages/memory/email.dart';
 import 'package:testproject/pages/sign_in/bloc/signIn_bloc.dart';
 import 'package:testproject/pages/sign_in/bloc/signIn_state.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
@@ -25,6 +27,7 @@ class SignInWidget extends StatefulWidget {
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
+  EmailService emailService =EmailService();
 
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -314,13 +317,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                       ),
                       // Signin Button
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           print(_emailController.text);
                           print(_passwordController.text);
                           //if (_formKey.currentState!.validate()) {
                           print("inside if");
                           final email = _emailController.text;
                           final password = _passwordController.text;
+                          String userEmail= _emailController.text;
+                          await emailService.saveUserEmail(userEmail);
                           context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
                           //}
                         },
