@@ -8,6 +8,7 @@ import 'package:testproject/flutter_flow/flutter_flow_widgets.dart';
 import 'package:testproject/flutter_flow/form_field_controller.dart';
 import 'package:testproject/pages/explore/repo/explore_model.dart';
 import 'package:testproject/pages/explore/ui/add_to_cart.dart';
+import 'package:testproject/pages/memory/email.dart';
 
 class CartCreateOrder extends StatefulWidget {
 
@@ -19,6 +20,8 @@ class CartCreateOrder extends StatefulWidget {
 
 class _CartCreateOrderState extends State<CartCreateOrder> {
   CartService cartService = CartService();
+  EmailService emailService =EmailService();
+  String? userEmail = "";
   List<ProductDetails> cartItems = [];
 
   
@@ -26,9 +29,15 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   @override
   void initState() {
     // TODO: implement initState
-    //addOrderId();
-    loadCartItems().then((value) => addOrderId());
+    loadUserEmail();
     super.initState();
+  }
+  void loadUserEmail() async{
+    String? gotUserEmail= await emailService.getUserEmail();
+    setState(() {
+      userEmail =gotUserEmail;
+    });
+    print(userEmail);
   }
 
 
