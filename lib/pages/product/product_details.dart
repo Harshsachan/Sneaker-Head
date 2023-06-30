@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:testproject/pages/explore/ui/add_to_cart.dart';
+import 'package:testproject/pages/order/order.dart';
 
 import '../../flutter_flow/flutter_flow_model.dart';
 import '../explore/repo/explore_model.dart';
@@ -541,7 +542,16 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () {
-                        print('Button pressed ...');
+                       if(!isProductInCart(widget.product))
+                         {
+                           addToCart(widget.product);
+                         }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateOrder(products: [widget.product]),
+                          ),
+                        );
                       },
                       text: 'Buy Now',
                       icon: Icon(

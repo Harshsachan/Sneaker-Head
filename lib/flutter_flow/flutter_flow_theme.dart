@@ -49,10 +49,12 @@ abstract class CustomTheme {
   late Color accent2;
   late Color accent3;
   late Color accent4;
+  late Color accent5;
   late Color success;
   late Color warning;
   late Color error;
   late Color info;
+  late Color pBackground;
 
   late Color lineColor;
   late Color primaryBtnText;
@@ -144,6 +146,8 @@ class LightModeTheme extends CustomTheme {
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFE21C3D);
   late Color info = const Color(0xFF1C4494);
+  late Color accent5 = const Color(0xC8EEEEEE);
+  late Color pBackground =const Color(0xFF161A1E);
 
   late Color lineColor = Color(0xFFE0E3E7);
   late Color primaryBtnText = Color(0xFFFFFFFF);
