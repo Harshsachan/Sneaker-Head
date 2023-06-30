@@ -60,6 +60,7 @@ class _SignInWidgetState extends State<SignInWidget> {
           listener: (context, state) {
             // TODO: implement listener
             if(state is SignInPageSuccessState){
+
               print("Data fetched in widget Successful");
               LoggedInData userDetails = state.loggedInData;
               print(state.loggedInData.toJson());
@@ -70,6 +71,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                   builder: (context) => MyHomePage(userDetails:userDetails),
                 ),
               );
+
             }
             else if (state is SignInPageDataNotFoundState){
               print("SignInPageDataNotFoundState");

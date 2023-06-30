@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/pages/explore/ui/add_to_cart.dart';
+import 'package:testproject/pages/order/repo/order_repo.dart';
 import 'package:testproject/pages/order/ui/cart_order.dart';
 import 'package:testproject/pages/product/product_details.dart';
 
@@ -98,199 +100,198 @@ class _CartPageState extends State<CartPage> {
                     );
                   },
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 0),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      decoration: BoxDecoration(
-                        color: CustomTheme.of(context).primaryText,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: CustomTheme.of(context)
-                              .primaryBackground,
-                        ),
+                    padding: EdgeInsetsDirectional.fromSTEB(15, 30, 15, 5),
+                    child: Material(
+                      shadowColor: Colors.purple,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10, 10, 10, 10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                product.image??"",
-                                width: MediaQuery.of(context).size.width *
-                                    0.35,
-                                height: 200,
-                                fit: BoxFit.cover,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        decoration: BoxDecoration(
+                          color: CustomTheme.of(context).pBackground,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: CustomTheme.of(context)
+                                .primaryBackground,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  product.image??"",
+                                  width: MediaQuery.of(context).size.width *
+                                      0.35,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color:
-                              CustomTheme.of(context).primaryText,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  product.name??"",
-                                  style: CustomTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                    fontFamily: 'Poppins',
-                                    color: CustomTheme.of(context)
-                                        .primaryBackground,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                                AutoSizeText(
-                                  product.company??'',
-                                  style: CustomTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                    fontFamily: 'Poppins',
-                                    color: CustomTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AutoSizeText(
-                                      product.price.toString(),
-                                      style: CustomTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                        fontFamily: 'Poppins',
-                                        color:
-                                        CustomTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: 100,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AutoSizeText(
+                                    product.name??"",
+                                    style: CustomTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        if (isProductInCart(product)) {
-                                          removeFromCart(product);
-                                        } else {
-                                        }
-                                      },
-                                      child: AutoSizeText(
-                                       'Remove',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.white,
-                                          fontSize: CustomTheme.of(context).titleSmall.fontSize,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: CustomTheme.of(context).primary,
-                                        onPrimary: Colors.white,
-                                        elevation: 3,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                                        textStyle: TextStyle(
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
+                                    maxLines: 1,
+                                  ),
+                                  AutoSizeText(
+                                    product.company??'',
+                                    style: CustomTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context)
+                                          .secondaryBackground,
+                                      fontSize: 14,
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        product.price.toString(),
+                                        style: CustomTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                          fontFamily: 'Poppins',
+                                          color:
+                                          CustomTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          if (isProductInCart(product)) {
+                                            removeFromCart(product);
+                                          } else {
+                                          }
+                                        },
+                                        child: AutoSizeText(
+                                         'Remove',
+                                          style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.white,
+                                            fontSize: CustomTheme.of(context).titleSmall.fontSize,
+                                          ),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: CustomTheme.of(context).primary,
+                                          onPrimary: Colors.white,
+                                          elevation: 3,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                          textStyle: TextStyle(
+                                            fontFamily: 'Poppins',
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 );
               },
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Material(
-                shadowColor:Colors.grey,
-                elevation: 20,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                   height: MediaQuery.of(context).size.height * 0.10,
-                  decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Colors.grey,
-                      //     spreadRadius: 4,
-                      //   )
-                      // ],
-                    color: CustomTheme.of(context).primaryText,
-                    // borderRadius: BorderRadius.circular(10),
-                    // border: Border.all(
-                    //   color: CustomTheme.of(context)
-                    //       .primaryBackground,
-                    // ),
-                  ),
-                  child: Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AutoSizeText("Total \$ - ${totalPrice()}",
-                          style: CustomTheme.of(context)
-                            .titleLarge
-                            .override(
-                          fontFamily: 'Poppins',
-                          color:
-                          CustomTheme.of(context)
-                              .secondaryBackground,
-                        ),),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CartCreateOrder(),
-                                ),
-                              );
-                            },
-                            child: AutoSizeText(
-                              'Place Order',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                                fontSize: CustomTheme.of(context).titleMedium.fontSize,
-                              ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.13,
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(33, 33, 33, 1.0),
+                //borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      height: MediaQuery.of(context).size.height * 0.050,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AutoSizeText(
+                            "Total \$ - ${totalPrice()}",
+                            style: CustomTheme.of(context).titleMedium.override(
+                              fontFamily: 'Poppins',
+                              color: CustomTheme.of(context)
+                                  .secondaryBackground,
                             ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomTheme.of(context).alternate,
-                              elevation: 3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                          ),
+                        ],
+                      )),
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.50,
+                    height: MediaQuery.of(context).size.height * 0.1,
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: NeoPopTiltedButton(
+                        isFloating: true,
+                        onTapUp: () {
+                          print("click");
+                            Navigator.push(context,
+                              MaterialPageRoute(
+                              builder: (context) => CartCreateOrder(placeOrderRepo:PlaceOrderRepo()),
                               ),
-                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                              textStyle: TextStyle(
+                            );
+                        },
+                        decoration:  NeoPopTiltedButtonDecoration(
+                          //color:  Color.fromRGBO(255, 235, 52, 1),
+                          color: CustomTheme.of(context).neoColor,
+                          //color: Color.fromRGBO(236, 236, 236, 1.0),
+                          plunkColor: CustomTheme.of(context).neoPlunkColor,
+                          shadowColor: CustomTheme.of(context).primaryText,
+                          showShimmer: true,
+                          shimmerColor: CustomTheme.of(context).secondaryBackground,
+                        ),
+                        child:  Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: Center(
+                            child: AutoSizeText(
+                              "Place Order",
+                              style: CustomTheme.of(context).bodySmall.override(
                                 fontFamily: 'Poppins',
+                                color: CustomTheme.of(context)
+                                    .primaryText,
                               ),
                             ),
                           ),
-                      ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  )
+                ],
               ),
             )
           ],
@@ -299,3 +300,11 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
+// "Total \$ - ${totalPrice()}"
+
+// Navigator.push(
+// context,
+// MaterialPageRoute(
+// builder: (context) => CartCreateOrder(placeOrderRepo:PlaceOrderRepo()),
+// ),
+// );

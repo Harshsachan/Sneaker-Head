@@ -55,6 +55,9 @@ abstract class CustomTheme {
   late Color error;
   late Color info;
   late Color pBackground;
+  late Color forBtn;
+  late Color neoColor;
+  late Color neoPlunkColor;
 
   late Color lineColor;
   late Color primaryBtnText;
@@ -148,6 +151,9 @@ class LightModeTheme extends CustomTheme {
   late Color info = const Color(0xFF1C4494);
   late Color accent5 = const Color(0xC8EEEEEE);
   late Color pBackground =const Color(0xFF161A1E);
+  late Color forBtn =const Color.fromRGBO(33, 33, 33, 1.0);
+  late Color neoColor=const Color.fromRGBO(236, 236, 236, 1.0);
+  late Color neoPlunkColor=const Color.fromRGBO(151, 151, 151, 1.0);
 
   late Color lineColor = Color(0xFFE0E3E7);
   late Color primaryBtnText = Color(0xFFFFFFFF);
