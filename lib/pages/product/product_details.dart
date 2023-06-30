@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:testproject/pages/explore/ui/add_to_cart.dart';
-import 'package:testproject/pages/order/order.dart';
+import 'package:testproject/pages/order/ui/order.dart';
 
 import '../../flutter_flow/flutter_flow_model.dart';
 import '../explore/repo/explore_model.dart';
@@ -549,7 +549,7 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CreateOrder(products: [widget.product]),
+                            builder: (context) => OneCreateOrder(product: widget.product),
                           ),
                         );
                       },

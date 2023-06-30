@@ -7,17 +7,33 @@ import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/flutter_flow/flutter_flow_widgets.dart';
 import 'package:testproject/flutter_flow/form_field_controller.dart';
 import 'package:testproject/pages/explore/repo/explore_model.dart';
+import 'package:testproject/pages/explore/ui/add_to_cart.dart';
 
-class CreateOrder extends StatefulWidget {
-  final List<ProductDetails> products;
+class OneCreateOrder extends StatefulWidget {
+  final ProductDetails product;
 
-  const CreateOrder({Key? key, required this.products}) : super(key: key);
+  const OneCreateOrder({Key? key, required this.product}) : super(key: key);
 
   @override
-  State<CreateOrder> createState() => _CreateOrderState();
+  State<OneCreateOrder> createState() => _OneCreateOrderState();
 }
 
-class _CreateOrderState extends State<CreateOrder> {
+class _OneCreateOrderState extends State<OneCreateOrder> {
+
+  List<int?> order_ids=[];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    addOrderId();
+    super.initState();
+  }
+
+  void addOrderId()
+  {
+    order_ids.add(widget.product.id);
+    print(order_ids);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +85,9 @@ class _CreateOrderState extends State<CreateOrder> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         primary: false,
-                        itemCount: widget.products.length,
+                        itemCount: 1,
                         itemBuilder: (context, index) {
-                          final product =   widget.products[index];
+                          final product =   widget.product;
                           return Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(15, 30, 15, 5),
@@ -146,7 +162,7 @@ class _CreateOrderState extends State<CreateOrder> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  'Company',
+                                                  product.company??'',
                                                   style: CustomTheme.of(context).bodyMedium.override(
                                                     fontFamily: 'Poppins',
                                                     color: CustomTheme.of(context)
@@ -184,28 +200,6 @@ class _CreateOrderState extends State<CreateOrder> {
                                       endIndent: 10,
                                       color:
                                           CustomTheme.of(context).primaryBackground,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                          children: [
-                                                            AutoSizeText(
-                                                              'Remove',
-                                                                style: CustomTheme.of(context).bodyMedium.override(
-                                                                  fontFamily: 'Poppins',
-                                                                  color: Colors.red,
-                                                                  //fontWeight: FontWeight.bold,
-                                                                ),
-                                                            ),
-                                                            Icon(
-                                                              Icons.delete_forever_outlined,
-                                                              color: Colors.red,
-                                                              size: 18.0,
-                                                              semanticLabel: 'Text to announce in accessibility modes',
-                                                            ),
-                                                          ],
-                                                        ),
                                     ),
                                   ],
                                 ),
