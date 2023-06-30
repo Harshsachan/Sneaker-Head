@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/pages/explore/ui/add_to_cart.dart';
-import 'package:testproject/pages/order/order.dart';
+import 'package:testproject/pages/order/ui/cart_order.dart';
 import 'package:testproject/pages/product/product_details.dart';
 
 import '../explore/repo/explore_model.dart';
@@ -16,7 +16,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
   CartService cartService = CartService();
   List<ProductDetails> cartItems = [];
 
@@ -24,7 +23,7 @@ class _CartPageState extends State<CartPage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
       loadCartItems().then((value) => totalPrice());
-    super.didChangeDependencies();
+      super.didChangeDependencies();
   }
 
 
@@ -264,7 +263,7 @@ class _CartPageState extends State<CartPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CreateOrder(products: cartItems),
+                                  builder: (context) => CartCreateOrder(),
                                 ),
                               );
                             },
