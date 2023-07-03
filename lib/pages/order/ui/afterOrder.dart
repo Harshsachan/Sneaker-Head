@@ -32,7 +32,7 @@ class _AfterOrderState extends State<AfterOrder> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.network(
-                    'https://assets3.lottiefiles.com/packages/lf20_vndgzois.json',
+                    'https://assets9.lottiefiles.com/packages/lf20_rxuub8j6.json',
                     width: MediaQuery.of(context).size.width*0.5,
                     height: MediaQuery.of(context).size.width*0.5,
                     fit: BoxFit.cover,
@@ -54,11 +54,23 @@ class _AfterOrderState extends State<AfterOrder> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
               child: AutoSizeText(
-                'Thanks for taking the quiz.',
+                'Your Order is Placed.',
                 style: CustomTheme.of(context).titleSmall.override(
                   fontFamily: 'Poppins',
                   color: CustomTheme.of(context).primaryBtnText,
                   fontSize: 20,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+              child: AutoSizeText(
+                'Happiness will be delivered soon!',
+                style: CustomTheme.of(context).titleSmall.override(
+                  fontFamily: 'Poppins',
+                  color: CustomTheme.of(context).primaryBtnText,
+                  fontSize: 18,
                   fontWeight: FontWeight.w300,
                 ),
               ),

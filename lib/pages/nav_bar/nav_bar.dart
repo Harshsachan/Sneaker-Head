@@ -6,6 +6,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/pages/emptyScreen.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
@@ -27,6 +28,8 @@ class NavBarPage extends StatefulWidget {
 }
 
 class _NavBarPageState extends State<NavBarPage> {
+
+
   PageController _pageController = PageController(initialPage: 0);
   int _currentIndex = 0;
   late final List<Widget> _screens;
@@ -55,7 +58,9 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      backgroundColor: CustomTheme.of(context).primaryText,
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {

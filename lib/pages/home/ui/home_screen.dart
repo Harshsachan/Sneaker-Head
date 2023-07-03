@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testproject/pages/memory/user_details.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 import '../../../flutter_flow/flutter_flow_model.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -21,13 +23,25 @@ class ProductDetailsWidget extends StatefulWidget {
 }
 
 class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
+  UserDetailsService userDetailsService=UserDetailsService();
   late ProductDetailsModel _model;
+  late LoggedInData data;
+  String? add;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
 
   @override
   void initState() {
+    Future<LoggedInData?> shareData = userDetailsService.getUserDataFromSharedPreferences();
+    shareData.then((value) {
+      if(value != null){
+        setState(() {
+          add=value.city;
+        });
+
+      }
+    });
     super.initState();
     _model = createModel(context, () => ProductDetailsModel());
 
@@ -44,9 +58,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: CustomTheme.of(context).primaryBackground,
+      backgroundColor: CustomTheme.of(context).primaryText,
       body: SafeArea(
         top: true,
         child: Container(
@@ -131,7 +146,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                         size: 12,
                                       ),
                                       Text(
-                                        'Hyderabad',
+                                        '${add}',
                                         style: CustomTheme.of(context)
                                             .bodyMedium
                                             .override(
