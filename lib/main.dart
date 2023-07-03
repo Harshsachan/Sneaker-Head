@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/form.dart';
 import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
 import 'package:testproject/pages/explore/bloc/explore_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:testproject/pages/sign_in/ui/sign_in.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 import 'package:testproject/pages/sign_up/ui/sign_up_widget.dart';
+import 'package:testproject/pages/splashScreen.dart';
 
 
 import 'pages/no_Internet/bloc/no_internet_bloc.dart';
@@ -30,10 +32,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      color: Colors.pink,
+      color: CustomTheme.of(context).primaryText,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: SignInWidget(SignInrepo()),
+      home: SplashScreen(),
       // home: CreateUserPage(SignUpRepo()),
       //home: CardForm(),
     );
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+
   final LoggedInData userDetails;
   const MyHomePage({super.key,required this.userDetails});
 
@@ -54,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(

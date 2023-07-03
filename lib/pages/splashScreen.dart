@@ -1,92 +1,73 @@
+import 'dart:async';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
+import 'package:testproject/pages/sign_in/ui/sign_in.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
+class _SplashScreenState extends State<SplashScreen> {
+  bool isImageVisible = true;
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2),
+    Timer(Duration(seconds: 3), () {
+      setState(() {
+        isImageVisible = false;
+      });
+    });
+    Timer(Duration(seconds:4),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                    SignInWidget(SignInrepo())
+            )
+        )
     );
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    );
-    _controller.forward();
   }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
+        top: true,
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF1E88E5),
-                Color(0xFF64B5F6),
-              ],
-            ),
-          ),
-          child: Center(
-            child: ScaleTransition(
-              scale: _animation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.network(
-                    'https://via.placeholder.com/200', // Placeholder image URL
-                    width: 200,
-                    height: 200,
+          width: MediaQuery.of(context).size.width*1.0,
+          height: MediaQuery.of(context).size.height*1.0,
+          color: CustomTheme.of(context).primaryText,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                child: AnimatedOpacity(
+                  opacity: isImageVisible ? 1.0 : 0.0,
+                  duration: Duration(seconds: 3),
+                  curve: Curves.easeInOut,
+                  child: Lottie.network(
+                    'https://assets6.lottiefiles.com/packages/lf20_xlawpi2p.json',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                    frameRate: FrameRate(60),
+                    repeat: true,
+                    animate: true,
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Your App Name',
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Loading...',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-// void main() {
-//   runApp(MaterialApp(
-//     home: SplashScreen(),
-//   ));
-// }

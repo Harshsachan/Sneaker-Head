@@ -1,8 +1,11 @@
 import 'package:blurry/blurry.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testproject/main.dart';
 import 'package:testproject/pages/memory/email.dart';
+import 'package:testproject/pages/memory/user_details.dart';
 import 'package:testproject/pages/sign_in/bloc/signIn_bloc.dart';
 import 'package:testproject/pages/sign_in/bloc/signIn_state.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
@@ -28,6 +31,7 @@ class SignInWidget extends StatefulWidget {
 
 class _SignInWidgetState extends State<SignInWidget> {
   EmailService emailService =EmailService();
+  UserDetailsService userDetailsService=UserDetailsService();
 
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -65,6 +69,8 @@ class _SignInWidgetState extends State<SignInWidget> {
               LoggedInData userDetails = state.loggedInData;
               print(state.loggedInData.toJson());
               print(userDetails);
+              print("From SShared Preference");
+              userDetailsService.storeUserDataInSharedPreferences(userDetails);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -100,52 +106,42 @@ class _SignInWidgetState extends State<SignInWidget> {
             }
           },
           builder: (context, state) {
+            if (state is SignInPageLoadingState) {
+              return Center(child: CircularProgressIndicator());
+            }
             return SafeArea(
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 decoration: BoxDecoration(
-                  color: CustomTheme.of(context).lineColor,
+                  color: CustomTheme.of(context).pBackground,
                 ),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                      Lottie.network(
+                        'https://assets5.lottiefiles.com/packages/lf20_wxgsv6qg.json',
+                        width: MediaQuery.of(context).size.width*0.75,
+                        height: MediaQuery.of(context).size.width*0.5,
+                        fit: BoxFit.cover,
+                        frameRate: FrameRate(120),
+                        repeat: true,
+                        animate: true,
+                      ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 125, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                         child: Text(
-                          'Welcome Back',
+                          'Welcome !',
                           style:
                           CustomTheme.of(context).headlineMedium.override(
+                            color:CustomTheme.of(context).secondaryBackground,
                             fontFamily: 'Poppins',
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Text(
-                          'Enter Your Details ',
-                          style: CustomTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                        child: Text(
-                          'Below',
-                          style: CustomTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-
                       Form(
                           child: Column(
                             key: _formKey,
@@ -307,10 +303,11 @@ class _SignInWidgetState extends State<SignInWidget> {
                           )),
                       // Forget password
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(180, 15, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(180, 15, 0, 15),
                         child: AutoSizeText(
-                          'Forget Password',
+                          'Forget Password ?',
                           style: CustomTheme.of(context).bodyMedium.override(
+                            color:CustomTheme.of(context).secondaryBackground,
                             fontFamily: 'Poppins',
                             fontSize: 14,
                             fontWeight: FontWeight.w200,
@@ -318,71 +315,54 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                       ),
                       // Signin Button
-                      ElevatedButton(
-                        onPressed: () async {
-                          print(_emailController.text);
-                          print(_passwordController.text);
-                          //if (_formKey.currentState!.validate()) {
-                          print("inside if");
-                          final email = _emailController.text;
-                          final password = _passwordController.text;
-                          String userEmail= _emailController.text;
-                          await emailService.saveUserEmail(userEmail);
-                          context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
-                          //}
-                        },
-                        child: Text('Sign in'),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.45,
+                        child: NeoPopButton(
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          buttonPosition: Position.center,
+                          onTapUp: () async{
+                            final email = _emailController.text;
+                            final password = _passwordController.text;
+                            String userEmail= _emailController.text;
+                            await emailService.saveUserEmail(userEmail);
+                            context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
+                          },
+                          border:  Border.fromBorderSide(
+                            BorderSide(color: Colors.white, width: .5),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                AutoSizeText(
+                                  'SIGN IN',
+                                  style: CustomTheme.of(context).bodyMedium.override(
+                                    color:CustomTheme.of(context).secondaryBackground,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(35, 40, 35, 20),
-                      //   child: Material(
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     elevation: 20,
-                      //     child: FFButtonWidget(
-                      //       onPressed: () {
-                      //         print("Button pressed");
-                      //         if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                      //           final email = _emailController.text;
-                      //           final password = _passwordController.text;
-                      //           context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
-                      //         }
-                      //       },
-                      //       text: 'Sign In',
-                      //       options: FFButtonOptions(
-                      //         width: double.infinity,
-                      //         height: 50,
-                      //         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      //         iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      //         color: Color(0xFFFA6A68),
-                      //         textStyle:
-                      //         CustomTheme.of(context).titleSmall.override(
-                      //           fontFamily: 'Poppins',
-                      //           color: Colors.white,
-                      //         ),
-                      //         borderSide: BorderSide(
-                      //           color: Colors.transparent,
-                      //           width: 1,
-                      //         ),
-                      //         borderRadius: BorderRadius.circular(16),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
-                      // Other login methods
 
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: Text(
                           'Or continue with',
                           style: CustomTheme.of(context).bodyMedium.override(
+                            color:CustomTheme.of(context).primaryBackground,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w200,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -480,18 +460,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.25,
+                        child: NeoPopButton(
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          buttonPosition: Position.center,
+                          onTapUp: () async{
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -499,23 +476,60 @@ class _SignInWidgetState extends State<SignInWidget> {
                               ),
                             );
                           },
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'SIGN UP',
-                                  style: TextStyle(),
-                                )
+                          border:  Border.fromBorderSide(
+                            BorderSide(color: Colors.white, width: .5),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                AutoSizeText(
+                                  'SIGN UP',
+                                  style: CustomTheme.of(context).bodyMedium.override(
+                                    color:CustomTheme.of(context).secondaryBackground,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ],
-                              style: CustomTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Poppins',
-                                color: CustomTheme.of(context).info,
-                                fontSize: 16,
-                              ),
                             ),
                           ),
                         ),
                       ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      //   child: InkWell(
+                      //     splashColor: Colors.transparent,
+                      //     focusColor: Colors.transparent,
+                      //     hoverColor: Colors.transparent,
+                      //     highlightColor: Colors.transparent,
+                      //     onTap: () async {
+                      //       await Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //           builder: (context) => CreateUserPage(SignUpRepo()),
+                      //         ),
+                      //       );
+                      //     },
+                      //     child: RichText(
+                      //       text: TextSpan(
+                      //         children: [
+                      //           TextSpan(
+                      //             text: 'SIGN UP',
+                      //             style: TextStyle(),
+                      //           )
+                      //         ],
+                      //         style: CustomTheme.of(context).bodyMedium.override(
+                      //           fontFamily: 'Poppins',
+                      //           color: CustomTheme.of(context).info,
+                      //           fontSize: 16,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -527,3 +541,52 @@ class _SignInWidgetState extends State<SignInWidget> {
     );
   }
 }
+// class Check extends StatelessWidget {
+//   const Check({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: EdgeInsets.all(16.0),
+//       child: Form(
+//         key: _formKey,
+//         child: Column(
+//           children: [
+//             TextFormField(
+//               controller: _emailController,
+//               decoration: InputDecoration(labelText: 'Email'),
+//               validator: (value) {
+//                 if (value!.isEmpty) {
+//                   return 'Please enter an email';
+//                 }
+//                 return null;
+//               },
+//             ),
+//             TextFormField(
+//               controller: _passwordController,
+//               decoration: InputDecoration(labelText: 'Password'),
+//               validator: (value) {
+//                 if (value!.isEmpty) {
+//                   return 'Please enter a password';
+//                 }
+//                 return null;
+//               },
+//             ),
+//             SizedBox(height: 16.0),
+//             ElevatedButton(
+//               onPressed: () {
+//                 print("sign up clicked");
+//                 if (_formKey.currentState!.validate()) {
+//                   final email = _emailController.text;
+//                   final password = _passwordController.text;
+//                   context.read<SignUpBloc>().add(SignUpPostEvent(email, password));
+//                 }
+//               },
+//               child: Text('Create'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
