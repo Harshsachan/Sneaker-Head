@@ -107,6 +107,11 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
     return cartItems.any((item) => item.id == product.id);
   }
 
+  void navigateBack() {
+    print("going back");
+    Navigator.pop(context, cartItems); // Pass the updated cart items when navigating back
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +129,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
             color: Colors.white,
             size: 30,
           ),
-          onPressed: () async {},
+          onPressed: navigateBack,
         ),
         title: Text(
           'Cart Order',
@@ -144,16 +149,6 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                           listener: (context, state) {
                             // TODO: implement listener
                             if(state is OrderPageSuccessState){
-                              // print("Order finally placed successful from widget");
-                              // String? op=state.message;
-                              // print(" wanted");
-                              // print('${op}');
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => AfterOrder(),
-                              //   ),
-                              // );
                               handleOrderSuccess();
                             }
                             else if(state is OrderPageLoadingState){}
