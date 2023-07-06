@@ -70,10 +70,10 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
           ),
           onPressed: () async {},
         ),
-        title: Text(
-          'Page Title',
+        title: AutoSizeText(
+          'Order',
           style: CustomTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 22,
               ),
