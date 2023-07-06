@@ -10,8 +10,7 @@ import 'package:testproject/pages/product/product_details.dart';
 import '../explore/repo/explore_model.dart';
 
 class CartPage extends StatefulWidget {
-
-  const CartPage({Key? key}) : super(key: key);
+  CartPage({Key? key});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -26,6 +25,10 @@ class _CartPageState extends State<CartPage> {
     // TODO: implement didChangeDependencies
       loadCartItems().then((value) => totalPrice());
       super.didChangeDependencies();
+  }
+  void navigateBack() {
+    print("going back");
+    Navigator.pop(context, cartItems); // Pass the updated cart items when navigating back
   }
 
 
@@ -68,14 +71,43 @@ class _CartPageState extends State<CartPage> {
     return cartItems.any((item) => item.id == product.id);
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
+    bool showBackButton = Navigator.canPop(context);
+    print('${showBackButton}');
     return Scaffold(
-      appBar: AppBar(
-        title:  Center(child: AutoSizeText(' My Cart')),
-        backgroundColor: CustomTheme.of(context).primaryText,
-        automaticallyImplyLeading: false,
-      ),
+        appBar:AppBar(
+          backgroundColor: CustomTheme.of(context).primaryText,
+          automaticallyImplyLeading: false,
+          leading: showBackButton?IconButton(
+                 icon: const Icon(Icons.arrow_back),
+                 onPressed: navigateBack, // Call navigateBack method when the back button is pressed
+               ):null,
+          title: AutoSizeText(
+            'My Cart',
+            style: CustomTheme.of(context).headlineMedium.override(
+              fontFamily: 'Poppins',
+              color: Colors.white,
+              fontSize: 22,
+            ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2,
+        ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   leading: showBackButton ? IconButton(
+      //     icon: const Icon(Icons.arrow_back),
+      //     onPressed: navigateBack, // Call navigateBack method when the back button is pressed
+      //   ):null,
+      //   title:   Center(child: const AutoSizeText('My Cart')),
+      //   backgroundColor: CustomTheme.of(context).primaryText,
+      //
+      // ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,

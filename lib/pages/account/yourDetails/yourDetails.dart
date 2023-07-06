@@ -7,7 +7,7 @@ import 'package:testproject/flutter_flow/internationalization.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 
 class YourDetails extends StatelessWidget {
-  final LoggedInData userDetails;
+  final LoggedInData? userDetails;
   const YourDetails({Key? key,required this.userDetails}) : super(key: key);
 
   @override
@@ -79,7 +79,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                       AutoSizeText(
-                              '${userDetails.fName}${userDetails.lName}',
+                              '${userDetails?.fName}${userDetails?.lName}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -121,7 +121,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.email}',
+                              '${userDetails?.email}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -163,7 +163,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.number}',
+                              '${userDetails?.number}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -205,7 +205,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.houseNo}' ,
+                              '${userDetails?.houseNo}' ,
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -248,7 +248,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.street}' ,
+                              '${userDetails?.street}' ,
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -290,7 +290,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.area}' ,
+                              '${userDetails?.area}' ,
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -332,7 +332,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.city}',
+                              '${userDetails?.city}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -374,7 +374,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.state} , ${userDetails.pincode}',
+                              '${userDetails?.state} , ${userDetails?.pincode}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:
@@ -416,7 +416,7 @@ class YourDetails extends StatelessWidget {
                             ),
                           ),
                           AutoSizeText(
-                              '${userDetails.uhid}',
+                              '${userDetails?.uhid}',
                             style: CustomTheme.of(context).headlineSmall.override(
                               color: CustomTheme.of(context).primaryBackground,
                               fontFamily:

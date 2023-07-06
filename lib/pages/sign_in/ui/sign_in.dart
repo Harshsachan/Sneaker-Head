@@ -74,7 +74,7 @@ class _SignInWidgetState extends State<SignInWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyHomePage(userDetails:userDetails),
+                  builder: (context) => MyHomePage(),
                 ),
               );
 
@@ -472,7 +472,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CreateUserPage(SignUpRepo()),
+                                builder: (context) => SignUpPage(SignUpRepo()),
                               ),
                             );
                           },

@@ -4,6 +4,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
+import 'package:testproject/main.dart';
+import 'package:testproject/pages/home/ui/home_screen.dart';
+import 'package:testproject/pages/memory/user_details.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
 import 'package:testproject/pages/sign_in/ui/sign_in.dart';
 
@@ -15,6 +19,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  UserDetailsService userDetailsService = UserDetailsService();
   bool isImageVisible = true;
   @override
   void initState() {
@@ -25,24 +30,41 @@ class _SplashScreenState extends State<SplashScreen> {
         isImageVisible = false;
       });
     });
-    Timer(Duration(seconds:4),
-            ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:
-                (context) =>
-                    SignInWidget(SignInrepo())
-            )
-        )
-    );
+    // Timer(Duration(seconds: 4), () {
+    //   userDetailsService.getUserDataFromSharedPreferences().then((value) {
+    //     if (value != null && value.uhid != null && value.uhid!.isNotEmpty) {
+    //       print("spplpae");
+    //       Navigator.pushReplacement(
+    //           context,
+    //           MaterialPageRoute(
+    //               builder: (context) => MyHomePage()));
+    //     } else {
+    //       print("false sspplas");
+    //       Navigator.pushReplacement(context,
+    //           MaterialPageRoute(builder: (context) =>SignInWidget(SignInrepo())));
+    //     }
+    //   });
+    // });
+    Timer(Duration(seconds: 3), () async{
+      bool hasUserData =await userDetailsService.isUserDataAvailableInSharedPreferences();
+      if(hasUserData){
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MyHomePage()));}
+      else{
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => SignInWidget(SignInrepo())));
+      }
+    });
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         top: true,
         child: Container(
-          width: MediaQuery.of(context).size.width*1.0,
-          height: MediaQuery.of(context).size.height*1.0,
+          width: MediaQuery.of(context).size.width * 1.0,
+          height: MediaQuery.of(context).size.height * 1.0,
           color: CustomTheme.of(context).primaryText,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

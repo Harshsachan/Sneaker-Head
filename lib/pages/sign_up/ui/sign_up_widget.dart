@@ -6,6 +6,8 @@ import 'package:testproject/flutter_flow/flutter_flow_model.dart';
 import 'package:testproject/pages/memory/email.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
 import 'package:testproject/pages/sign_in/ui/sign_in.dart';
+import 'package:testproject/pages/user/repo/createUser_repo.dart';
+import 'package:testproject/pages/user/ui/createUser.dart';
 
 // import '../../sign_in/sign_in.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -35,16 +37,16 @@ import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 import '../repo/signUp_model.dart';
 
 
-class CreateUserPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   final SignUpRepo userRepository;
 
-  CreateUserPage(this.userRepository);
+  SignUpPage(this.userRepository);
 
   @override
-  _CreateUserPageState createState() => _CreateUserPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _CreateUserPageState extends State<CreateUserPage> {
+class _SignUpPageState extends State<SignUpPage> {
   EmailService emailService =EmailService();
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -72,12 +74,12 @@ class _CreateUserPageState extends State<CreateUserPage> {
               print("User Created Successfully");
               print(state.signup);
               print(userDetails);
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => MyHomePage(userDetails:userDetails),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateUser(CreateUserRepo()),
+                ),
+              );
               // User created successfully, navigate to another page or show a success message
             } else if (state is SignUpPageErrorState) {
               print("in error state");
@@ -208,12 +210,20 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                           fontFamily: 'Poppins',
                                           color: CustomTheme.of(context).accent1,
                                         ),
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter an email';
-                                          }
-                                          return null;
-                                        },
+                                        // validator: (value) {
+                                        //   if (value == null || value.isEmpty) {
+                                        //     return 'Please enter your email';
+                                        //   }
+                                        //
+                                        //   // Email validation using regex
+                                        //   final emailRegex = RegExp(
+                                        //       r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+                                        //   if (!emailRegex.hasMatch(value)) {
+                                        //     return 'Please enter a valid email';
+                                        //   }
+                                        //
+                                        //   return null;
+                                        // },
                                       ),
                                     ),
                                   ),
@@ -317,6 +327,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
                           color: const Color.fromRGBO(0, 0, 0, 1),
                           buttonPosition: Position.center,
                           onTapUp: () async{
+                            // if (_formKey.currentState!.validate()) {
+                            // }
                             final email = _emailController.text;
                             final password = _passwordController.text;
                             String userEmail= _emailController.text;

@@ -16,6 +16,7 @@ import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
 import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
 import 'package:testproject/pages/sign_up/ui/sign_up_widget.dart';
 import 'package:testproject/pages/splashScreen.dart';
+import 'package:testproject/pages/user/ui/createUser.dart';
 
 
 import 'pages/no_Internet/bloc/no_internet_bloc.dart';
@@ -35,8 +36,9 @@ class MyApp extends StatelessWidget {
       color: CustomTheme.of(context).primaryText,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      //home: CreateUser(),
       home: SplashScreen(),
-      // home: CreateUserPage(SignUpRepo()),
+      //home: SignUpPage(SignUpRepo()),
       //home: CardForm(),
     );
   }
@@ -44,8 +46,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
 
-  final LoggedInData userDetails;
-  const MyHomePage({super.key,required this.userDetails});
+  // final LoggedInData userDetails;
+  const MyHomePage({super.key});
 
 
   @override
@@ -62,12 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
-          final details =widget.userDetails;
-          print(details.number.toString());
+          // final details =widget.userDetails;
+          // print(details.number.toString());
           if (state is InternetGainedState) {
             return BlocProvider(
               create: (context) => ExploreBloc(AllProductDetails()),
-              child: NavBarPage(userDetails:details),
+              child: NavBarPage(),
             );
           }
           // else if(state is InternetLostState){x

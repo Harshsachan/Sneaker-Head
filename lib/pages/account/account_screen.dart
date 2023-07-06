@@ -3,24 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
 import 'package:testproject/form.dart';
 import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
+import 'package:testproject/pages/memory/user_details.dart';
 import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
+import 'package:testproject/pages/sign_in/ui/sign_in.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class Accountpage extends StatefulWidget {
-  final LoggedInData userDetails;
-  const Accountpage({Key? key,required this.userDetails}) : super(key: key);
+
+  const Accountpage({Key? key}) : super(key: key);
 
   @override
   State<Accountpage> createState() => _AccountpageState();
 }
 
 class _AccountpageState extends State<Accountpage> {
+  UserDetailsService userDetailsService=UserDetailsService();
+  LoggedInData? gotshareData;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future<LoggedInData?> shareData = userDetailsService.getUserDataFromSharedPreferences();
+    shareData.then((value) {
+      if(value != null){
+        setState(() {
+          gotshareData= value;
+        });
+      }
+    });
+  }
 
 
 
   @override
   Widget build(BuildContext context) {
+    print("wanted");
+    print('${gotshareData}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
@@ -57,7 +77,7 @@ class _AccountpageState extends State<Accountpage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              '${widget.userDetails.fName}${widget.userDetails.lName}',
+                              '${gotshareData?.fName} ${gotshareData?.lName}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -67,7 +87,7 @@ class _AccountpageState extends State<Accountpage> {
                                       ),
                             ),
                             AutoSizeText(
-                              '${widget.userDetails.email}',
+                              '${gotshareData?.email}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -77,7 +97,7 @@ class _AccountpageState extends State<Accountpage> {
                                       ),
                             ),
                             AutoSizeText(
-                              '+91 ${widget.userDetails.number}',
+                              '+91 ${gotshareData?.number}',
                               style:
                                   CustomTheme.of(context).bodyMedium.override(
                                         fontFamily: 'Poppins',
@@ -118,7 +138,7 @@ class _AccountpageState extends State<Accountpage> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: widget.userDetails,)),
+                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: gotshareData)),
                   );
                 },
                 child: Container(
@@ -196,7 +216,13 @@ class _AccountpageState extends State<Accountpage> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
                 child: FFButtonWidget(
-                  onPressed: () async {},
+                  onPressed: () async {
+                    userDetailsService.deleteUserDataFromSharedPreferences();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>SignInWidget(SignInrepo())),
+                    );
+                  },
                   text: "Log Out",
                   options: FFButtonOptions(
                     width: MediaQuery.of(context).size.width * 0.5,

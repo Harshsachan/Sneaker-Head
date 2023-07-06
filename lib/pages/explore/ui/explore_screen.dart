@@ -21,6 +21,27 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
+  List<ProductDetails> cartItems = [];
+
+  void updateCartItems(List<ProductDetails> updatedCartItems) {
+    setState(() {
+      cartItems = updatedCartItems;
+    });
+  }
+  void navigateToCartPage() async {
+    final updatedCartItems = await Navigator.push<List<ProductDetails>>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CartPage(),
+      ),
+    );
+
+    if (updatedCartItems != null) {
+      setState(() {
+        cartItems = updatedCartItems;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,43 +65,49 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 5, 0, 0),
-                      child: Icon(
-                        Icons.arrow_back_ios_outlined,
-                        color: CustomTheme.of(context)
-                            .secondaryBackground,
-                        size: 35,
-                      ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.30,
                     ),
-                    Text(
-                      'Explore Page',
-                      style: CustomTheme.of(context)
-                          .headlineSmall
-                          .override(
-                        fontFamily: 'Poppins',
-                        color: CustomTheme.of(context)
-                            .secondaryBackground,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 15, 0),
-                      child: GestureDetector(
-                        onTap: () {
-                          // Navigate to CartPage
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CartPage(),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      child: AutoSizeText(
+                        'Explore Page',
+                        style: CustomTheme.of(context).headlineSmall.override(
+                              fontFamily: 'Poppins',
+                              color:
+                                  CustomTheme.of(context).secondaryBackground,
                             ),
-                          ).then((value) => null);
-                        },
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: CustomTheme.of(context).secondaryBackground,
-                          size: 35,
+                      ),
+                    ),
+                    Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      width: MediaQuery.of(context).size.width * 0.30,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
+                        child: GestureDetector(
+                          onTap: () {
+                            navigateToCartPage();
+                            // Navigate to CartPage
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const CartPage(),
+                            //   ),
+                            // ).then((value) {
+                            //   if(mounted){
+                            //     setState(() {
+                            //       print("setstate called on navigating back from cart page");
+                            //     });
+                            //   }
+                            // });
+                          },
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: CustomTheme.of(context).secondaryBackground,
+                            size: 35,
+                          ),
                         ),
                       ),
                     ),
@@ -88,36 +115,35 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               BlocBuilder<ExploreBloc, ExplorePageState>(
-                    builder: (context, state) {
-                      if(state is ExplorePageLoadingState)
-                        {
-                          return Center(child: CircularProgressIndicator(),);
-                        }
-                      else if(state is ExplorePageLoadedState)
-                        {
-                          List<ProductDetails> products =state.productDetails;
-                          return DataLoad(
-                            productDetails: products,
-                          );
-                        }
-                      else if(state is ExplorePageErrorState)
-                        {
-                          return  Center(
-                              child: Text("An error occurred ${state.error}", style: CustomTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                fontFamily: 'Poppins',
-                                color:
-                                CustomTheme.of(context)
-                                    .secondaryBackground,
-                              ) ,),);
-                        }
-                      else{
-                        return const Center(
-                              child: Text('Unknown State '),
-                              );
-                      }
-                    },
+                builder: (context, state) {
+                  if (state is ExplorePageLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is ExplorePageLoadedState) {
+                    List<ProductDetails> products = state.productDetails;
+                    return DataLoad(
+                      productDetails: products,
+                      cartItems: cartItems,
+                      updateCartItems: updateCartItems,
+                    );
+                  } else if (state is ExplorePageErrorState) {
+                    return Center(
+                      child: Text(
+                        "An error occurred ${state.error}",
+                        style: CustomTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Poppins',
+                              color:
+                                  CustomTheme.of(context).secondaryBackground,
+                            ),
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                      child: Text('Unknown State '),
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -127,13 +153,19 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 }
 
+typedef UpdateCartItemsCallback = void Function(List<ProductDetails> updatedCartItems);
+
 class DataLoad extends StatefulWidget {
   final List<ProductDetails> productDetails;
+  final UpdateCartItemsCallback updateCartItems;
+  List<ProductDetails> cartItems = [];
   //final Function(List<ProductDetails>) updateCartItems;
 
-  const DataLoad({
+   DataLoad({
     Key? key,
     required this.productDetails,
+     required this.cartItems,
+     required this.updateCartItems,
     //required this.updateCartItems,
   }) : super(key: key);
 
@@ -143,33 +175,33 @@ class DataLoad extends StatefulWidget {
 
 class _DataLoadState extends State<DataLoad> {
   CartService cartService = CartService();
-  List<ProductDetails> cartItems = [];
+  // List<ProductDetails> cartItems = [];
 
   @override
   void initState() {
     super.initState();
     //cartItems = widget.productDetails;
   }
+
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     loadCartItems();
     super.didChangeDependencies();
-
   }
 
   void loadCartItems() async {
     List<ProductDetails> items = await cartService.getCartItems();
     setState(() {
-      cartItems = items;
+      widget.cartItems = items;
     });
   }
 
   void addToCart(ProductDetails product) async {
-    if (!cartItems.any((item) => item.id == product.id)) {
+    if (!widget.cartItems.any((item) => item.id == product.id)) {
       print("cartItems add");
-      cartItems.add(product);
-      await cartService.saveCartItems(cartItems);
+      widget.cartItems.add(product);
+      await cartService.saveCartItems(widget.cartItems);
       setState(() {
         // Update the UI
       });
@@ -185,11 +217,11 @@ class _DataLoadState extends State<DataLoad> {
 
   void removeFromCart(ProductDetails product) async {
     print("removeFromCart called");
-    if (cartItems.any((item) => item.id == product.id)) {
+    if (widget.cartItems.any((item) => item.id == product.id)) {
       print("cartItem removed");
-      cartItems.removeWhere((element) => element.id == product.id);
+      widget.cartItems.removeWhere((element) => element.id == product.id);
       // cartItems.remove(product);
-      await cartService.saveCartItems(cartItems);
+      await cartService.saveCartItems(widget.cartItems);
       print("cartItems");
       setState(() {
         // Update the UI
@@ -199,8 +231,9 @@ class _DataLoadState extends State<DataLoad> {
       );
     }
   }
+
   bool isProductInCart(ProductDetails product) {
-    return cartItems.any((item) => item.id == product.id);
+    return widget.cartItems.any((item) => item.id == product.id);
   }
 
   Future<void> _navigateToSecondPage(product) async {
@@ -213,7 +246,7 @@ class _DataLoadState extends State<DataLoad> {
 
     if (result != null) {
       setState(() {
-        cartItems = result;
+        widget.cartItems = result;
       });
     }
   }
@@ -222,11 +255,11 @@ class _DataLoadState extends State<DataLoad> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-       // padding: EdgeInsets.zero,
-       // shrinkWrap: true,
-       // scrollDirection: Axis.vertical,
+        // padding: EdgeInsets.zero,
+        // shrinkWrap: true,
+        // scrollDirection: Axis.vertical,
         itemCount: widget.productDetails.length,
-        itemBuilder: ( context, index) {
+        itemBuilder: (context, index) {
           final product = widget.productDetails[index];
           return GestureDetector(
             onTap: () {
@@ -246,22 +279,19 @@ class _DataLoadState extends State<DataLoad> {
                   color: CustomTheme.of(context).primaryText,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: CustomTheme.of(context)
-                        .primaryBackground,
+                    color: CustomTheme.of(context).primaryBackground,
                   ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10, 10, 10, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
-                          product.image??"",
-                          width: MediaQuery.of(context).size.width *
-                              0.35,
+                          product.image ?? "",
+                          width: MediaQuery.of(context).size.width * 0.35,
                           height: 200,
                           fit: BoxFit.cover,
                         ),
@@ -271,54 +301,45 @@ class _DataLoadState extends State<DataLoad> {
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 100,
                       decoration: BoxDecoration(
-                        color:
-                        CustomTheme.of(context).primaryText,
+                        color: CustomTheme.of(context).primaryText,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                                     product.name??"",
-                              style: CustomTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                fontFamily: 'Poppins',
-                                color: CustomTheme.of(context)
-                                    .primaryBackground,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                            product.name ?? "",
+                            style: CustomTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Poppins',
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                             maxLines: 1,
                           ),
                           AutoSizeText(
-                            product.company??'',
-                            style: CustomTheme.of(context)
-                                .bodyMedium
-                                .override(
-                              fontFamily: 'Poppins',
-                              color: CustomTheme.of(context)
-                                  .secondaryBackground,
-                              fontSize: 14,
-                            ),
+                            product.company ?? '',
+                            style: CustomTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Poppins',
+                                  color: CustomTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 14,
+                                ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AutoSizeText(
                                 product.price.toString(),
-                                style: CustomTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                  fontFamily: 'Poppins',
-                                  color:
-                                  CustomTheme.of(context)
-                                      .secondaryBackground,
-                                ),
+                                style:
+                                    CustomTheme.of(context).bodyMedium.override(
+                                          fontFamily: 'Poppins',
+                                          color: CustomTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
                               ),
                               ElevatedButton(
                                 onPressed: () {
@@ -329,11 +350,13 @@ class _DataLoadState extends State<DataLoad> {
                                   }
                                 },
                                 child: AutoSizeText(
-                                  isProductInCart(product) ? 'R' : 'A',
+                                  isProductInCart(product) ? 'Remove' : 'Add',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
-                                    fontSize: CustomTheme.of(context).titleSmall.fontSize,
+                                    fontSize: CustomTheme.of(context)
+                                        .titleSmall
+                                        .fontSize,
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
@@ -343,36 +366,8 @@ class _DataLoadState extends State<DataLoad> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                                  textStyle: TextStyle(
-                                    fontFamily: 'Poppins',
-                                  ),
-                                ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  print(isProductInCart(product));
-                                  print('${cartItems.length}');
-                                  // for(int i=0;i<cartItems.length;i++){
-                                  //   print('${cartItems[i].name}');
-                                  // }
-                                },
-                                child: AutoSizeText(
-                                  'c',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                    fontSize: CustomTheme.of(context).titleSmall.fontSize,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  primary: CustomTheme.of(context).primary,
-                                  onPrimary: Colors.white,
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 0),
                                   textStyle: TextStyle(
                                     fontFamily: 'Poppins',
                                   ),
@@ -389,10 +384,7 @@ class _DataLoadState extends State<DataLoad> {
             ),
           );
         },
-
       ),
     );
   }
 }
-
-
