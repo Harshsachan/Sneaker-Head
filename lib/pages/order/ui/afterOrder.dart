@@ -86,7 +86,7 @@ class _AfterOrderState extends State<AfterOrder> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailsWidget(),
+                        builder: (context) => HomePageWidget(),
                       ),
                     );
                   },

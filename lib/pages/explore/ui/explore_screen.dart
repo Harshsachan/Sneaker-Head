@@ -120,7 +120,8 @@ class _ExplorePageState extends State<ExplorePage> {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is ExplorePageLoadedState) {
+                  }
+                  else if (state is ExplorePageLoadedState) {
                     List<ProductDetails> products = state.productDetails;
                     return DataLoad(
                       productDetails: products,

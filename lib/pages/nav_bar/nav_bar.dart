@@ -37,7 +37,7 @@ class _NavBarPageState extends State<NavBarPage> {
     super.initState();
 
     _screens = [
-      ProductDetailsWidget(),
+      HomePageWidget(),
       ExplorePage(),
       CartPage(),
       Accountpage(),
