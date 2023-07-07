@@ -1,4 +1,4 @@
-package com.example.testproject
+package com.example.SneakerHead
 
 import io.flutter.embedding.android.FlutterActivity
 

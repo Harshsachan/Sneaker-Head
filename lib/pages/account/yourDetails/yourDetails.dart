@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:testproject/flutter_flow/flutter_flow_icon_button.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/flutter_flow/internationalization.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/flutter_flow/internationalization.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 
 class YourDetails extends StatelessWidget {
   final LoggedInData? userDetails;

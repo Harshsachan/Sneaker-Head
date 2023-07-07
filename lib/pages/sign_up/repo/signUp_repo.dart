@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:testproject/endPoint.dart';
-import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
+import 'package:SneakerHead/endPoint.dart';
+import 'package:SneakerHead/pages/sign_up/repo/signUp_model.dart';
 
 class SignUpRepo{
   final Dio _dio =Dio();

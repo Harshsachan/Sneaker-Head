@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testproject/pages/explore/repo/explore_model.dart';
+import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
 class CartService {
   static const String CART_KEY = 'cart';
 

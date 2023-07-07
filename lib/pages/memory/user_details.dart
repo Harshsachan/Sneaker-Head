@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 class UserDetailsService{
   static const String USER_KEY = 'userDetailsKey';
 

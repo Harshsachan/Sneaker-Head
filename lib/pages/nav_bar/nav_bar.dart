@@ -2,10 +2,10 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/pages/emptyScreen.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/pages/emptyScreen.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 
 import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';

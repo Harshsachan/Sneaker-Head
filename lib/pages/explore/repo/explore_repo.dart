@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:testproject/endPoint.dart';
+import 'package:SneakerHead/endPoint.dart';
 import 'explore_model.dart';
 
 class AllProductDetails {

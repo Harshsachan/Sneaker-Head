@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:testproject/pages/explore/ui/add_to_cart.dart';
-import 'package:testproject/pages/order/repo/order_repo.dart';
-import 'package:testproject/pages/order/ui/order.dart';
+import 'package:SneakerHead/pages/explore/ui/add_to_cart.dart';
+import 'package:SneakerHead/pages/order/repo/order_repo.dart';
+import 'package:SneakerHead/pages/order/ui/order.dart';
 
 import '../../flutter_flow/flutter_flow_model.dart';
 import '../explore/repo/explore_model.dart';

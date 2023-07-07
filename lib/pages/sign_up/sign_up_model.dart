@@ -1,4 +1,4 @@
-import 'package:testproject/flutter_flow/flutter_flow_model.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_model.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';

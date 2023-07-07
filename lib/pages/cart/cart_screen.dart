@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/pages/explore/ui/add_to_cart.dart';
-import 'package:testproject/pages/order/repo/order_repo.dart';
-import 'package:testproject/pages/order/ui/cart_order.dart';
-import 'package:testproject/pages/product/product_details.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/pages/explore/ui/add_to_cart.dart';
+import 'package:SneakerHead/pages/order/repo/order_repo.dart';
+import 'package:SneakerHead/pages/order/ui/cart_order.dart';
+import 'package:SneakerHead/pages/product/product_details.dart';
 
 import '../explore/repo/explore_model.dart';
 

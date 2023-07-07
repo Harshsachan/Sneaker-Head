@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:testproject/endPoint.dart';
-import 'package:testproject/pages/explore/repo/explore_model.dart';
+import 'package:SneakerHead/endPoint.dart';
+import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
 
 class AllHomeProductDetails{
   final Dio _dio =Dio();

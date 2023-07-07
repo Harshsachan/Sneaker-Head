@@ -1,13 +1,13 @@
 //import '/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
-import 'package:testproject/flutter_flow/flutter_flow_icon_button.dart';
-import 'package:testproject/flutter_flow/flutter_flow_model.dart';
-import 'package:testproject/pages/memory/email.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
-import 'package:testproject/pages/sign_in/ui/sign_in.dart';
-import 'package:testproject/pages/user/repo/createUser_repo.dart';
-import 'package:testproject/pages/user/ui/createUser.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_model.dart';
+import 'package:SneakerHead/pages/memory/email.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
+import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
+import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
+import 'package:SneakerHead/pages/user/ui/createUser.dart';
 
 // import '../../sign_in/sign_in.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -26,12 +26,12 @@ export '../sign_up_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:testproject/main.dart';
-import 'package:testproject/pages/nav_bar/nav_bar.dart';
-import 'package:testproject/pages/sign_up/bloc/signUp_bloc.dart';
-import 'package:testproject/pages/sign_up/bloc/signUp_event.dart';
-import 'package:testproject/pages/sign_up/bloc/signUp_state.dart';
-import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
+import 'package:SneakerHead/main.dart';
+import 'package:SneakerHead/pages/nav_bar/nav_bar.dart';
+import 'package:SneakerHead/pages/sign_up/bloc/signUp_bloc.dart';
+import 'package:SneakerHead/pages/sign_up/bloc/signUp_event.dart';
+import 'package:SneakerHead/pages/sign_up/bloc/signUp_state.dart';
+import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
 
 
 import '../repo/signUp_model.dart';

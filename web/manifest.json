@@ -1,6 +1,6 @@
 {
-    "name": "testproject",
-    "short_name": "testproject",
+    "name": "SneakerHead",
+    "short_name": "SneakerHead",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

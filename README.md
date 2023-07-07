@@ -1,4 +1,4 @@
-# testproject
+# SneakerHead
 
 A new Flutter project.
 

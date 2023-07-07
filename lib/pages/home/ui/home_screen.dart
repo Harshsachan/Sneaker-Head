@@ -2,11 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/explore/repo/explore_model.dart';
-import 'package:testproject/pages/home/bloc/home_bloc.dart';
-import 'package:testproject/pages/home/bloc/home_state.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
+import 'package:SneakerHead/pages/home/bloc/home_bloc.dart';
+import 'package:SneakerHead/pages/home/bloc/home_state.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 
 import '../../../flutter_flow/flutter_flow_model.dart';
 import '../../explore/bloc/explore_bloc.dart';

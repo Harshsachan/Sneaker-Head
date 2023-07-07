@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/main.dart';
-import 'package:testproject/pages/home/ui/home_screen.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
-import 'package:testproject/pages/sign_in/ui/sign_in.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/main.dart';
+import 'package:SneakerHead/pages/home/ui/home_screen.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
+import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

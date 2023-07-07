@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/sign_up/bloc/signUp_event.dart';
-import 'package:testproject/pages/sign_up/bloc/signUp_state.dart';
-import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
-import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
+import 'package:SneakerHead/pages/sign_up/bloc/signUp_event.dart';
+import 'package:SneakerHead/pages/sign_up/bloc/signUp_state.dart';
+import 'package:SneakerHead/pages/sign_up/repo/signUp_model.dart';
+import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
 
 
 class SignUpBloc extends Bloc<SignUpPageEvent, SignUpPageState> {

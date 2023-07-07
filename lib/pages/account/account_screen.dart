@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/form.dart';
-import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
-import 'package:testproject/pages/sign_in/ui/sign_in.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/form.dart';
+import 'package:SneakerHead/pages/account/yourDetails/yourDetails.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
+import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
