@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/home/bloc/home_event.dart';
-import 'package:testproject/pages/home/bloc/home_state.dart';
-import 'package:testproject/pages/home/repo/home_repo.dart';
+import 'package:SneakerHead/pages/home/bloc/home_event.dart';
+import 'package:SneakerHead/pages/home/bloc/home_state.dart';
+import 'package:SneakerHead/pages/home/repo/home_repo.dart';
 
 class  HomeBloc extends Bloc<HomePageEvent,HomePageState>{
   final AllHomeProductDetails _repositry;

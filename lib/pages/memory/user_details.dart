@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 class UserDetailsService{
   static const String USER_KEY = 'userDetailsKey';
 
@@ -12,6 +12,15 @@ class UserDetailsService{
     print('${userDetails.toJson()}');
     prefs.setString(USER_KEY, jsonEncode(userDetails.toJson()));
   }
+
+  Future<void> updateUserDataInSharedPreferences( LoggedInData userDetails) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String userDataJson = userDetails.toJson().toString();
+    print("set");
+    print('${userDetails.toJson()}');
+    prefs.setString(USER_KEY, jsonEncode(userDetails.toJson()));
+  }
+
   Future<bool> isUserDataAvailableInSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var userDataJson = prefs.getString(USER_KEY);

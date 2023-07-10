@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/main.dart';
-import 'package:testproject/pages/memory/email.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/user/repo/createUser_repo.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/main.dart';
+import 'package:SneakerHead/pages/memory/email.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 
 import '../bloc/createUser_bloc.dart';
 import '../bloc/createUser_event.dart';
@@ -115,9 +115,6 @@ class _CreateUserState extends State<CreateUser> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       backgroundColor: CustomTheme.of(context).primaryText,
       appBar: AppBar(

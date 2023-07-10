@@ -1,4 +1,4 @@
-import 'package:testproject/pages/sign_up/repo/signUp_model.dart';
+import 'package:SneakerHead/pages/sign_up/repo/signUp_model.dart';
 
 abstract class SignUpPageState{}
 

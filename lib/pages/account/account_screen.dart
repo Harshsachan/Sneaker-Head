@@ -1,17 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:testproject/flutter_flow/flutter_flow_theme.dart';
-import 'package:testproject/form.dart';
-import 'package:testproject/pages/account/yourDetails/yourDetails.dart';
-import 'package:testproject/pages/memory/user_details.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
-import 'package:testproject/pages/sign_in/ui/sign_in.dart';
+import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/form.dart';
+import 'package:SneakerHead/pages/account/yourDetails/yourDetails.dart';
+import 'package:SneakerHead/pages/memory/user_details.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
+import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class Accountpage extends StatefulWidget {
-
   const Accountpage({Key? key}) : super(key: key);
 
   @override
@@ -19,28 +18,31 @@ class Accountpage extends StatefulWidget {
 }
 
 class _AccountpageState extends State<Accountpage> {
-  UserDetailsService userDetailsService=UserDetailsService();
+  UserDetailsService userDetailsService = UserDetailsService();
   LoggedInData? gotshareData;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future<LoggedInData?> shareData = userDetailsService.getUserDataFromSharedPreferences();
+    Future<LoggedInData?> shareData =
+        userDetailsService.getUserDataFromSharedPreferences();
     shareData.then((value) {
-      if(value != null){
+      if (value != null) {
         setState(() {
-          gotshareData= value;
+          gotshareData = value;
         });
       }
     });
   }
 
-
+  void handleUpdateUserData(LoggedInData? updatedData) {
+    setState(() {
+      gotshareData = updatedData;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    print("wanted");
-    print('${gotshareData}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
@@ -49,7 +51,7 @@ class _AccountpageState extends State<Accountpage> {
           children: [
             // User Full info
             Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15, 5, 15, 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -63,7 +65,7 @@ class _AccountpageState extends State<Accountpage> {
                           width: MediaQuery.of(context).size.width * 0.2,
                           height: MediaQuery.of(context).size.width * 0.2,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.network(
@@ -120,7 +122,7 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // AccountSettings Static Title
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
               child: AutoSizeText(
                 "Account Settings",
                 style: CustomTheme.of(context).titleMedium.override(
@@ -133,13 +135,27 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // Settings Options
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: gotshareData)),
-                  );
+                    MaterialPageRoute(
+                        builder: (context) => YourDetails(
+                              userDetails: gotshareData,
+                              onUpdateUserData: handleUpdateUserData,
+                            )),
+                  ).then((updatedData) {
+                    print("came back from previous screen");
+                    if (updatedData != null) {
+                      setState(() {
+                        print("came back from previous screen");
+                        print('${updatedData}');
+                        gotshareData = updatedData;
+                        print('${gotshareData?.fName}');
+                      });
+                    }
+                  });
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -173,12 +189,12 @@ class _AccountpageState extends State<Accountpage> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>CardForm()),
+                    MaterialPageRoute(builder: (context) => const CardForm()),
                   );
                 },
                 child: Container(
@@ -212,6 +228,46 @@ class _AccountpageState extends State<Accountpage> {
                     )),
               ),
             ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CardForm()),
+                  );
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.09,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: CustomTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(
+                            "All Orders",
+                            style: CustomTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Poppins',
+                                  color: CustomTheme.of(context).primaryText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: CustomTheme.of(context).primaryText,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                    )),
+              ),
+            ),
             Center(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
@@ -220,22 +276,24 @@ class _AccountpageState extends State<Accountpage> {
                     userDetailsService.deleteUserDataFromSharedPreferences();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>SignInWidget(SignInrepo())),
+                      MaterialPageRoute(
+                          builder: (context) => SignInWidget(SignInrepo())),
                     );
                   },
                   text: "Log Out",
                   options: FFButtonOptions(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: MediaQuery.of(context).size.width * 0.115,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: CustomTheme.of(context).error,
                     textStyle: CustomTheme.of(context).titleMedium.override(
                           fontFamily: CustomTheme.of(context).titleMediumFamily,
                           color: CustomTheme.of(context).primaryBackground,
                         ),
                     elevation: 1,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),

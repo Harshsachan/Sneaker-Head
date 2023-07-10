@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:testproject/endPoint.dart';
+import 'package:SneakerHead/endPoint.dart';
 
 class PlaceOrderRepo {
   final Dio _dio = Dio();

@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/sign_in/bloc/signIn_event.dart';
-import 'package:testproject/pages/sign_in/bloc/signIn_state.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
+import 'package:SneakerHead/pages/sign_in/bloc/signIn_event.dart';
+import 'package:SneakerHead/pages/sign_in/bloc/signIn_state.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 
 class SignInBloc extends Bloc<SignInPageEvent,SignInPageState>{
   final SignInrepo _repositry;

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/sign_in/repo/signIn_model.dart';
-import 'package:testproject/pages/user/bloc/createUser_event.dart';
-import 'package:testproject/pages/user/repo/createUser_repo.dart';
+import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:SneakerHead/pages/user/bloc/createUser_event.dart';
+import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 
 import 'createUser_state.dart';
 

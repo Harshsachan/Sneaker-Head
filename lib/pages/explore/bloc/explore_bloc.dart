@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testproject/pages/explore/bloc/explore_event.dart';
-import 'package:testproject/pages/explore/bloc/explore_state.dart';
+import 'package:SneakerHead/pages/explore/bloc/explore_event.dart';
+import 'package:SneakerHead/pages/explore/bloc/explore_state.dart';
 
 import '../repo/explore_repo.dart';
 

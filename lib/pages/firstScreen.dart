@@ -1,5 +1,5 @@
-// import 'package:testproject/pages/sign_in/repo/signIn_repo.dart';
-// import 'package:testproject/pages/sign_up/repo/signUp_repo.dart';
+// import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
+// import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
 //
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';

@@ -1,4 +1,4 @@
-import 'package:testproject/pages/explore/repo/explore_model.dart';
+import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
 
 abstract class HomePageState {}
 
