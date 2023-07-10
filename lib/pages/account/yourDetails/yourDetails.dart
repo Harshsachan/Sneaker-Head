@@ -1,61 +1,81 @@
+import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../flutter_flow/flutter_flow_icon_button.dart';
 import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../edit_user/repo/editUser_repo.dart';
+import '../../edit_user/ui/editUser.dart';
 import '../../sign_in/repo/signIn_model.dart';
 
-class YourDetails extends StatelessWidget {
-  final LoggedInData? userDetails;
-  const YourDetails({Key? key,required this.userDetails}) : super(key: key);
 
+class YourDetails extends StatefulWidget {
+  final LoggedInData? userDetails;
+  final Function(LoggedInData?) onUpdateUserData;
+  const YourDetails({Key? key, required this.userDetails, required this.onUpdateUserData}) : super(key: key);
+
+  @override
+  State<YourDetails> createState() => _YourDetailsState();
+}
+
+class _YourDetailsState extends State<YourDetails> {
+  LoggedInData? gotshareData;
+  @override
+  void initState() {
+    super.initState();
+    gotshareData = widget.userDetails;
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: CustomTheme.of(context).primaryText,
-              automaticallyImplyLeading: false,
-              leading: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 60,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: CustomTheme.of(context).primaryBackground,
-                  size: 30,
-                ),
-                onPressed: () async {
-                    Navigator.pop(context);
-                },
+      appBar: AppBar(
+        backgroundColor: CustomTheme.of(context).primaryText,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: CustomTheme.of(context).primaryBackground,
+            size: 30,
+          ),
+          onPressed: () async {
+            Navigator.pop(context);
+          },
+        ),
+        title: AutoSizeText(
+          'Details',
+          style: CustomTheme.of(context).bodySmall.override(
+                color: CustomTheme.of(context).primaryBackground,
+                fontFamily: CustomTheme.of(context).bodySmallFamily,
+                fontSize: 22,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(CustomTheme.of(context).bodySmallFamily),
               ),
-              title:AutoSizeText(
-                'Details',
-                style: CustomTheme.of(context).bodySmall.override(
-                  color: CustomTheme.of(context).primaryBackground,
-                  fontFamily: CustomTheme.of(context).bodySmallFamily,
-                  fontSize: 22,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      CustomTheme.of(context).bodySmallFamily),
-                ),
-              ),
-              centerTitle: true,
-              elevation: 2,
-            ),
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 1,
-            decoration: BoxDecoration(
-              color: CustomTheme.of(context).primaryText,
-            ),
-            child: SingleChildScrollView(
+        ),
+        centerTitle: true,
+        elevation: 2,
+      ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 1,
+        decoration: BoxDecoration(
+          color: CustomTheme.of(context).primaryText,
+        ),
+        child: Stack(
+          alignment: AlignmentDirectional.bottomEnd,
+          children: [
+            SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -70,23 +90,29 @@ class YourDetails extends StatelessWidget {
                           AutoSizeText(
                             'Name',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
-                      AutoSizeText(
-                              '${userDetails?.fName}${userDetails?.lName}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                          AutoSizeText(
+                            '${gotshareData?.fName} ${gotshareData?.lName}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -97,7 +123,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -110,25 +137,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'Email' ,
+                            'Email',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.email}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${widget.userDetails?.email}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -139,7 +172,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -152,25 +186,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'Mobile Number',
+                            'Mobile Number',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.number}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.number}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -181,7 +221,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -194,25 +235,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'House Number',
+                            'House Number',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.houseNo}' ,
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.houseNo}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -223,50 +270,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: CustomTheme.of(context).primaryText,
-
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AutoSizeText(
-                              'Street',
-                            style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
-                          ),
-                          AutoSizeText(
-                              '${userDetails?.street}' ,
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
-                          ),
-                          Divider(
-                            thickness: 1,
-                            color: CustomTheme.of(context).secondaryText,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -279,25 +284,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'Area' ,
+                            'Street',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.area}' ,
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.street}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -308,7 +319,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -321,25 +333,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'City',
+                            'Area',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.city}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.area}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -350,7 +368,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -363,25 +382,31 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'State & Pincode',
+                            'City',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.state} , ${userDetails?.pincode}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 18,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.city}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -392,7 +417,8 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -405,25 +431,80 @@ class YourDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                              'UHID',
+                            'State & Pincode',
                             style: CustomTheme.of(context).bodySmall.override(
-                              color: CustomTheme.of(context).secondaryText,
-                              fontFamily: CustomTheme.of(context).bodySmallFamily,
-                              fontSize: 16,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).bodySmallFamily),
-                            ),
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
                           ),
                           AutoSizeText(
-                              '${userDetails?.uhid}',
-                            style: CustomTheme.of(context).headlineSmall.override(
-                              color: CustomTheme.of(context).primaryBackground,
-                              fontFamily:
-                              CustomTheme.of(context).headlineSmallFamily,
-                              fontSize: 14,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  CustomTheme.of(context).headlineSmallFamily),
-                            ),
+                            '${gotshareData?.state} , ${gotshareData?.pincode}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 18,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: CustomTheme.of(context).secondaryText,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.09,
+                      decoration: BoxDecoration(
+                        color: CustomTheme.of(context).primaryText,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            'UHID',
+                            style: CustomTheme.of(context).bodySmall.override(
+                                  color: CustomTheme.of(context).secondaryText,
+                                  fontFamily:
+                                      CustomTheme.of(context).bodySmallFamily,
+                                  fontSize: 16,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
+                          ),
+                          AutoSizeText(
+                            '${gotshareData?.uhid}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
+                                  fontFamily: CustomTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 14,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(CustomTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
                           ),
                           Divider(
                             thickness: 1,
@@ -436,9 +517,44 @@ class YourDetails extends StatelessWidget {
                 ],
               ),
             ),
-          )
-          ,
-        )
-    );
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 15, 25),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(
+                        builder: (context) => EditUser(
+                          editUserRepo: EditUserRepo(),
+                          userDetails: gotshareData,
+                        ),
+                      ),
+                    ).then((updatedData) {
+                      print("came back from previous screen");
+                      if (updatedData != null) {
+                        setState(() {
+                          print("came back from previous screen");
+                          print('${updatedData}');
+                          gotshareData = updatedData;
+                          widget.onUpdateUserData(updatedData);
+                          print('${gotshareData?.fName}');
+                        });
+                      }
+                    });
+                  },
+                  child: Icon(Icons.edit),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(CircleBorder()),
+                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    backgroundColor: MaterialStateProperty.all(CustomTheme.of(context).primary), // <-- Button color
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                      if (states.contains(MaterialState.pressed)) return CustomTheme.of(context).alternate; // <-- Splash color
+                    }),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    ));
   }
 }

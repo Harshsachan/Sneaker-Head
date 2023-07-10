@@ -115,9 +115,6 @@ class _CreateUserState extends State<CreateUser> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       backgroundColor: CustomTheme.of(context).primaryText,
       appBar: AppBar(

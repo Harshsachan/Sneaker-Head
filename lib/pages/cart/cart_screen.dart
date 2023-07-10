@@ -138,7 +138,7 @@ class _CartPageState extends State<CartPage> {
                       );
                     },
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 30, 15, 5),
+                      padding:const EdgeInsetsDirectional.fromSTEB(15, 30, 15, 5),
                       child: Material(
                         shadowColor: Colors.purple,
                         elevation: 10,

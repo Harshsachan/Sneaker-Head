@@ -11,7 +11,6 @@ import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class Accountpage extends StatefulWidget {
-
   const Accountpage({Key? key}) : super(key: key);
 
   @override
@@ -19,20 +18,26 @@ class Accountpage extends StatefulWidget {
 }
 
 class _AccountpageState extends State<Accountpage> {
-  UserDetailsService userDetailsService=UserDetailsService();
+  UserDetailsService userDetailsService = UserDetailsService();
   LoggedInData? gotshareData;
   @override
-
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future<LoggedInData?> shareData = userDetailsService.getUserDataFromSharedPreferences();
+    Future<LoggedInData?> shareData =
+        userDetailsService.getUserDataFromSharedPreferences();
     shareData.then((value) {
-      if(value != null){
+      if (value != null) {
         setState(() {
-          gotshareData= value;
+          gotshareData = value;
         });
       }
+    });
+  }
+
+  void handleUpdateUserData(LoggedInData? updatedData) {
+    setState(() {
+      gotshareData = updatedData;
     });
   }
 
@@ -60,7 +65,7 @@ class _AccountpageState extends State<Accountpage> {
                           width: MediaQuery.of(context).size.width * 0.2,
                           height: MediaQuery.of(context).size.width * 0.2,
                           clipBehavior: Clip.antiAlias,
-                          decoration:const BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.network(
@@ -117,7 +122,7 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // AccountSettings Static Title
             Padding(
-              padding:const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
               child: AutoSizeText(
                 "Account Settings",
                 style: CustomTheme.of(context).titleMedium.override(
@@ -130,13 +135,27 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // Settings Options
             Padding(
-              padding:const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => YourDetails(userDetails: gotshareData)),
-                  );
+                    MaterialPageRoute(
+                        builder: (context) => YourDetails(
+                              userDetails: gotshareData,
+                              onUpdateUserData: handleUpdateUserData,
+                            )),
+                  ).then((updatedData) {
+                    print("came back from previous screen");
+                    if (updatedData != null) {
+                      setState(() {
+                        print("came back from previous screen");
+                        print('${updatedData}');
+                        gotshareData = updatedData;
+                        print('${gotshareData?.fName}');
+                      });
+                    }
+                  });
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -172,10 +191,10 @@ class _AccountpageState extends State<Accountpage> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>const CardForm()),
+                    MaterialPageRoute(builder: (context) => const CardForm()),
                   );
                 },
                 child: Container(
@@ -212,10 +231,10 @@ class _AccountpageState extends State<Accountpage> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>const CardForm()),
+                    MaterialPageRoute(builder: (context) => const CardForm()),
                   );
                 },
                 child: Container(
@@ -233,11 +252,11 @@ class _AccountpageState extends State<Accountpage> {
                           AutoSizeText(
                             "All Orders",
                             style: CustomTheme.of(context).titleMedium.override(
-                              fontFamily: 'Poppins',
-                              color: CustomTheme.of(context).primaryText,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
+                                  fontFamily: 'Poppins',
+                                  color: CustomTheme.of(context).primaryText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
                           ),
                           Icon(
                             Icons.arrow_forward_ios_outlined,
@@ -257,7 +276,8 @@ class _AccountpageState extends State<Accountpage> {
                     userDetailsService.deleteUserDataFromSharedPreferences();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>SignInWidget(SignInrepo())),
+                      MaterialPageRoute(
+                          builder: (context) => SignInWidget(SignInrepo())),
                     );
                   },
                   text: "Log Out",
@@ -265,14 +285,15 @@ class _AccountpageState extends State<Accountpage> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: MediaQuery.of(context).size.width * 0.115,
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: CustomTheme.of(context).error,
                     textStyle: CustomTheme.of(context).titleMedium.override(
                           fontFamily: CustomTheme.of(context).titleMediumFamily,
                           color: CustomTheme.of(context).primaryBackground,
                         ),
                     elevation: 1,
-                    borderSide:const  BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),

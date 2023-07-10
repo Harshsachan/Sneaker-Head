@@ -5,45 +5,9 @@ import 'package:SneakerHead/pages/user/bloc/createUser_state.dart';
 
 class CreateUserRepo{
   final Dio _dio = Dio();
-
-  Future<Response<dynamic>> postAuthDetails(String email,String password) async{
-    print("postAuthDetails");
-    try{
-      final response = await _dio.post(
-          endpoint,
-          data: {
-            'query':
-            'mutation { '
-                'signUp(authDto: '
-                '{ '
-                ' email: "$email", password: "$password" '
-                '}) '
-                ' { '
-                '    email'
-                ' }',
-          }
-      );
-      print("UserData fetched");
-      print(response);
-      return response;
-    }
-    catch(errors){
-      print("Catch block");
-      print(errors);
-      throw errors.toString();
-    }
-  }
   Future<Response<dynamic>> postUserDetails(LoggedInData userDetails) async{
     print("postAuthDetails");
     try{
-      print("trying");
-      print("${userDetails.number}");
-      print("${userDetails.fName}");
-      print("${userDetails.email}");
-      print("type");
-      print("${userDetails.number.runtimeType}");
-      print("${userDetails.email.runtimeType}");
-
       final response = await _dio.post(
           endpoint,
           data: {
@@ -59,7 +23,6 @@ class CreateUserRepo{
             '}',
           }
       );
-      print("UserData fetched");
       print(response);
       return response;
 
