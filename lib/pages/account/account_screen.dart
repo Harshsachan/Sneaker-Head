@@ -22,6 +22,7 @@ class _AccountpageState extends State<Accountpage> {
   UserDetailsService userDetailsService=UserDetailsService();
   LoggedInData? gotshareData;
   @override
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -35,12 +36,8 @@ class _AccountpageState extends State<Accountpage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    print("wanted");
-    print('${gotshareData}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
@@ -49,7 +46,7 @@ class _AccountpageState extends State<Accountpage> {
           children: [
             // User Full info
             Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15, 5, 15, 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -63,7 +60,7 @@ class _AccountpageState extends State<Accountpage> {
                           width: MediaQuery.of(context).size.width * 0.2,
                           height: MediaQuery.of(context).size.width * 0.2,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
+                          decoration:const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.network(
@@ -120,7 +117,7 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // AccountSettings Static Title
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+              padding:const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
               child: AutoSizeText(
                 "Account Settings",
                 style: CustomTheme.of(context).titleMedium.override(
@@ -133,7 +130,7 @@ class _AccountpageState extends State<Accountpage> {
             ),
             // Settings Options
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              padding:const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
                 onTap: (){
                   Navigator.push(
@@ -173,12 +170,12 @@ class _AccountpageState extends State<Accountpage> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>CardForm()),
+                    MaterialPageRoute(builder: (context) =>const CardForm()),
                   );
                 },
                 child: Container(
@@ -212,6 +209,46 @@ class _AccountpageState extends State<Accountpage> {
                     )),
               ),
             ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>const CardForm()),
+                  );
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.09,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: CustomTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(
+                            "All Orders",
+                            style: CustomTheme.of(context).titleMedium.override(
+                              fontFamily: 'Poppins',
+                              color: CustomTheme.of(context).primaryText,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: CustomTheme.of(context).primaryText,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                    )),
+              ),
+            ),
             Center(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
@@ -227,15 +264,15 @@ class _AccountpageState extends State<Accountpage> {
                   options: FFButtonOptions(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: MediaQuery.of(context).size.width * 0.115,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: CustomTheme.of(context).error,
                     textStyle: CustomTheme.of(context).titleMedium.override(
                           fontFamily: CustomTheme.of(context).titleMediumFamily,
                           color: CustomTheme.of(context).primaryBackground,
                         ),
                     elevation: 1,
-                    borderSide: BorderSide(
+                    borderSide:const  BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),

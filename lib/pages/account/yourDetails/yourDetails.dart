@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_icon_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
-import 'package:SneakerHead/flutter_flow/internationalization.dart';
-import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+
+import '../../../flutter_flow/flutter_flow_icon_button.dart';
+import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../sign_in/repo/signIn_model.dart';
 
 class YourDetails extends StatelessWidget {
   final LoggedInData? userDetails;
@@ -41,7 +41,6 @@ class YourDetails extends StatelessWidget {
                       CustomTheme.of(context).bodySmallFamily),
                 ),
               ),
-              actions: [],
               centerTitle: true,
               elevation: 2,
             ),
@@ -56,7 +55,7 @@ class YourDetails extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -98,7 +97,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -140,7 +139,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -182,7 +181,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -224,7 +223,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -267,7 +266,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -309,7 +308,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -351,7 +350,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
@@ -393,7 +392,7 @@ class YourDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.09,
