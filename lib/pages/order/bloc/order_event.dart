@@ -2,7 +2,12 @@ abstract class OrderPageEvent{}
 
 class OrderPagePlaceOrderEvent extends OrderPageEvent{
   final String? userEmail;
-  final List<int?> ProductIds;
+  final List<int?> productIds;
+  final int? totalPrice;
+  final String? userName;
+  final int? userNumber;
+  final String? address;
 
-  OrderPagePlaceOrderEvent(this.userEmail,this.ProductIds);
+  OrderPagePlaceOrderEvent(this.userEmail,this.productIds,this.totalPrice,this.userName,
+      this.userNumber,this.address);
 }

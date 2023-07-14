@@ -13,7 +13,7 @@ class OrderPageBloc extends Bloc<OrderPagePlaceOrderEvent,OrderPageState>{
     emit(OrderPageLoadingState());
     try{
       print("in bloc try");
-      final data = await _repositry.placeOrder(event.ProductIds, event.userEmail);
+      final data = await _repositry.placeOrder(event.userEmail,event.productIds,event.totalPrice,event.userName,event.userNumber,event.address);
       print(data);
       emit(OrderPageSuccessState("message"));
     }

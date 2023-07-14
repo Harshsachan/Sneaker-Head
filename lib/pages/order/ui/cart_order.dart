@@ -16,6 +16,9 @@ import 'package:SneakerHead/pages/order/bloc/order_state.dart';
 import 'package:SneakerHead/pages/order/repo/order_repo.dart';
 import 'package:SneakerHead/pages/order/ui/afterOrder.dart';
 
+import '../../memory/user_details.dart';
+import '../../sign_in/repo/signIn_model.dart';
+
 class CartCreateOrder extends StatefulWidget {
   final PlaceOrderRepo placeOrderRepo;
 
@@ -28,8 +31,14 @@ class CartCreateOrder extends StatefulWidget {
 class _CartCreateOrderState extends State<CartCreateOrder> {
   CartService cartService = CartService();
   EmailService emailService =EmailService();
+  UserDetailsService userDetailsService = UserDetailsService();
   String? userEmail = "";
   List<ProductDetails> cartItems = [];
+  String? userName="";
+  int? userNumber;
+  String? address;
+
+  int orderPrice=0;
 
   
 
@@ -38,6 +47,16 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
     // TODO: implement initState
     super.initState();
     loadUserEmail();
+    Future<LoggedInData?> sharedPrefData=userDetailsService.getUserDataFromSharedPreferences();
+    sharedPrefData.then((value) => {
+      if(value!=null){
+        setState((){
+          userName='${value.fName}  ${value.lName}';
+          userNumber=value.number;
+          address='${value.houseNo} ${value.street} ${value.area} ${value.city} ${value.state} ${value.pincode.toString()}';
+        })
+      }
+    });
   }
   void loadUserEmail() async{
     String? gotUserEmail= await emailService.getUserEmail();
@@ -52,7 +71,11 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
-    loadCartItems().then((value) => totalPrice()).then((value) => addOrderId());
+    //loadCartItems().then((value) => totalPrice()).then((value) => addOrderId());
+    loadCartItems().then((_) {
+      totalPrice();
+      addOrderId();
+    });
     super.didChangeDependencies();
   }
 
@@ -74,19 +97,36 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
       cartItems = items;
     });
   }
-
   int totalPrice() {
-    print("totalPrice called");
-    int price=0;
-    for (var element in cartItems) {
-      price= price + (element.price ?? 0);
-    }
-    setState(() {
+    int calPrice = 0;
 
+    for (var element in cartItems) {
+      calPrice += element.price ?? 0;
+    }
+
+    setState(() {
+      orderPrice = calPrice;
     });
-    print('${price}');
-    return price;
+
+    print('$calPrice');
+    return calPrice;
   }
+
+  // int totalPrice() {
+  //   print("totalPrice called");
+  //   int price=0;
+  //   int calPrice=0;
+  //
+  //   for (var element in cartItems) {
+  //     price= price + (element.price ?? 0);
+  //     calPrice= calPrice+(element.price??0);
+  //   }
+  //   setState(() {
+  //         orderPrice=calPrice;
+  //   });
+  //   print('${price}');
+  //   return price;
+  // }
 
   void removeFromCart(ProductDetails product) async {
 
@@ -674,7 +714,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
                                                               AutoSizeText(
-                                                                "\$ 90",
+                                                                "\$ ${orderPrice}",
                                                                 style: CustomTheme.of(context).titleMedium.override(
                                                                   fontFamily: 'Poppins',
                                                                   color: CustomTheme.of(context)
@@ -701,7 +741,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                             isFloating: true,
                                                             onTapUp: () {
                                                               print("click");
-                                                              context.read<OrderPageBloc>().add(OrderPagePlaceOrderEvent(userEmail, addOrderId()));
+                                                              context.read<OrderPageBloc>().add(OrderPagePlaceOrderEvent(userEmail, addOrderId(),orderPrice,userName,userNumber,address));
                                                             },
                                                             decoration:  NeoPopTiltedButtonDecoration(
                                                               //color:  Color.fromRGBO(255, 235, 52, 1),

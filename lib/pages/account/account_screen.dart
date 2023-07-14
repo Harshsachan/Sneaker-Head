@@ -1,3 +1,4 @@
+import 'package:SneakerHead/pages/view_orders/ui/view_order_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
@@ -7,11 +8,18 @@ import 'package:SneakerHead/pages/memory/user_details.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
+import '../view_orders/bloc/view_orders_bloc.dart';
+import '../view_orders/bloc/view_orders_events.dart';
+import '../view_orders/bloc/view_orders_state.dart';
+import '../view_orders/repo/view_orders_model.dart';
+import '../view_orders/repo/view_orders_repo.dart';
 
 class Accountpage extends StatefulWidget {
-  const Accountpage({Key? key}) : super(key: key);
+  final ViewPlacedOrderRepo viewPlacedOrderRepo;
+  const Accountpage({Key? key,required this.viewPlacedOrderRepo}) : super(key: key);
 
   @override
   State<Accountpage> createState() => _AccountpageState();
@@ -20,6 +28,7 @@ class Accountpage extends StatefulWidget {
 class _AccountpageState extends State<Accountpage> {
   UserDetailsService userDetailsService = UserDetailsService();
   LoggedInData? gotshareData;
+   String? userEmail="";
   @override
   void initState() {
     // TODO: implement initState
@@ -30,6 +39,7 @@ class _AccountpageState extends State<Accountpage> {
       if (value != null) {
         setState(() {
           gotshareData = value;
+          userEmail= value.email;
         });
       }
     });
@@ -46,7 +56,26 @@ class _AccountpageState extends State<Accountpage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
-        body: Column(
+        body: BlocProvider(
+  create: (context) => ViewAllOrderBloc(widget.viewPlacedOrderRepo),
+  child: BlocConsumer<ViewAllOrderBloc, ViewAllOrderState>(
+  listener: (context, state) {
+    // TODO: implement listener
+    if(state is ViewAllOrderSuccessState)
+      {
+        print("ViewAllOrderSuccessState");
+        List<PlacedOrderData> orders=state.placedOrderData;
+        print(orders.runtimeType);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ViewOrders(orders: orders),
+          ),
+        );
+      }
+  },
+  builder: (context, state) {
+    return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // User Full info
@@ -232,10 +261,7 @@ class _AccountpageState extends State<Accountpage> {
               padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CardForm()),
-                  );
+                  context.read<ViewAllOrderBloc>().add(FindAllOrderEvents(userEmail));
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -303,7 +329,10 @@ class _AccountpageState extends State<Accountpage> {
               ),
             )
           ],
-        ),
+        );
+  },
+),
+),
       ),
     );
   }

@@ -1042,7 +1042,6 @@ class _EditUserState extends State<EditUser> {
                           if (_formKey.currentState!.validate()) {
                           }
                           sendDataToServer();
-
                           context.read<EditUserBloc>().add(EditUserPageUpdateUserDetailsEvent(loggedInData));
                           //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
                           //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
