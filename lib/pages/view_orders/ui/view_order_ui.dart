@@ -99,7 +99,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                               MediaQuery.of(context).size.width * 0.025,
                               5),
                           child: AutoSizeText(
-                            DateFormat('dd-MMM-yyyy hh-mm a').format(dateLocal),
+                            DateFormat('dd/MMM/yy hh:mm a').format(dateLocal),
                             style: CustomTheme.of(context)
                                 .titleMedium
                                 .override(
