@@ -1,3 +1,4 @@
+import 'package:SneakerHead/pages/view_orders/repo/view_orders_repo.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -14,6 +15,9 @@ import '../explore/bloc/explore_event.dart';
 import '../explore/repo/explore_model.dart';
 import '../explore/ui/explore_screen.dart';
 import '../home/ui/home_screen.dart';
+import '../view_orders/bloc/view_orders_bloc.dart';
+import '../view_orders/bloc/view_orders_events.dart';
+import '../view_orders/repo/view_orders_model.dart';
 
 
 class NavBarPage extends StatefulWidget {
@@ -25,6 +29,8 @@ class NavBarPage extends StatefulWidget {
 }
 
 class _NavBarPageState extends State<NavBarPage> {
+  UserDetailsService userDetailsService = UserDetailsService();
+  String? userEmail="";
 
 
   PageController _pageController = PageController(initialPage: 0);
@@ -35,12 +41,21 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   void initState() {
     super.initState();
+    Future<LoggedInData?> shareData =
+    userDetailsService.getUserDataFromSharedPreferences();
+    shareData.then((value) {
+      if (value != null) {
+        setState(() {
+          userEmail= value.email;
+        });
+      }
+    });
 
     _screens = [
       HomePageWidget(),
       ExplorePage(),
       CartPage(),
-      Accountpage(),
+      Accountpage(viewPlacedOrderRepo: ViewPlacedOrderRepo(),),
     ];
     // Add the event to fetch data when ExplorePage is loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -16,6 +16,9 @@ import 'package:SneakerHead/pages/order/bloc/order_state.dart';
 import 'package:SneakerHead/pages/order/repo/order_repo.dart';
 import 'package:SneakerHead/pages/order/ui/afterOrder.dart';
 
+import '../../memory/user_details.dart';
+import '../../sign_in/repo/signIn_model.dart';
+
 class OneCreateOrder extends StatefulWidget {
   final ProductDetails product;
   final PlaceOrderRepo placeOrderRepo;
@@ -28,14 +31,28 @@ class OneCreateOrder extends StatefulWidget {
 
 class _OneCreateOrderState extends State<OneCreateOrder> {
   EmailService emailService = EmailService();
+  UserDetailsService userDetailsService = UserDetailsService();
   String? userEmail= "";
   List<int?> order_ids=[];
+  String? userName="";
+  int? userNumber;
+  String? address;
 
   @override
   void initState() {
     // TODO: implement initState
     addOrderId();
     loadUserEmail();
+    Future<LoggedInData?> sharedPrefData=userDetailsService.getUserDataFromSharedPreferences();
+    sharedPrefData.then((value) => {
+      if(value!=null){
+        setState((){
+          userName='${value.fName}  ${value.lName}';
+          userNumber=value.number;
+          address='${value.houseNo} ${value.street} ${value.area} ${value.city} ${value.state} ${value.pincode.toString()}';
+        })
+      }
+    });
     super.initState();
   }
 
@@ -46,8 +63,8 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
     });
     print(userEmail);
   }
-  void addOrderId()
-  {
+
+  void addOrderId() {
     order_ids.add(widget.product.id);
     print(order_ids);
   }
@@ -437,7 +454,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                                                             ),
                                                           ),
                                                           AutoSizeText(
-                                                            '160000',
+                                                            '\$ ${widget.product.price}',
                                                             style: CustomTheme.of(context).bodyMedium.override(
                                                               fontFamily: 'Poppins',
                                                               color: CustomTheme.of(context)
@@ -555,7 +572,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                                                             ),
                                                           ),
                                                           AutoSizeText(
-                                                            '1599891',
+                                                            '\$ ${widget.product.price}',
                                                             style: CustomTheme.of(context).bodyLarge.override(
                                                               fontFamily: 'Poppins',
                                                               color: CustomTheme.of(context)
@@ -592,7 +609,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 AutoSizeText(
-                                                  "\$ 1599891",
+                                                  "\$ ${widget.product.price}",
                                                   style: CustomTheme.of(context).titleMedium.override(
                                                         fontFamily: 'Poppins',
                                                         color: CustomTheme.of(context)
@@ -619,8 +636,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                                               isFloating: true,
                                               onTapUp: () {
                                                 print("click");
-
-                                                context.read<OrderPageBloc>().add(OrderPagePlaceOrderEvent(userEmail, order_ids));
+                                                context.read<OrderPageBloc>().add(OrderPagePlaceOrderEvent(userEmail, order_ids,widget.product.price,userName,userNumber,address));
                                               },
                                               decoration:  NeoPopTiltedButtonDecoration(
                                                 //color:  Color.fromRGBO(255, 235, 52, 1),alternate
