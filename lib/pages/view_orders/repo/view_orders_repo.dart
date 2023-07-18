@@ -14,7 +14,7 @@ class ViewPlacedOrderRepo{
     print("fetchAllOrders bloc");
     try {
       final response = await _dio.post(
-        endpoint2,
+        endpoint,
         data: {
           'query': 'query{ findOrderByUserMail(customer_email: "$email") { customer_full_name customer_number customer_email address total_price product_ids created_at } }',
         },
@@ -35,7 +35,7 @@ class ViewPlacedOrderRepo{
   Future<Product> fetchProductById(int id) async {
     try {
       final response = await _dio.post(
-        endpoint2,
+        endpoint,
         data: {
           'query': 'query{ findProductById(id: $id) { price, name, description } }',
         },

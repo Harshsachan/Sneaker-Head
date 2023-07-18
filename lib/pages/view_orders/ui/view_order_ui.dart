@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import '../../../flutter_flow/flutter_flow_theme.dart';
 import '../repo/view_orders_model.dart';
 import '../repo/view_orders_repo.dart';
+import 'view_full_order_ui.dart';
 
 class ViewOrders extends StatefulWidget {
 final List<PlacedOrderData> orders;
@@ -146,102 +147,112 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
     final order = widget.order;
     final product = order.product;
     print(product?.price);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          width:
-          MediaQuery.of(context).size.width * 0.80,
-          child: Row(
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(
-                    20, 20, 0, 20),
-                child: ClipRRect(
-                  borderRadius:
-                  BorderRadius.circular(8),
-                  child: Image.network(
-                    "https://picsum.photos/seed/472/601",
-                    width: MediaQuery.of(context)
-                        .size
-                        .width *
-                        0.20,
-                    height: MediaQuery.of(context)
-                        .size
-                        .width *
-                        0.15,
-                    fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ViewFullOrderDart(order: order,product:product),
+          ),
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width:
+            MediaQuery.of(context).size.width * 0.80,
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      20, 20, 0, 20),
+                  child: ClipRRect(
+                    borderRadius:
+                    BorderRadius.circular(8),
+                    child: Image.network(
+                      "https://picsum.photos/seed/472/601",
+                      width: MediaQuery.of(context)
+                          .size
+                          .width *
+                          0.20,
+                      height: MediaQuery.of(context)
+                          .size
+                          .width *
+                          0.15,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              VerticalDivider(
-                width: 20,
-                thickness: 2,
-                indent: 20,
-                endIndent: 0,
-                color: Colors.white,
-              ),
-              Column(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText(
-                    product?.name ?? '',
-                    style: CustomTheme.of(context)
-                        .titleMedium
-                        .override(
-                      fontFamily: 'Poppins',
-                      color: CustomTheme.of(context)
-                          .primaryBackground,
-                      fontSize: 6,
-                      fontWeight: FontWeight.w400,
+                VerticalDivider(
+                  width: 20,
+                  thickness: 2,
+                  indent: 20,
+                  endIndent: 0,
+                  color: Colors.white,
+                ),
+                Column(
+                  mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      product?.name ?? '',
+                      style: CustomTheme.of(context)
+                          .titleMedium
+                          .override(
+                        fontFamily: 'Poppins',
+                        color: CustomTheme.of(context)
+                            .primaryBackground,
+                        fontSize: 6,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      maxLines: 1,
                     ),
-                    maxLines: 1,
-                  ),
-                  AutoSizeText(
-                    "product description",
-                    style: CustomTheme.of(context)
-                        .titleMedium
-                        .override(
-                      fontFamily: 'Poppins',
-                      color: CustomTheme.of(context)
-                          .primaryBackground,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w200,
+                    AutoSizeText(
+                      "product description",
+                      style: CustomTheme.of(context)
+                          .titleMedium
+                          .override(
+                        fontFamily: 'Poppins',
+                        color: CustomTheme.of(context)
+                            .primaryBackground,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200,
+                      ),
+                      maxLines: 1,
                     ),
-                    maxLines: 1,
-                  ),
-                  AutoSizeText(
-                    "Size : 39",
-                    style: CustomTheme.of(context)
-                        .titleMedium
-                        .override(
-                      fontFamily: 'Poppins',
-                      color: CustomTheme.of(context)
-                          .primaryBackground,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w200,
+                    AutoSizeText(
+                      "Size : 39",
+                      style: CustomTheme.of(context)
+                          .titleMedium
+                          .override(
+                        fontFamily: 'Poppins',
+                        color: CustomTheme.of(context)
+                            .primaryBackground,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200,
+                      ),
+                      maxLines: 1,
                     ),
-                    maxLines: 1,
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(
-              0, 0, 10, 0),
-          child: Icon(
-            Icons.arrow_forward_ios_outlined,
-            color: CustomTheme.of(context)
-                .primaryBackground,
-            size: 24,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(
+                0, 0, 10, 0),
+            child: Icon(
+              Icons.arrow_forward_ios_outlined,
+              color: CustomTheme.of(context)
+                  .primaryBackground,
+              size: 24,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
