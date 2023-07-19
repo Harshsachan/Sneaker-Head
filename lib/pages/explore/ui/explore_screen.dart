@@ -321,7 +321,7 @@ class _DataLoadState extends State<DataLoad> {
                             maxLines: 1,
                           ),
                           AutoSizeText(
-                            product.company ?? '',
+                            product.company??'',
                             style: CustomTheme.of(context).bodyMedium.override(
                                   fontFamily: 'Poppins',
                                   color: CustomTheme.of(context)

@@ -8,17 +8,20 @@ class ProductDetails {
   int? price;
   String? seller;
   String? category;
+  late double averageRating; // Marking as late
 
-  ProductDetails(
-      {this.id,
-        this.name,
-        this.company,
-        this.description,
-        this.image,
-        this.createdAt,
-        this.price,
-        this.seller,
-        this.category});
+  ProductDetails({
+    this.id,
+    this.name,
+    this.company,
+    this.description,
+    this.image,
+    this.createdAt,
+    this.price,
+    this.seller,
+    this.category,
+    double? averageRating, // Marking as nullable in the constructor
+  }) : averageRating = averageRating ?? 0.0; // Assigning a value in the constructor
 
   ProductDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -30,6 +33,13 @@ class ProductDetails {
     price = json['price'];
     seller = json['seller'];
     category = json['category'];
+
+    var jsonAverageRating = json['averageRating'];
+    if (jsonAverageRating is int) {
+      averageRating = jsonAverageRating.toDouble();
+    } else {
+      averageRating = jsonAverageRating ?? 0.0;
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +53,7 @@ class ProductDetails {
     data['price'] = this.price;
     data['seller'] = this.seller;
     data['category'] = this.category;
+    data['averageRating'] = this.averageRating;
     return data;
   }
 }

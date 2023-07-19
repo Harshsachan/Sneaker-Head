@@ -22,6 +22,7 @@ class AllProductDetails {
                 price
                 seller
                 category
+                averageRating
               }
             }
           ''',

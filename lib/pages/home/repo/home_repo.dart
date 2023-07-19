@@ -21,6 +21,7 @@ class AllHomeProductDetails{
                 price
                 seller
                 category
+                averageRating
               }
             }
           ''',
