@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
@@ -26,6 +27,7 @@ class _CartPageState extends State<CartPage> {
       loadCartItems().then((value) => totalPrice());
       super.didChangeDependencies();
   }
+
   void navigateBack() {
     print("going back");
     Navigator.pop(context, cartItems); // Pass the updated cart items when navigating back

@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
+          print(state.toString());
           // final details =widget.userDetails;
           // print(details.number.toString());
           if (state is InternetGainedState) {
@@ -72,13 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: NavBarPage(),
             );
           }
-          // else if(state is InternetLostState){x
-          //   return NoInternetScreen();
-          // }
-          // else {
-          // TODO
+          else if(state is InternetLostState){
+            return NoInternetScreen();
+          }
+          else {
           return NoInternetScreen();
-          //}
+          }
         },
       ),
     );
