@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../ratings/ui/ratingUI.dart';
 import '../repo/view_orders_model.dart';
 import '../repo/view_orders_repo.dart';
 import 'view_full_order_ui.dart';
@@ -121,7 +122,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                           MediaQuery.of(context).size.width * 0.025,
                           color: Colors.white,
                         ),
-                        RatingWidget(),
+                        RatingUi(),
                       ],
                     ),
                   ),
@@ -258,71 +259,71 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
 }
 
 
-class RatingWidget extends StatefulWidget {
-  @override
-  _RatingWidgetState createState() => _RatingWidgetState();
-}
-
-class _RatingWidgetState extends State<RatingWidget> {
-  int _rating = 0;
-
-  void _updateRating(int rating) {
-    setState(() {
-      _rating = rating;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(
-              MediaQuery.of(context).size.width * 0.030,
-              5,
-              MediaQuery.of(context).size.width * 0.025,
-              5),
-          child: AutoSizeText(
-            "Rating",
-            style: CustomTheme.of(context).titleMedium.override(
-                  fontFamily: 'Poppins',
-                  color: CustomTheme.of(context).primaryBackground,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300,
-                ),
-            maxLines: 1,
-          ),
-        ),
-        IconButton(
-          icon: Icon(_rating >= 1 ? Icons.star : Icons.star_border),
-          color: CustomTheme.of(context).alternate,
-          onPressed: () => _updateRating(1),
-        ),
-        IconButton(
-          icon: Icon(_rating >= 2 ? Icons.star : Icons.star_border),
-          color: CustomTheme.of(context).alternate,
-          onPressed: () => _updateRating(2),
-        ),
-        IconButton(
-          icon: Icon(_rating >= 3 ? Icons.star : Icons.star_border),
-          color: CustomTheme.of(context).alternate,
-          onPressed: () => _updateRating(3),
-        ),
-        IconButton(
-          icon: Icon(_rating >= 4 ? Icons.star : Icons.star_border),
-          color: CustomTheme.of(context).alternate,
-          onPressed: () => _updateRating(4),
-        ),
-        IconButton(
-          icon: Icon(_rating >= 5 ? Icons.star : Icons.star_border),
-          color: CustomTheme.of(context).alternate,
-          onPressed: () => _updateRating(5),
-        ),
-      ],
-    );
-  }
-}
+// class RatingWidget extends StatefulWidget {
+//   @override
+//   _RatingWidgetState createState() => _RatingWidgetState();
+// }
+//
+// class _RatingWidgetState extends State<RatingWidget> {
+//   int _rating = 0;
+//
+//   void _updateRating(int rating) {
+//     setState(() {
+//       _rating = rating;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.start,
+//       children: [
+//         Padding(
+//           padding: EdgeInsetsDirectional.fromSTEB(
+//               MediaQuery.of(context).size.width * 0.030,
+//               5,
+//               MediaQuery.of(context).size.width * 0.025,
+//               5),
+//           child: AutoSizeText(
+//             "Rating",
+//             style: CustomTheme.of(context).titleMedium.override(
+//                   fontFamily: 'Poppins',
+//                   color: CustomTheme.of(context).primaryBackground,
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.w300,
+//                 ),
+//             maxLines: 1,
+//           ),
+//         ),
+//         IconButton(
+//           icon: Icon(_rating >= 1 ? Icons.star : Icons.star_border),
+//           color: CustomTheme.of(context).alternate,
+//           onPressed: () => _updateRating(1),
+//         ),
+//         IconButton(
+//           icon: Icon(_rating >= 2 ? Icons.star : Icons.star_border),
+//           color: CustomTheme.of(context).alternate,
+//           onPressed: () => _updateRating(2),
+//         ),
+//         IconButton(
+//           icon: Icon(_rating >= 3 ? Icons.star : Icons.star_border),
+//           color: CustomTheme.of(context).alternate,
+//           onPressed: () => _updateRating(3),
+//         ),
+//         IconButton(
+//           icon: Icon(_rating >= 4 ? Icons.star : Icons.star_border),
+//           color: CustomTheme.of(context).alternate,
+//           onPressed: () => _updateRating(4),
+//         ),
+//         IconButton(
+//           icon: Icon(_rating >= 5 ? Icons.star : Icons.star_border),
+//           color: CustomTheme.of(context).alternate,
+//           onPressed: () => _updateRating(5),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 
 

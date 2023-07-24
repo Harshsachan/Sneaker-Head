@@ -19,4 +19,5 @@ class ExploreBloc extends Bloc<ExplorePageEvent,ExplorePageState>{
       emit(ExplorePageErrorState(error.toString()));
     }
   }
+
 }
