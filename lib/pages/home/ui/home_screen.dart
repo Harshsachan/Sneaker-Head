@@ -7,6 +7,7 @@ import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 
+import '../../developer/meet_the_developer.dart';
 import '../../explore/bloc/explore_bloc.dart';
 import '../../explore/bloc/explore_state.dart';
 import '../../explore/ui/explore_screen.dart';
@@ -188,6 +189,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           size: 24,
                                         ),
                                         onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => const MeetDeveloper()),
+                                          );
                                           print('IconButton pressed ...');
                                         },
                                       ),

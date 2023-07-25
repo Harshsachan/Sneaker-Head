@@ -184,11 +184,15 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
             if (selectedCoupon == 'Coupon 1') {
               setState(() {
                 // Apply 10% discount
+
+                couponSavings=orderPrice * 0.10;
                 orderPrice -= (orderPrice * 0.10).ceil();
+
               });
             } else if (selectedCoupon == 'Coupon 2') {
               setState(() {
                 // Apply 23% discount
+                couponSavings=orderPrice * 0.23;
                 orderPrice -= (orderPrice * 0.23).ceil();
               });
             }
@@ -709,7 +713,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                                             ),
                                                                           ),
                                                                           AutoSizeText(
-                                                                            '-100',
+                                                                            '- ${couponSavings}',
                                                                             style: CustomTheme.of(context).bodySmall.override(
                                                                               fontFamily: 'Poppins',
                                                                               color: CustomTheme.of(context)
@@ -779,6 +783,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                                               '\$-9.00',
                                                                               style: CustomTheme.of(context).bodySmall.override(
                                                                                 fontFamily: 'Poppins',
+                                                                                decoration: TextDecoration.lineThrough,
                                                                                 color: CustomTheme.of(context)
                                                                                     .primaryBackground,
                                                                                 //fontWeight: FontWeight.bold,
@@ -802,7 +807,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                                             ),
                                                                           ),
                                                                           AutoSizeText(
-                                                                            '90',
+                                                                            '${orderPrice}',
                                                                             style: CustomTheme.of(context).bodyLarge.override(
                                                                               fontFamily: 'Poppins',
                                                                               color: CustomTheme.of(context)

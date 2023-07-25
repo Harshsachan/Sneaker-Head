@@ -11,6 +11,7 @@ import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
+import '../developer/meet_the_developer.dart';
 import '../view_orders/bloc/view_orders_bloc.dart';
 import '../view_orders/bloc/view_orders_events.dart';
 import '../view_orders/bloc/view_orders_state.dart';
@@ -283,6 +284,46 @@ class _AccountpageState extends State<Accountpage> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                 ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: CustomTheme.of(context).primaryText,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                    )),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MeetDeveloper()),
+                  );
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.09,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: CustomTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(
+                            "Meet The Developer",
+                            style: CustomTheme.of(context).titleMedium.override(
+                              fontFamily: 'Poppins',
+                              color: CustomTheme.of(context).primaryText,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Icon(
                             Icons.arrow_forward_ios_outlined,
