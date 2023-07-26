@@ -1,8 +1,5 @@
-import 'package:SneakerHead/pages/view_orders/bloc/view_orders_bloc.dart';
-import 'package:SneakerHead/pages/view_orders/bloc/view_orders_state.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../flutter_flow/flutter_flow_theme.dart';
@@ -55,7 +52,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                   fontSize: 22,
                 ),
           ),
-          actions: [],
+          //actions: [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -71,8 +68,6 @@ class _ViewOrdersState extends State<ViewOrders> {
                 PlacedOrderData order= widget.orders[index];
                 DateTime dateTime = DateTime.parse(order.createdAt??"");
                 var dateLocal = dateTime.toLocal();
-                print("dateLocal");
-                print(dateLocal);
                 widget.orders[index].productIds;
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -85,7 +80,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PlacedOrderDisplay(order: order,),
+                        PlacedOrderDisplay(order: order),
                         Divider(
                           height: 2,
                           thickness: 0.25,
@@ -101,7 +96,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                               MediaQuery.of(context).size.width * 0.025,
                               5),
                           child: AutoSizeText(
-                            DateFormat('dd/MMM/yy hh:mm a').format(dateLocal),
+                            DateFormat('dd-MMM-yy hh:mm a').format(dateLocal),
                             style: CustomTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -142,45 +137,37 @@ class PlacedOrderDisplay extends StatefulWidget {
   State<PlacedOrderDisplay> createState() => _PlacedOrderDisplayState();
 }
 
+// Import 'package:flutter/material.dart' and other necessary packages
+
 class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
   @override
   Widget build(BuildContext context) {
     final order = widget.order;
     final product = order.product;
-    print(product?.price);
+
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ViewFullOrderDart(order: order,product:product),
+            builder: (context) => ViewFullOrderDart(order: order, product: product),
           ),
         );
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width:
-            MediaQuery.of(context).size.width * 0.80,
+          Expanded(
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      20, 20, 0, 20),
+                  padding: EdgeInsets.fromLTRB(20, 20, 10, 20),
                   child: ClipRRect(
-                    borderRadius:
-                    BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8),
                     child: Image.network(
-                      "https://picsum.photos/seed/472/601",
-                      width: MediaQuery.of(context)
-                          .size
-                          .width *
-                          0.20,
-                      height: MediaQuery.of(context)
-                          .size
-                          .width *
-                          0.15,
+                      product?.image ?? "https://picsum.photos/seed/472/601",
+                      width: MediaQuery.of(context).size.width * 0.20,
+                      height: MediaQuery.of(context).size.width * 0.15,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -189,66 +176,54 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
                   width: 20,
                   thickness: 2,
                   indent: 20,
-                  endIndent: 0,
+                  endIndent: 10,
                   color: Colors.white,
                 ),
-                Column(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      product?.name ?? '',
-                      style: CustomTheme.of(context)
-                          .titleMedium
-                          .override(
-                        fontFamily: 'Poppins',
-                        color: CustomTheme.of(context)
-                            .primaryBackground,
-                        fontSize: 6,
-                        fontWeight: FontWeight.w400,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AutoSizeText(
+                        product?.name ?? '',
+                        style: CustomTheme.of(context).titleMedium.override(
+                          fontFamily: 'Poppins',
+                          color: CustomTheme.of(context).primaryBackground,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
-                    ),
-                    AutoSizeText(
-                      "product description",
-                      style: CustomTheme.of(context)
-                          .titleMedium
-                          .override(
-                        fontFamily: 'Poppins',
-                        color: CustomTheme.of(context)
-                            .primaryBackground,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w200,
+                      AutoSizeText(
+                        product?.description ?? "",
+                        style: CustomTheme.of(context).titleMedium.override(
+                          fontFamily: 'Poppins',
+                          color: CustomTheme.of(context).primaryBackground,
+                          fontWeight: FontWeight.w200,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
-                    ),
-                    AutoSizeText(
-                      "Size : 39",
-                      style: CustomTheme.of(context)
-                          .titleMedium
-                          .override(
-                        fontFamily: 'Poppins',
-                        color: CustomTheme.of(context)
-                            .primaryBackground,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w200,
+                      AutoSizeText(
+                        "Size : 39",
+                        style: CustomTheme.of(context).titleMedium.override(
+                          fontFamily: 'Poppins',
+                          color: CustomTheme.of(context).primaryBackground,
+                          fontWeight: FontWeight.w200,
+                        ),
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(
-                0, 0, 10, 0),
+            padding: EdgeInsets.only(right: 10),
             child: Icon(
               Icons.arrow_forward_ios_outlined,
-              color: CustomTheme.of(context)
-                  .primaryBackground,
+              color: CustomTheme.of(context).primaryBackground,
               size: 24,
             ),
           ),
@@ -257,6 +232,7 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
     );
   }
 }
+
 
 
 // class RatingWidget extends StatefulWidget {

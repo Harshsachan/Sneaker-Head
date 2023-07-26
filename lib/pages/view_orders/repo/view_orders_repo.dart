@@ -37,7 +37,7 @@ class ViewPlacedOrderRepo{
       final response = await _dio.post(
         endpoint,
         data: {
-          'query': 'query{ findProductById(id: $id) { price, name, description } }',
+          'query': 'query{ findProductById(id: $id) { price, name, description,image } }',
         },
       );
       final productData = response.data['data']['findProductById'];
