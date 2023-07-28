@@ -1,4 +1,4 @@
-import 'package:SneakerHead/Constant/ratings.dart';
+import 'package:SneakerHead/custom_theme/ratings.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:SneakerHead/pages/explore/repo/explore_model.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../developer/meet_the_developer.dart';
 import '../../explore/bloc/explore_bloc.dart';
 import '../../explore/bloc/explore_state.dart';
 import '../../explore/ui/explore_screen.dart';
+import '../../loading_screen/loading_screen.dart';
 import '../../product/product_details.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_icon_button.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -69,10 +71,82 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               child: BlocBuilder<ExploreBloc, ExplorePageState>(
                 builder: (context, state) {
                   if (state is ExplorePageLoadingState) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Shimmer.fromColors(
+                        baseColor: CustomTheme.of(context).primaryText,
+                        highlightColor: Colors.white12,
+                        direction: ShimmerDirection.ltr,
+                        child:  Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        //period: Duration(milliseconds: 1000),
+                      ),
                     );
-                  } else if (state is ExplorePageLoadedState) {
+                  }
+                  else if (state is ExplorePageLoadedState) {
                     List<ProductDetails> products = state.productDetails;
                     recentProducts = getProductsByCategory(products, "RECENT");
                     popularProducts = getProductsByCategory(products, "POPULAR");
@@ -316,6 +390,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ],
                     );
                   }
+
                   else if (state is ExplorePageErrorState) {
                     return Center(
                       child: Text(

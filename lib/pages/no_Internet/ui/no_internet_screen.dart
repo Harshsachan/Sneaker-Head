@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
-import '../../../flutter_flow/flutter_flow_widgets.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_widgets.dart';
 class NoInternetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

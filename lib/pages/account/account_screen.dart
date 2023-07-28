@@ -1,7 +1,7 @@
 import 'package:SneakerHead/pages/view_orders/ui/view_order_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/form.dart';
 import 'package:SneakerHead/pages/account/yourDetails/yourDetails.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
@@ -10,7 +10,7 @@ import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../flutter_flow/flutter_flow_widgets.dart';
+import '../../custom_theme/flutter_flow_widgets.dart';
 import '../developer/meet_the_developer.dart';
 import '../view_orders/bloc/view_orders_bloc.dart';
 import '../view_orders/bloc/view_orders_events.dart';

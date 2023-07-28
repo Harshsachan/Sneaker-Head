@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import '../../ratings/ui/ratingUI.dart';
 import '../repo/view_orders_model.dart';
 import '../repo/view_orders_repo.dart';
@@ -71,54 +71,66 @@ class _ViewOrdersState extends State<ViewOrders> {
                 widget.orders[index].productIds;
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.23,
-                    decoration: BoxDecoration(
-                      color: CustomTheme.of(context).primaryText,
+                  child: Material(
+                    shadowColor: Colors.purple,
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        PlacedOrderDisplay(order: order),
-                        Divider(
-                          height: 2,
-                          thickness: 0.25,
-                          indent: MediaQuery.of(context).size.width * 0.025,
-                          endIndent:
-                          MediaQuery.of(context).size.width * 0.025,
-                          color: Colors.white,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.23,
+                      decoration: BoxDecoration(
+                        color: CustomTheme.of(context).primaryText,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: CustomTheme.of(context)
+                              .primaryBackground,
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              MediaQuery.of(context).size.width * 0.030,
-                              5,
-                              MediaQuery.of(context).size.width * 0.025,
-                              5),
-                          child: AutoSizeText(
-                            DateFormat('dd-MMM-yy hh:mm a').format(dateLocal),
-                            style: CustomTheme.of(context)
-                                .titleMedium
-                                .override(
-                              fontFamily: 'Poppins',
-                              color: CustomTheme.of(context)
-                                  .primaryBackground,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            maxLines: 1,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          PlacedOrderDisplay(order: order),
+                          Divider(
+                            height: 2,
+                            thickness: 0.25,
+                            indent: MediaQuery.of(context).size.width * 0.025,
+                            endIndent:
+                            MediaQuery.of(context).size.width * 0.025,
+                            color: Colors.white,
                           ),
-                        ),
-                        Divider(
-                          height: 2,
-                          thickness: 0.25,
-                          indent: MediaQuery.of(context).size.width * 0.025,
-                          endIndent:
-                          MediaQuery.of(context).size.width * 0.025,
-                          color: Colors.white,
-                        ),
-                        RatingUi(),
-                      ],
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                MediaQuery.of(context).size.width * 0.030,
+                                5,
+                                MediaQuery.of(context).size.width * 0.025,
+                                5),
+                            child: AutoSizeText(
+                              DateFormat('dd-MMM-yy hh:mm a').format(dateLocal),
+                              style: CustomTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                fontFamily: 'Poppins',
+                                color: CustomTheme.of(context)
+                                    .primaryBackground,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300,
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                          Divider(
+                            height: 2,
+                            thickness: 0.25,
+                            indent: MediaQuery.of(context).size.width * 0.025,
+                            endIndent:
+                            MediaQuery.of(context).size.width * 0.025,
+                            color: Colors.white,
+                          ),
+                          RatingUi(),
+                        ],
+                      ),
                     ),
                   ),
                 );

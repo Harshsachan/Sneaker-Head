@@ -2,7 +2,8 @@ import 'package:SneakerHead/pages/view_orders/repo/product_model.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../components/my_painter.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import '../repo/view_orders_model.dart';
 
 class ViewFullOrderDart extends StatefulWidget {
@@ -46,7 +47,7 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-              color: CustomTheme.of(context).primaryText,
+              color: CustomTheme.of(context).pBackground,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -60,10 +61,10 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: Colors.white, // You can set the border color here
+                          color:  CustomTheme.of(context).primaryBackground, // You can set the border color here
                           width: 1.0, // You can adjust the border width as needed
                         ),
-                        color: CustomTheme.of(context).pBackground,
+                        color: CustomTheme.of(context).primaryText,
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,10 +155,10 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(
-                          color: Colors.white, // You can set the border color here
+                          color:  CustomTheme.of(context).primaryBackground, // You can set the border color here
                           width: 1.0, // You can adjust the border width as needed
                         ),
-                        color: CustomTheme.of(context).pBackground,
+                        color: CustomTheme.of(context).primaryText,
                       ),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -196,10 +197,10 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(
-                          color: Colors.white, // You can set the border color here
+                          color:  CustomTheme.of(context).primaryBackground, // You can set the border color here
                           width: 1.0, // You can adjust the border width as needed
                         ),
-                        color: CustomTheme.of(context).pBackground,
+                        color: CustomTheme.of(context).primaryText,
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -282,10 +283,10 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(
-                          color: Colors.white, // You can set the border color here
+                          color:  CustomTheme.of(context).primaryBackground, // You can set the border color here
                           width: 1.0, // You can adjust the border width as needed
                         ),
-                        color: CustomTheme.of(context).pBackground,
+                        color: CustomTheme.of(context).primaryText,
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -403,7 +404,6 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),),
@@ -558,27 +558,3 @@ class DeliveryTimeline extends StatelessWidget {
   }
 }
 
-class DottedLinePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double dashWidth = 5;
-    final double dashSpace = 5;
-    final double startY = 0;
-    final double endY = size.height;
-    double currentY = startY;
-
-    final Paint paint = Paint()
-      ..color = Colors.grey // Customize the color of the dotted line
-      ..strokeWidth = 2;
-
-    while (currentY < endY) {
-      canvas.drawLine(Offset(0, currentY), Offset(0, currentY + dashWidth), paint);
-      currentY += dashWidth + dashSpace;
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}

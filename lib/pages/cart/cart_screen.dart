@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/pages/explore/ui/add_to_cart.dart';
 import 'package:SneakerHead/pages/order/repo/order_repo.dart';
 import 'package:SneakerHead/pages/order/ui/cart_order.dart';

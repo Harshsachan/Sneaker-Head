@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/main.dart';
 import 'package:SneakerHead/pages/home/ui/home_screen.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
@@ -52,8 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
           context, MaterialPageRoute(builder: (context) => MyHomePage()));}
       else{
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => SignInWidget(SignInrepo())));
-      }
+            //context, MaterialPageRoute(builder: (context) => MyHomePage()));}
+            context, MaterialPageRoute(builder: (context) => SignInWidget(SignInrepo())));}
     });
   }
 

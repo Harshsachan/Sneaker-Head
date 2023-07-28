@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
-import 'package:SneakerHead/form.dart';
-import 'package:SneakerHead/pages/account/yourDetails/yourDetails.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/pages/explore/bloc/explore_bloc.dart';
 import 'package:SneakerHead/pages/explore/repo/explore_repo.dart';
-import 'package:SneakerHead/pages/explore/ui/explore_screen.dart';
 import 'package:SneakerHead/pages/nav_bar/nav_bar.dart';
 import 'package:SneakerHead/pages/no_Internet/bloc/no_internet_state.dart';
-import 'package:SneakerHead/pages/product/product_details.dart';
-import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
-import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
-import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
-import 'package:SneakerHead/pages/sign_up/repo/signUp_model.dart';
-import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
-import 'package:SneakerHead/pages/sign_up/ui/sign_up_widget.dart';
 import 'package:SneakerHead/pages/splashScreen.dart';
-import 'package:SneakerHead/pages/user/ui/createUser.dart';
 
 
 import 'pages/no_Internet/bloc/no_internet_bloc.dart';
@@ -35,11 +24,15 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       color: CustomTheme.of(context).primaryText,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Sneaker Head',
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color:CustomTheme.of(context).primaryText, // Change app bar color to black
+        ),
+        scaffoldBackgroundColor: CustomTheme.of(context).pBackground, // Change body color to pink
+      ),
       //home: CreateUser(),
       home: SplashScreen(),
-      //home: SignUpPage(SignUpRepo()),
-      //home: CardForm(),
     );
   }
 }

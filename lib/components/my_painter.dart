@@ -17,3 +17,28 @@ class MyPainter extends CustomPainter {
     return false;
   }
 }
+
+class DottedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double dashWidth = 5;
+    final double dashSpace = 5;
+    final double startY = 0;
+    final double endY = size.height;
+    double currentY = startY;
+
+    final Paint paint = Paint()
+      ..color = Colors.grey // Customize the color of the dotted line
+      ..strokeWidth = 2;
+
+    while (currentY < endY) {
+      canvas.drawLine(Offset(0, currentY), Offset(0, currentY + dashWidth), paint);
+      currentY += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}

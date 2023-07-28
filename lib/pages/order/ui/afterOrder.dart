@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_widgets.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_widgets.dart';
 import 'package:SneakerHead/pages/home/ui/home_screen.dart';
 import 'package:SneakerHead/pages/nav_bar/nav_bar.dart';
 
@@ -59,115 +59,126 @@ class _AfterOrderState extends State<AfterOrder> {
     return path;
   }
 
+  void _handleroute(){
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => BlocProvider(
+      create: (context) => ExploreBloc(AllProductDetails()),
+      child: NavBarPage(),
+    ),));
+  }
   @override
   Widget build(BuildContext context) {
-    return ConfettiWidget(
-      confettiController: _confettiController,
-      blastDirectionality: BlastDirectionality.explosive,
-      shouldLoop: true,
-      colors: const [
-        Colors.green,
-        Colors.blue,
-        Colors.pink,
-        Colors.orange,
-        Colors.purple
-      ],
-      createParticlePath: drawStar,
-      child: Scaffold(
-        backgroundColor: CustomTheme.of(context).forBtn,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Lottie.network(
-                      'https://assets9.lottiefiles.com/packages/lf20_rxuub8j6.json',
-                      width: MediaQuery.of(context).size.width*0.5,
-                      height: MediaQuery.of(context).size.width*0.5,
-                      fit: BoxFit.cover,
-                      frameRate: FrameRate(60),
-                      repeat: true,
-                      animate: true,
-                    ),
-                  ],
-                ),
-              ),
-              AutoSizeText(
-                'Congrats!',
-                style: CustomTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Poppins',
-                  color: CustomTheme.of(context).primaryBtnText,
-                  fontSize: 32,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                child: AutoSizeText(
-                  'Your Order is Placed.',
-                  style: CustomTheme.of(context).titleSmall.override(
-                    fontFamily: 'Poppins',
-                    color: CustomTheme.of(context).primaryBtnText,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300,
+    return WillPopScope(
+      onWillPop: () async {
+        _handleroute();
+        // Handle the Android back button here
+        // Navigator.popUntil(context, ModalRoute.withName('/')); // Navigates back to the home page
+        return false; // Return true if you want to allow back navigation, false otherwise.
+      },
+      child: ConfettiWidget(
+        confettiController: _confettiController,
+        blastDirectionality: BlastDirectionality.explosive,
+        shouldLoop: true,
+        colors: const [
+          Colors.green,
+          Colors.blue,
+          Colors.pink,
+          Colors.orange,
+          Colors.purple
+        ],
+        createParticlePath: drawStar,
+        child: Scaffold(
+          backgroundColor: CustomTheme.of(context).primaryText,
+          body: SafeArea(
+            top: true,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.network(
+                        'https://assets9.lottiefiles.com/packages/lf20_rxuub8j6.json',
+                        width: MediaQuery.of(context).size.width*0.5,
+                        height: MediaQuery.of(context).size.width*0.5,
+                        fit: BoxFit.cover,
+                        frameRate: FrameRate(60),
+                        repeat: true,
+                        animate: true,
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                child: AutoSizeText(
-                  'Happiness will be delivered soon!',
-                  style: CustomTheme.of(context).titleSmall.override(
+                AutoSizeText(
+                  'Congrats!',
+                  style: CustomTheme.of(context).headlineMedium.override(
                     fontFamily: 'Poppins',
                     color: CustomTheme.of(context).primaryBtnText,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300,
+                    fontSize: 32,
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
-                child:Container(
-                  width: MediaQuery.of(context).size.width*0.5,
-                  child: NeoPopTiltedButton(
-                    isFloating: true,
-                    onTapUp: () {
-                      Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => BlocProvider(
-                        create: (context) => ExploreBloc(AllProductDetails()),
-                        child: NavBarPage(),
-                      ),));
-                    },
-                    decoration:  NeoPopTiltedButtonDecoration(
-                      color: CustomTheme.of(context).neoColor,
-                      plunkColor: CustomTheme.of(context).neoPlunkColor,
-                      shadowColor: CustomTheme.of(context).primaryText,
-                      showShimmer: true,
-                      shimmerColor: CustomTheme.of(context).secondaryBackground,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                  child: AutoSizeText(
+                    'Your Order is Placed.',
+                    style: CustomTheme.of(context).titleSmall.override(
+                      fontFamily: 'Poppins',
+                      color: CustomTheme.of(context).primaryBtnText,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
                     ),
-                    child:  Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Center(
-                        child: AutoSizeText(
-                          "Go to Home",
-                          style: CustomTheme.of(context).bodySmall.override(
-                            fontFamily: 'Poppins',
-                            color: CustomTheme.of(context)
-                                .primaryText,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                  child: AutoSizeText(
+                    'Happiness will be delivered soon!',
+                    style: CustomTheme.of(context).titleSmall.override(
+                      fontFamily: 'Poppins',
+                      color: CustomTheme.of(context).primaryBtnText,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
+                  child:Container(
+                    width: MediaQuery.of(context).size.width*0.5,
+                    child: NeoPopTiltedButton(
+                      isFloating: true,
+                      onTapUp: () {
+                        _handleroute();
+                      },
+                      decoration:  NeoPopTiltedButtonDecoration(
+                        color: CustomTheme.of(context).neoColor,
+                        plunkColor: CustomTheme.of(context).neoPlunkColor,
+                        shadowColor: CustomTheme.of(context).primaryText,
+                        showShimmer: true,
+                        shimmerColor: CustomTheme.of(context).secondaryBackground,
+                      ),
+                      child:  Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Center(
+                          child: AutoSizeText(
+                            "Go to Home",
+                            style: CustomTheme.of(context).bodySmall.override(
+                              fontFamily: 'Poppins',
+                              color: CustomTheme.of(context)
+                                  .primaryText,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

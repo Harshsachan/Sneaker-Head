@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 
 
 class RatingUi extends StatefulWidget {

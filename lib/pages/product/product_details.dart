@@ -3,11 +3,11 @@ import 'package:SneakerHead/pages/explore/ui/add_to_cart.dart';
 import 'package:SneakerHead/pages/order/repo/order_repo.dart';
 import 'package:SneakerHead/pages/order/ui/order.dart';
 
-import '../../Constant/ratings.dart';
+import '../../custom_theme/ratings.dart';
 import '../explore/repo/explore_model.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../custom_theme/flutter_flow_icon_button.dart';
+import '../../custom_theme/flutter_flow_theme.dart';
+import '../../custom_theme/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

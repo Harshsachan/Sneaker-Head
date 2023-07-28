@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_theme.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/main.dart';
 import 'package:SneakerHead/pages/memory/email.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';

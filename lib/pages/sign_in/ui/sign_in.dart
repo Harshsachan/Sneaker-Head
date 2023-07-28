@@ -2,7 +2,6 @@ import 'package:blurry/blurry.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:SneakerHead/main.dart';
 import 'package:SneakerHead/pages/memory/email.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
@@ -13,10 +12,10 @@ import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
 import 'package:SneakerHead/pages/sign_up/ui/sign_up_widget.dart';
 
+import '../../loading_screen/loading_screen.dart';
 import '../bloc/signIn_event.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../../custom_theme/flutter_flow_icon_button.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -64,7 +63,6 @@ class _SignInWidgetState extends State<SignInWidget> {
           listener: (context, state) {
             // TODO: implement listener
             if(state is SignInPageSuccessState){
-
               print("Data fetched in widget Successful");
               LoggedInData userDetails = state.loggedInData;
               print(state.loggedInData.toJson());
@@ -107,7 +105,7 @@ class _SignInWidgetState extends State<SignInWidget> {
           },
           builder: (context, state) {
             if (state is SignInPageLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return LoadingScreen();
             }
             return SafeArea(
               child: Container(
@@ -328,10 +326,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                             context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
                           },
                           border:  Border.fromBorderSide(
-                            BorderSide(color: Colors.white, width: .5),
+                            BorderSide(color: Colors.white, width: 1),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                            padding:  EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:  [

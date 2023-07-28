@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../flutter_flow/flutter_flow_icon_button.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '../../custom_theme/flutter_flow_icon_button.dart';
+import '../../custom_theme/flutter_flow_theme.dart';
 
 class MeetDeveloper extends StatefulWidget {
   const MeetDeveloper({Key? key}) : super(key: key);

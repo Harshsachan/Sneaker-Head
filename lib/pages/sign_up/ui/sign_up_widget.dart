@@ -1,33 +1,21 @@
-//import '/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_icon_button.dart';
-import 'package:SneakerHead/flutter_flow/flutter_flow_model.dart';
+import 'package:SneakerHead/custom_theme/flutter_flow_icon_button.dart';
 import 'package:SneakerHead/pages/memory/email.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 import 'package:SneakerHead/pages/sign_in/ui/sign_in.dart';
 import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 import 'package:SneakerHead/pages/user/ui/createUser.dart';
 
-// import '../../sign_in/sign_in.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../sign_up_model.dart';
-export '../sign_up_model.dart';
 
 
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dio/dio.dart';
-import 'package:SneakerHead/main.dart';
-import 'package:SneakerHead/pages/nav_bar/nav_bar.dart';
 import 'package:SneakerHead/pages/sign_up/bloc/signUp_bloc.dart';
 import 'package:SneakerHead/pages/sign_up/bloc/signUp_event.dart';
 import 'package:SneakerHead/pages/sign_up/bloc/signUp_state.dart';

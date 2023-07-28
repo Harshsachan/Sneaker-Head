@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import '../bloc/editUser_bloc.dart';
 import '../repo/editUser_repo.dart';
 
