@@ -1,15 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../custom_theme/flutter_flow_icon_button.dart';
-import '../../../custom_theme/flutter_flow_widgets.dart';
 import '../../cart/cart_screen.dart';
 import '../../product/product_details.dart';
 import '../bloc/explore_bloc.dart';
 import '../bloc/explore_state.dart';
 import '../repo/explore_model.dart';
 import '../../../custom_theme/flutter_flow_theme.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'add_to_cart.dart';
 
@@ -89,19 +86,6 @@ class _ExplorePageState extends State<ExplorePage> {
                         child: GestureDetector(
                           onTap: () {
                             navigateToCartPage();
-                            // Navigate to CartPage
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => const CartPage(),
-                            //   ),
-                            // ).then((value) {
-                            //   if(mounted){
-                            //     setState(() {
-                            //       print("setstate called on navigating back from cart page");
-                            //     });
-                            //   }
-                            // });
                           },
                           child: Icon(
                             Icons.shopping_cart,

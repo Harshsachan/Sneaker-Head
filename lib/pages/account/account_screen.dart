@@ -1,3 +1,4 @@
+import 'package:SneakerHead/pages/loading_screen/loading_screen.dart';
 import 'package:SneakerHead/pages/view_orders/ui/view_order_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,10 @@ class _AccountpageState extends State<Accountpage> {
       }
   },
   builder: (context, state) {
+    if(state is ViewAllOrderLoadingState)
+      {
+        return LoadingScreen();
+      }
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

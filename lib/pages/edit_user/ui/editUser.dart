@@ -1,5 +1,6 @@
 import 'package:SneakerHead/pages/edit_user/bloc/editUser_event.dart';
 import 'package:SneakerHead/pages/edit_user/bloc/editUser_state.dart';
+import 'package:SneakerHead/pages/loading_screen/loading_screen.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -28,14 +29,13 @@ class _EditUserState extends State<EditUser> {
   final _formKey = GlobalKey<FormState>();
   final _fNameController = TextEditingController();
   final _lNameController = TextEditingController();
-  //final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _houseNoController = TextEditingController();
   final _streetController = TextEditingController();
   final _areaController = TextEditingController();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
-  final _pincodeController = TextEditingController();
+  final _pinCodeController = TextEditingController();
   late LoggedInData loggedInData;
 
   @override
@@ -54,7 +54,7 @@ class _EditUserState extends State<EditUser> {
           _areaController.text=value.area!;
           _cityController.text=value.city!;
           _stateController.text=value.state!;
-          _pincodeController.text=value.pincode.toString();
+          _pinCodeController.text=value.pincode.toString();
           previousUserData= value;
         })
       }
@@ -67,12 +67,12 @@ class _EditUserState extends State<EditUser> {
     String lName = _lNameController.text;
     //String email = _emailController.text;
     String number = _phoneController.text;
-    String house_no = _houseNoController.text;
+    String houseNo = _houseNoController.text;
     String street = _streetController.text;
     String area = _areaController.text;
     String city = _cityController.text;
     String state = _stateController.text;
-    String pincode = _pincodeController.text;
+    String pincode = _pinCodeController.text;
 
     // Get other data from the controller as needed
 
@@ -82,7 +82,7 @@ class _EditUserState extends State<EditUser> {
       lName: lName,
       email: previousUserData?.email,
       number: int.tryParse(number),
-      houseNo: house_no,
+      houseNo: houseNo,
       street: street,
       area: area,
       city: city,
@@ -106,27 +106,17 @@ class _EditUserState extends State<EditUser> {
         create: (_) => EditUserBloc(widget.editUserRepo),
         child: BlocConsumer<EditUserBloc, EditUserPageState>(
           listener: (context, state) {
-            // TODO: implement listener
             if (state is EditUserPageSuccessState){
-              print("UPDATED user data posted in db");
               LoggedInData userDetails = state.loggedInData;
-              print(state.loggedInData.toJson());
-              print(userDetails);
               userDetailsService.deleteUserDataFromSharedPreferences();
               userDetailsService.updateUserDataInSharedPreferences(userDetails);
               LoggedInData updatedData = state.loggedInData;
               Navigator.pop(context, updatedData);
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => MyHomePage(),
-              //   ),
-              // );
             }
           },
           builder: (context, state) {
             if (state is EditUserPageLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return LoadingScreen();
             }
             return SafeArea(
               top: true,
@@ -145,10 +135,10 @@ class _EditUserState extends State<EditUser> {
                             child: Column(
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -210,7 +200,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -938,7 +928,7 @@ class _EditUserState extends State<EditUser> {
                                         elevation: 5,
                                         shadowColor: Colors.white,
                                         child: TextFormField(
-                                          controller: _pincodeController,
+                                          controller: _pinCodeController,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -1043,26 +1033,23 @@ class _EditUserState extends State<EditUser> {
                           }
                           sendDataToServer();
                           context.read<EditUserBloc>().add(EditUserPageUpdateUserDetailsEvent(loggedInData));
-                          //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
-                          //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
                         },
                         border:  Border.fromBorderSide(
                             BorderSide( color:CustomTheme.of(context).secondaryBackground, width: 1)
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children:  [
                               AutoSizeText(
-                                "Create Account",
+                                "Update",
                                 style: CustomTheme.of(context)
-                                    .titleMedium
+                                    .titleLarge
                                     .override(
                                   fontFamily: 'Poppins',
                                   color: CustomTheme.of(context)
                                       .primaryBackground,
-                                  fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),

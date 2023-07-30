@@ -17,7 +17,8 @@ import 'repo/ratingsReview_model.dart';
 class SingleProductWidget extends StatefulWidget {
   final ProductDetails product;
 
-   SingleProductWidget({Key? key,required this.product}) : super(key: key);
+  const SingleProductWidget({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<SingleProductWidget> createState() => _SingleProductWidgetState();
@@ -41,7 +42,7 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
     'US 10 / EU 44'
     // Add more sizes as needed
   ];
-  FetchReviewRepo _fetchReviewRepo = FetchReviewRepo();
+  final FetchReviewRepo _fetchReviewRepo = FetchReviewRepo();
   List<FindReviewsAndRatingsByProductId> reviews = [];
   @override
   void didChangeDependencies() {
@@ -50,11 +51,12 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
     loadCartItems();
     fetchReviews();
     //super.didChangeDependencies();
-
   }
+
   Future<void> fetchReviews() async {
     try {
-      List<FindReviewsAndRatingsByProductId> fetchedReviews = await _fetchReviewRepo.fetchAllReview();
+      List<FindReviewsAndRatingsByProductId> fetchedReviews =
+          await _fetchReviewRepo.fetchAllReview();
       setState(() {
         reviews = fetchedReviews; // Update the state with the fetched reviews
       });
@@ -63,6 +65,7 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
       // Handle the error, e.g., show an error message
     }
   }
+
   void loadCartItems() async {
     List<ProductDetails> items = await cartService.getCartItems();
     setState(() {
@@ -72,36 +75,21 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
 
   void addToCart(ProductDetails product) async {
     if (!cartItems.any((item) => item.id == product.id)) {
-      print("cartItems add");
       cartItems.add(product);
       await cartService.saveCartItems(cartItems);
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Added to cart')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Product already in cart')),
-      );
-    }
+    } else {}
   }
 
   void removeFromCart(ProductDetails product) async {
-    print("removeFromCart called");
     if (cartItems.any((item) => item.id == product.id)) {
-      print("cartItem removed");
       cartItems.removeWhere((element) => element.id == product.id);
-      // cartItems.remove(product);
       await cartService.saveCartItems(cartItems);
-      print("cartItems");
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Removed from cart')),
-      );
     }
   }
 
@@ -111,7 +99,6 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
@@ -121,32 +108,28 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
               child: SingleChildScrollView(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: CustomTheme.of(context)
-                        .primaryBackground
-                  ),
+                      color: CustomTheme.of(context).primaryBackground),
                   child: Column(
                     //mainAxisSize: MainAxisSize.max,
                     children: [
                       //Image
                       Container(
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height*0.4,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         decoration: BoxDecoration(
-                          color: CustomTheme.of(context)
-                              .primaryBackground,
-
+                          color: CustomTheme.of(context).primaryBackground,
                         ),
                         child: Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: const AlignmentDirectional(0, 0),
                               child: Hero(
                                 tag: 'productShoe',
                                 transitionOnUserGestures: true,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(0),
                                   child: Image.network(
-                                     widget.product.image??'',
+                                    widget.product.image ?? '',
                                     width: double.infinity,
                                     height: double.infinity,
                                     fit: BoxFit.contain,
@@ -155,64 +138,29 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Card(
-                                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                                        color: CustomTheme.of(context)
-                                                .primaryBackground,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        child: FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 30,
-                                          buttonSize: 46,
-                                          icon: Icon(
-                                            Icons.arrow_back_ios_outlined,
-                                            color: CustomTheme.of(context)
-                                                .primaryText,
-                                            size: 35,
-                                          ),
-                                          onPressed: ()  {
-
-                                            Navigator.pop(context, cartItems);
-                                          },
-                                        ),
-                                      ),
-                                      Card(
-                                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                                        color: CustomTheme.of(context)
-                                            .primaryBackground,
-                                        elevation: 100,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        child: FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 30,
-                                          buttonSize: 46,
-                                          icon: Icon(
-                                            Icons.favorite_sharp,
-                                            color: CustomTheme.of(context)
-                                                .primaryText,
-                                            size: 24,
-                                          ),
-                                          onPressed: () {
-                                            print('IconButton pressed ...');
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8, 8, 8, 8),
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color:
+                                    CustomTheme.of(context).primaryBackground,
+                                elevation: 100,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30,
+                                  buttonSize: 46,
+                                  icon: Icon(
+                                    Icons.arrow_back_ios_outlined,
+                                    color: CustomTheme.of(context).primaryText,
+                                    size: 24,
                                   ),
-                                ],
+                                  onPressed: () {
+                                    Navigator.pop(context, cartItems);
+                                  },
+                                ),
                               ),
                             ),
                           ],
@@ -223,7 +171,7 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: CustomTheme.of(context).primaryText,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0),
                             topLeft: Radius.circular(32),
@@ -231,23 +179,27 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding:  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24, 0, 24, 0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox( height: MediaQuery.of(context).size.height * 0.03,),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03,
+                              ),
                               AutoSizeText(
-                                widget.product.name??'',
+                                widget.product.name ?? '',
                                 style: CustomTheme.of(context)
                                     .headlineSmall
                                     .override(
-                                  fontFamily: 'Poppins',
-                                  color: CustomTheme.of(context)
-                                      .primaryBackground,
-                                  // fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context)
+                                          .primaryBackground,
+                                      // fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                 maxLines: 1,
                               ),
                               Row(
@@ -256,71 +208,88 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                                 children: [
                                   AutoSizeText(
                                     'Retailed by ',
-                                    style: CustomTheme.of(context).titleLarge.override(
-                                      fontFamily: 'Poppins',
-                                      color: CustomTheme.of(context).primaryBackground,
-                                    ),
+                                    style: CustomTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: CustomTheme.of(context)
+                                              .primaryBackground,
+                                        ),
                                   ),
                                   AutoSizeText(
-                                    widget.product.company??'',
-                                    style: CustomTheme.of(context).titleLarge.override(
-                                      fontFamily: 'Poppins',
-                                      color: CustomTheme.of(context).primaryBackground,
-                                    ),
+                                    widget.product.company ?? '',
+                                    style: CustomTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: CustomTheme.of(context)
+                                              .primaryBackground,
+                                        ),
                                   ),
                                 ],
                               ),
                               AutoSizeText(
                                 '\$ - ${widget.product.price}',
-                                style: CustomTheme.of(context).titleLarge.override(
-                                  fontFamily: 'Poppins',
-                                  color: CustomTheme.of(context).alternate,
-                                ),
+                                style: CustomTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context).alternate,
+                                    ),
                               ),
                               AutoSizeText(
                                 'DESCRIPTION',
-                                style:
-                                CustomTheme.of(context).titleMedium.override(
-                                  fontFamily: 'Poppins',
-                                  color: CustomTheme.of(context)
-                                      .primaryBackground,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: CustomTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: CustomTheme.of(context)
+                                          .primaryBackground,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               Padding(
-                                padding:  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 0),
                                 child: AutoSizeText(
                                   '${widget.product.description}',
-                                  textAlign:TextAlign.justify,
-                                  style:
-                                  CustomTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Poppins',
-                                    color: CustomTheme.of(context)
-                                        .primaryBackground,
-                                    //fontWeight: FontWeight.bold,
-                                  ),
+                                  textAlign: TextAlign.justify,
+                                  style: CustomTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: CustomTheme.of(context)
+                                            .primaryBackground,
+                                        //fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                               ),
-                              SizedBox( height: MediaQuery.of(context).size.height * 0.01,),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.01,
+                              ),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
                                 decoration: BoxDecoration(
-                                  color: CustomTheme.of(context).primaryBackground,
+                                  color:
+                                      CustomTheme.of(context).primaryBackground,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: DropdownButton<String>(
-                                  menuMaxHeight: MediaQuery.of(context).size.height * 0.20,
+                                  menuMaxHeight:
+                                      MediaQuery.of(context).size.height * 0.20,
                                   value: selectedSize,
-                                  icon: Icon(Icons.arrow_drop_down,color: CustomTheme.of(context).primaryText,),
+                                  icon: Icon(
+                                    Icons.arrow_drop_down,
+                                    color: CustomTheme.of(context).primaryText,
+                                  ),
                                   iconSize: 24,
                                   elevation: 16,
-                                  style: TextStyle(color: CustomTheme.of(context).primaryBackground, fontSize: 16),
-                                  // underline: Container(
-                                  //   height: 2,
-                                  //   decoration: BoxDecoration(
-                                  //     color: CustomTheme.of(context).primaryText,
-                                  //   ),
-                                  // ),
+                                  style: TextStyle(
+                                      color: CustomTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 16),
                                   onChanged: (newValue) {
                                     setState(() {
                                       selectedSize = newValue;
@@ -329,110 +298,127 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                                   items: availableSizes.map((size) {
                                     return DropdownMenuItem<String>(
                                       value: size,
-                                      child: Text(size,style: TextStyle(
-                                        color: CustomTheme.of(context).primaryText,
-                                      ),),
+                                      child: Text(
+                                        size,
+                                        style: TextStyle(
+                                          color: CustomTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
                                     );
                                   }).toList(),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 10),
                                 child: Row(
                                   children: [
                                     AutoSizeText(
                                       'Reviews',
-                                      style:
-                                      CustomTheme.of(context).titleMedium.override(
-                                        fontFamily: 'Poppins',
-                                        color: CustomTheme.of(context)
-                                            .primaryBackground,
-                                      ),
+                                      style: CustomTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: CustomTheme.of(context)
+                                                .primaryBackground,
+                                          ),
                                     ),
                                     Padding(
-                                      padding:  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
                                       child: AutoSizeText(
-                                        '(${reviews.length.toString()})'??"No review",
-                                        style:
-                                        CustomTheme.of(context).titleMedium.override(
-                                          fontFamily: 'Poppins',
-                                          color: CustomTheme.of(context)
-                                              .primaryBackground,
-                                        ),
+                                        '(${reviews.length.toString()})',
+                                        style: CustomTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: CustomTheme.of(context)
+                                                  .primaryBackground,
+                                            ),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               Divider(
-                                height: 0.1,
-                                  color: CustomTheme.of(context).secondaryBackground
-                              ),
+                                  height: 0.1,
+                                  color: CustomTheme.of(context)
+                                      .secondaryBackground),
                               reviews.isEmpty // Check if the reviews list is empty
                                   ? Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Center(
-                                      child: AutoSizeText(
-                                'No review\'s available',
-                                style:
-                                CustomTheme.of(context).titleMedium.override(
-                                      fontFamily: 'Poppins',
-                                      color: CustomTheme.of(context)
-                                          .primaryBackground,
-
-                                ),
-                              ),
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Center(
+                                        child: AutoSizeText(
+                                          'No review\'s available',
+                                          style: CustomTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: CustomTheme.of(context)
+                                                    .primaryBackground,
+                                              ),
+                                        ),
+                                      ),
+                                    ) // Display a message if there are no reviews
+                                  : ListView.builder(
+                                      //scrollDirection: Axis.vertical,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: reviews.length,
+                                      itemBuilder: (context, index) {
+                                        final review = reviews[index];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  15, 10, 0, 0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              AutoSizeText(
+                                                review.customerFullName ?? '',
+                                                style: CustomTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: CustomTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                    ),
+                                              ),
+                                              Rating(
+                                                  rating: review.rating!
+                                                      .toDouble()),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(2, 5, 0, 0),
+                                                child: AutoSizeText(
+                                                  review.review ??
+                                                      'No review ',
+                                                  style: CustomTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color: CustomTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                      ),
+                                                  // maxLines: 2,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  )// Display a message if there are no reviews
-                                  :
-                              ListView.builder(
-                                //scrollDirection: Axis.vertical,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: reviews.length,
-                                itemBuilder: (context, index) {
-                                 final review = reviews[index];
-                                 return Padding(
-                                   padding: EdgeInsetsDirectional.fromSTEB(15, 10, 0, 0),
-                                   child: Container(
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.start,
-                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                       children: [
-                                         AutoSizeText(
-                                           review.customerFullName??'',
-                                           style:
-                                           CustomTheme.of(context).titleSmall.override(
-                                             fontFamily: 'Poppins',
-                                             color: CustomTheme.of(context)
-                                                 .primaryBackground,
-                                           ),
-                                         ),
-                                         Rating(rating: review.rating!.toDouble()),
-                                         Padding(
-                                           padding: EdgeInsetsDirectional.fromSTEB(2, 5, 0, 0),
-                                           child: AutoSizeText(
-                                             review.review??'No review ',
-                                             style:
-                                             CustomTheme.of(context).bodySmall.override(
-                                               fontFamily: 'Poppins',
-                                               color: CustomTheme.of(context)
-                                                   .primaryBackground,
-                                             ),
-                                             // maxLines: 2,
-                                           ),
-                                         ),
-                                       ],
-                                     ),
-                                   ),
-                                 );
-                                },
-                              ),
                             ],
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -442,14 +428,14 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: CustomTheme.of(context).primaryText,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 4,
                     color: Colors.white,
                     offset: Offset(0, 1),
                   )
                 ],
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(0),
                   bottomRight: Radius.circular(0),
                   topLeft: Radius.circular(16),
@@ -457,22 +443,22 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 52),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 52),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FFButtonWidget(
                       onPressed: () {
-                        if(isProductInCart(widget.product))
-                          {
-                            removeFromCart(widget.product);
-                          }
-                        else{
+                        if (isProductInCart(widget.product)) {
+                          removeFromCart(widget.product);
+                        } else {
                           addToCart(widget.product);
                         }
                       },
-                      text: isProductInCart(widget.product) ? 'Remove From Cart' : 'Add To cart',
+                      text: isProductInCart(widget.product)
+                          ? 'Remove From Cart'
+                          : 'Add To cart',
                       icon: FaIcon(
                         FontAwesomeIcons.cartShopping,
                         color: CustomTheme.of(context).secondaryBackground,
@@ -481,17 +467,16 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                       options: FFButtonOptions(
                         width: 160,
                         height: 50,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: CustomTheme.of(context).primaryText,
-                        textStyle:
-                        CustomTheme.of(context).titleSmall.override(
-                          fontFamily: 'Outfit',
-                          color: CustomTheme.of(context)
-                              .secondaryBackground,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        textStyle: CustomTheme.of(context).titleSmall.override(
+                              fontFamily: 'Outfit',
+                              color:
+                                  CustomTheme.of(context).secondaryBackground,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                         elevation: 0,
                         borderSide: BorderSide(
                           color: CustomTheme.of(context).alternate,
@@ -501,14 +486,16 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () {
-                       // if(!isProductInCart(widget.product))
-                       //   {
-                       //     addToCart(widget.product);
-                       //   }
+                        // if(!isProductInCart(widget.product))
+                        //   {
+                        //     addToCart(widget.product);
+                        //   }
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OneCreateOrder(product: widget.product,placeOrderRepo: PlaceOrderRepo()),
+                            builder: (context) => OneCreateOrder(
+                                product: widget.product,
+                                placeOrderRepo: PlaceOrderRepo()),
                           ),
                         );
                       },
@@ -521,17 +508,14 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                       options: FFButtonOptions(
                         width: 160,
                         height: 50,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: CustomTheme.of(context).alternate,
-                        textStyle:
-                        CustomTheme.of(context).titleSmall.override(
-                          fontFamily: 'Outfit',
-                          color: CustomTheme.of(context)
-                              .secondaryBackground,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        textStyle: CustomTheme.of(context).titleSmall.override(
+                              fontFamily: 'Outfit',
+                              color:
+                                  CustomTheme.of(context).secondaryBackground,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                         elevation: 0,
                         borderSide: BorderSide(
                           color: CustomTheme.of(context).alternate,
@@ -549,10 +533,3 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
     );
   }
 }
-
-
-
-
-
-
-

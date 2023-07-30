@@ -8,11 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
-import 'package:SneakerHead/custom_theme/flutter_flow_widgets.dart';
-import 'package:SneakerHead/pages/home/ui/home_screen.dart';
 import 'package:SneakerHead/pages/nav_bar/nav_bar.dart';
 
-import '../../../main.dart';
 import '../../explore/bloc/explore_bloc.dart';
 import '../../explore/repo/explore_repo.dart';
 
@@ -60,11 +57,16 @@ class _AfterOrderState extends State<AfterOrder> {
   }
 
   void _handleroute(){
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => BlocProvider(
-      create: (context) => ExploreBloc(AllProductDetails()),
-      child: NavBarPage(),
-    ),));
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          create: (context) => ExploreBloc(AllProductDetails()),
+          child: NavBarPage(),
+        ),
+      ),
+          (route) => false, // Removes all previous routes from the stack
+    );
   }
   @override
   Widget build(BuildContext context) {

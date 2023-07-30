@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
@@ -35,14 +34,16 @@ class _CartPageState extends State<CartPage> {
 
 
   Future<void> loadCartItems() async {
+
     List<ProductDetails> items = await cartService.getCartItems();
     setState(() {
       cartItems = items;
     });
+    print("check");
+    print(cartItems.length);
   }
 
   int totalPrice() {
-    print("totalPrice called");
     int price=0;
     for (var element in cartItems) {
       price= price + (element.price ?? 0);
@@ -50,7 +51,6 @@ class _CartPageState extends State<CartPage> {
     setState(() {
 
     });
-    print('${price}');
     return price;
   }
 
@@ -95,7 +95,7 @@ class _CartPageState extends State<CartPage> {
                    onPressed: navigateBack, // Call navigateBack method when the back button is pressed
                  ):null,
             title: AutoSizeText(
-              'My Carts',
+              'My Cart',
               style: CustomTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
                 color: Colors.white,
@@ -106,16 +106,7 @@ class _CartPageState extends State<CartPage> {
             centerTitle: true,
             elevation: 2,
           ),
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   leading: showBackButton ? IconButton(
-        //     icon: const Icon(Icons.arrow_back),
-        //     onPressed: navigateBack, // Call navigateBack method when the back button is pressed
-        //   ):null,
-        //   title:   Center(child: const AutoSizeText('My Cart')),
-        //   backgroundColor: CustomTheme.of(context).primaryText,
-        //
-        // ),
+
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
@@ -125,6 +116,8 @@ class _CartPageState extends State<CartPage> {
           child: Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
+              cartItems.isNotEmpty
+                  ?
               ListView.builder(
                 itemCount:  cartItems.length,
                 padding: EdgeInsets.only(bottom:  MediaQuery.of(context).size.height * 0.15),
@@ -263,7 +256,25 @@ class _CartPageState extends State<CartPage> {
                     ),
                   );
                 },
-              ),
+              )
+                  :
+              Center(
+                child:
+                AutoSizeText(
+                "No Items In the Cart",
+                style: CustomTheme.of(context)
+                    .titleMedium
+                    .override(
+                  fontFamily: 'Poppins',
+                  color: CustomTheme.of(context)
+                      .primaryBackground,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 1,
+              ),),
+              cartItems.isNotEmpty
+                  ?
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.13,
@@ -334,6 +345,8 @@ class _CartPageState extends State<CartPage> {
                   ],
                 ),
               )
+                  :
+              Container()
             ],
           ),
         ),
