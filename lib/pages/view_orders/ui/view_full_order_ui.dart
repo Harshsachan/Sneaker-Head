@@ -29,7 +29,9 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed:
-                () {}, // Call navigateBack method when the back button is pressed
+                () {
+                      Navigator.pop(context);
+                }, // Call navigateBack method when the back button is pressed
           ),
           title: AutoSizeText(
             'Order',

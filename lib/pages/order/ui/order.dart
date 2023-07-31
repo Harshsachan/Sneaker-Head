@@ -203,7 +203,9 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
               color: Colors.white,
               size: 30,
             ),
-            onPressed: () async {},
+            onPressed: () async {
+              Navigator.pop(context);
+            },
           ),
           title: AutoSizeText(
             'Order',

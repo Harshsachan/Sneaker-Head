@@ -27,9 +27,10 @@ class _ViewOrdersState extends State<ViewOrders> {
     for (final order in widget.orders) {
       final productId = order.productIds?.first;
       final product = await repo.fetchProductById(productId!);
+      if(mounted){
       setState(() {
         order.product = product;
-      });
+      });}
     }
   }
   @override
@@ -42,7 +43,9 @@ class _ViewOrdersState extends State<ViewOrders> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed:
-                () {}, // Call navigateBack method when the back button is pressed
+                () {
+                  Navigator.pop(context);
+                }, // Call navigateBack method when the back button is pressed
           ),
           title: AutoSizeText(
             'Orders',

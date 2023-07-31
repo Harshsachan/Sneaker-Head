@@ -65,9 +65,7 @@ class _AccountpageState extends State<Accountpage> {
     // TODO: implement listener
     if(state is ViewAllOrderSuccessState)
       {
-        print("ViewAllOrderSuccessState");
         List<PlacedOrderData> orders=state.placedOrderData;
-        print(orders.runtimeType);
         Navigator.push(
           context,
           MaterialPageRoute(

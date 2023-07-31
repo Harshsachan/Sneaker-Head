@@ -13,36 +13,62 @@ class LoadingScreen extends StatelessWidget {
         child: Shimmer.fromColors(
           baseColor: CustomTheme.of(context).primaryText,
           highlightColor: Colors.grey,
-          child:  Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.white,
+          child:  SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           //period: Duration(milliseconds: 1000),
