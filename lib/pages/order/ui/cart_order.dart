@@ -32,7 +32,7 @@ class CartCreateOrder extends StatefulWidget {
 }
 
 class _CartCreateOrderState extends State<CartCreateOrder> {
-  ConfettiController _confettiController = ConfettiController();
+  final ConfettiController _confettiController = ConfettiController();
   CartService cartService = CartService();
   EmailService emailService = EmailService();
   UserDetailsService userDetailsService = UserDetailsService();
@@ -48,7 +48,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   double selectedCouponDiscount = 0.0;
   String? selectedCoupon;
   bool couponApplied = false;
-  String selectedOption = 'Loyality Points';
+  String selectedOption = 'Loyalty Points';
 
   @override
   void initState() {
@@ -76,13 +76,11 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
     setState(() {
       userEmail = gotUserEmail;
     });
-    print(userEmail);
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
-    //loadCartItems().then((value) => totalPrice()).then((value) => addOrderId());
     loadCartItems().then((_) {
       totalPrice();
       addOrderId();
@@ -98,13 +96,11 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   }
 
   List<int?> addOrderId() {
-    print("cartItems");
-    List<int?> order_ids = [];
+    List<int?> orderIds = [];
     for (int i = 0; i < cartItems.length; i++) {
-      order_ids.add(cartItems[i].id);
+      orderIds.add(cartItems[i].id);
     }
-    print('${order_ids}');
-    return order_ids;
+    return orderIds;
   }
 
   double totalPrice() {
@@ -118,7 +114,6 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
       orderPrice = calPrice;
     });
 
-    print('$calPrice');
     return calPrice;
   }
 
@@ -132,14 +127,10 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   void removeFromCart(ProductDetails product) async {
     if (cartItems.any((item) => item.id == product.id)) {
       cartItems.removeWhere((element) => element.id == product.id);
-      // cartItems.remove(product);
       await cartService.saveCartItems(cartItems);
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Removed from cart')),
-      );
     }
   }
 
@@ -155,14 +146,13 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   }
 
   void navigateBack() {
-    print("going back");
     Navigator.pop(
         context, cartItems); // Pass the updated cart items when navigating back
   }
 
   void _celebrate() {
     _confettiController.play();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       _confettiController.stop();
     });
   }
@@ -207,7 +197,6 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
             couponApplied = true;
             if (selectedCoupon != null) {
               // Trigger Confetti animation when the coupon is applied
-              print("Triggered");
               _celebrate();
             }
           },
@@ -267,7 +256,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
             borderRadius: 30,
             borderWidth: 1,
             buttonSize: 60,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30,
@@ -282,7 +271,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                   fontSize: 22,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -325,7 +314,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   itemBuilder: (context, index) {
                                     final product = cartItems[index];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           15, 30, 15, 5),
                                       child: Material(
                                         shadowColor: Colors.purple,
@@ -359,7 +348,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 20, 0, 20),
                                                     child: ClipRRect(
@@ -380,7 +369,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 0, 0, 0),
                                                     child: Container(
@@ -394,10 +383,6 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                                   .size
                                                                   .height *
                                                               0.13,
-                                                      // decoration: BoxDecoration(
-                                                      //   color: CustomTheme.of(context)
-                                                      //       .secondaryText,
-                                                      // ),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -486,7 +471,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                     .primaryBackground,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 20, 0),
                                                 child: GestureDetector(
                                                   onTap: () {
@@ -511,7 +496,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                               //fontWeight: FontWeight.bold,
                                                             ),
                                                       ),
-                                                      Icon(
+                                                      const Icon(
                                                         Icons
                                                             .delete_forever_outlined,
                                                         color: Colors.red,
@@ -531,7 +516,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   },
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 5),
                                   child: AutoSizeText(
                                     'Assured Quality | 100% Handpicked ',
@@ -546,7 +531,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),
                                   child: Container(
                                     width: double.infinity,
@@ -573,7 +558,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                       .width *
                                                   0.6,
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(10, 0, 0, 0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -588,7 +573,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10, 0, 0, 0),
                                                       child: AutoSizeText(
@@ -613,7 +598,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 20, 0),
                                               child: SelectionArea(
                                                 child: GestureDetector(
@@ -644,7 +629,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                         ),
                                         couponApplied
                                             ? Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(55, 0, 0, 0),
                                                 child: AutoSizeText(
                                                   "Coupon Applied",
@@ -664,7 +649,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),
                                   child: Container(
                                     width: double.infinity,
@@ -673,7 +658,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           CustomTheme.of(context).pBackground,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,

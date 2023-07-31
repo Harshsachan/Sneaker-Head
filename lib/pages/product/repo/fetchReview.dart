@@ -6,15 +6,14 @@ import 'ratingsReview_model.dart';
 class FetchReviewRepo{
   final Dio _dio=Dio();
 
-  Future<List<FindReviewsAndRatingsByProductId>> fetchAllReview() async{
-    const id=1;
+  Future<List<FindReviewsAndRatingsByProductId>> fetchAllReview(int productId) async{
       try {
         final response = await _dio.post(
           endpoint,
           data: {
             'query': '''
             query {
-              findReviewsAndRatingsByProductId(product_id:$id){
+              findReviewsAndRatingsByProductId(product_id:$productId){  
                 customer_email,
                 customer_full_name,
                 rating,

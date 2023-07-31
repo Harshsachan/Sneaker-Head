@@ -19,6 +19,7 @@ import 'package:SneakerHead/pages/order/ui/afterOrder.dart';
 import '../../loading_screen/loading_screen.dart';
 import '../../memory/user_details.dart';
 import '../../sign_in/repo/signIn_model.dart';
+import '../repo/product_order_model.dart';
 
 class OneCreateOrder extends StatefulWidget {
   final ProductDetails product;
@@ -36,8 +37,10 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
   ConfettiController _confettiController = ConfettiController();
   EmailService emailService = EmailService();
   UserDetailsService userDetailsService = UserDetailsService();
+
   String? userEmail = "";
   List<int?> order_ids = [];
+  List<ProductOrderModel> productsOrders =[];
   String? userName = "";
   int? userNumber;
   String? address;
@@ -877,8 +880,6 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                           children: [
                             Container(
                                 width: MediaQuery.of(context).size.width * 0.40,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.050,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
