@@ -179,13 +179,9 @@ class _AccountpageState extends State<Accountpage> {
                               onUpdateUserData: handleUpdateUserData,
                             )),
                   ).then((updatedData) {
-                    print("came back from previous screen");
                     if (updatedData != null) {
                       setState(() {
-                        print("came back from previous screen");
-                        print('${updatedData}');
                         gotshareData = updatedData;
-                        print('${gotshareData?.fName}');
                       });
                     }
                   });
@@ -347,7 +343,7 @@ class _AccountpageState extends State<Accountpage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SignInWidget(SignInrepo())),
+                          builder: (context) => SignInWidget(SignInRepo())),
                     );
                   },
                   text: "Log Out",

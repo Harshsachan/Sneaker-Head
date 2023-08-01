@@ -46,11 +46,9 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
   List<FindReviewsAndRatingsByProductId> reviews = [];
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     loadCartItems();
     fetchReviews(widget.product.id);
-    //super.didChangeDependencies();
   }
 
   Future<void> fetchReviews(int? productId) async {

@@ -372,7 +372,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 0, 0, 0),
-                                                    child: Container(
+                                                    child: SizedBox(
                                                       width:
                                                           MediaQuery.of(context)
                                                                   .size
@@ -440,8 +440,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                                     ),
                                                           ),
                                                           AutoSizeText(
-                                                            '\$ ${product.price}' ??
-                                                                '',
+                                                            '\$ ${product.price}',
                                                             style:
                                                                 CustomTheme.of(
                                                                         context)
@@ -552,7 +551,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -705,9 +704,9 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0, 0),
+                                                const AlignmentDirectional(0, 0),
                                             child: AutoSizeText(
-                                              'You have no Loyality Points at the moment',
+                                              'You have no Loyalty Points at the moment',
                                               style: CustomTheme.of(context)
                                                   .bodyMedium
                                                   .override(
@@ -725,7 +724,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 0),
                                   child: Container(
                                     width: double.infinity,
@@ -735,7 +734,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           CustomTheme.of(context).pBackground,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10, 0, 15, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -773,7 +772,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                     ),
                                               ),
                                               AutoSizeText(
-                                                " ${orderPrice}",
+                                                " $orderPrice",
                                                 style: CustomTheme.of(context)
                                                     .bodyMedium
                                                     .override(
@@ -804,7 +803,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                     ),
                                               ),
                                               AutoSizeText(
-                                                '- ${couponSavings}',
+                                                '- $couponSavings',
                                                 style: CustomTheme.of(context)
                                                     .bodySmall
                                                     .override(
@@ -830,7 +829,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     20, 0, 0, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -870,7 +869,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     20, 0, 0, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -926,7 +925,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                                     ),
                                               ),
                                               AutoSizeText(
-                                                '${orderPrice}',
+                                                '$orderPrice',
                                                 style: CustomTheme.of(context)
                                                     .bodyLarge
                                                     .override(
@@ -952,14 +951,14 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.10,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color.fromRGBO(33, 33, 33, 1.0),
                           //borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
+                            SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.40,
                                 height:
                                     MediaQuery.of(context).size.height * 0.050,
@@ -967,7 +966,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     AutoSizeText(
-                                      "\$ ${orderPrice}",
+                                      "\$ $orderPrice",
                                       style: CustomTheme.of(context)
                                           .titleMedium
                                           .override(
@@ -988,7 +987,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                     ),
                                   ],
                                 )),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.50,
                               height: MediaQuery.of(context).size.height * 0.1,
                               child: Padding(
@@ -1008,9 +1007,9 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                   },
                                   decoration: NeoPopTiltedButtonDecoration(
                                     //color:  Color.fromRGBO(255, 235, 52, 1),
-                                    color: Color.fromRGBO(236, 236, 236, 1.0),
+                                    color: const Color.fromRGBO(236, 236, 236, 1.0),
                                     plunkColor:
-                                        Color.fromRGBO(151, 151, 151, 1.0),
+                                        const Color.fromRGBO(151, 151, 151, 1.0),
                                     shadowColor:
                                         CustomTheme.of(context).primaryText,
                                     showShimmer: true,
@@ -1050,12 +1049,11 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   }
 
   void handleOrderSuccess() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      print("Order finally placed successfully from widget");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => AfterOrder(),
+          builder: (context) => const AfterOrder(),
         ),
       );
     });
@@ -1066,7 +1064,7 @@ class CouponDialog extends StatefulWidget {
   final Function(String?)
       onCouponSelected; // Callback function to pass selected coupon
 
-  CouponDialog({required this.onCouponSelected}); // Constructor
+  const CouponDialog({super.key, required this.onCouponSelected}); // Constructor
 
   @override
   _CouponDialogState createState() => _CouponDialogState();
@@ -1131,25 +1129,29 @@ class _CouponDialogState extends State<CouponDialog> {
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: CustomTheme.of(context).alternate),
-                child: Text('Remove'),
+                  backgroundColor: CustomTheme.of(context).alternate, // Use backgroundColor instead of primary
+                ),
+                child: const Text('Remove'),
               ),
-            Spacer(), // Add spacer to push "Done" button to the right
+            const Spacer(), // Add spacer to push "Done" button to the right
             ElevatedButton(
               onPressed: () {
                 // You can use the selectedCoupon variable here
                 // to perform any action based on the selected coupon.
                 // For example, you can close the dialog and apply the coupon.
                 if (selectedCoupon == null) {
+                  // Add your logic for the case when no coupon is selected, if needed
                 } else {
                   widget.onCouponSelected(selectedCoupon);
                   Navigator.of(context).pop();
                 }
               },
               style: ElevatedButton.styleFrom(
-                  primary: CustomTheme.of(context).alternate),
-              child: Text('Done'),
-            ),
+                backgroundColor: CustomTheme.of(context).alternate, // Use backgroundColor instead of primary
+              ),
+              child: const Text('Done'),
+            )
+
           ],
         ),
       ],

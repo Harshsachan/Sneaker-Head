@@ -12,14 +12,10 @@ class OrderPageBloc extends Bloc<OrderPagePlaceOrderEvent,OrderPageState>{
   Future<void>_placeOrder(OrderPagePlaceOrderEvent event,Emitter<OrderPageState>emit,) async{
     emit(OrderPageLoadingState());
     try{
-      print("in bloc try");
-      final data = await _repositry.placeOrder(event.userEmail,event.productIds,event.totalPrice,event.userName,event.userNumber,event.address);
-      print(data);
+      await _repositry.placeOrder(event.userEmail,event.productIds,event.totalPrice,event.userName,event.userNumber,event.address);
       emit(OrderPageSuccessState("message"));
     }
     catch (error){
-      print("in bloc catch block");
-      print(error);
       emit(OrderPageErrorState(error.toString()));
     }
   }

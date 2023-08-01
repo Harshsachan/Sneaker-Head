@@ -7,17 +7,11 @@ class UserDetailsService{
 
   Future<void> storeUserDataInSharedPreferences( LoggedInData userDetails) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String userDataJson = userDetails.toJson().toString();
-    print("set");
-    print('${userDetails.toJson()}');
     prefs.setString(USER_KEY, jsonEncode(userDetails.toJson()));
   }
 
   Future<void> updateUserDataInSharedPreferences( LoggedInData userDetails) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String userDataJson = userDetails.toJson().toString();
-    print("set");
-    print('${userDetails.toJson()}');
     prefs.setString(USER_KEY, jsonEncode(userDetails.toJson()));
   }
 
@@ -31,8 +25,6 @@ class UserDetailsService{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var userDataJson = jsonDecode(prefs.getString(USER_KEY) ?? "");
     if (userDataJson != null) {
-      print("From Shared Preference: $userDataJson");
-      // Map<String, dynamic> userDataMap = userDataJson;
       return LoggedInData.fromJson(userDataJson);
     }
     return null;
@@ -40,8 +32,6 @@ class UserDetailsService{
 
 
   void deleteUserDataFromSharedPreferences() async {
-    print("Dealted");
-    print(getUserDataFromSharedPreferences());
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(USER_KEY);
   }

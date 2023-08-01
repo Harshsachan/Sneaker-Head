@@ -4,11 +4,11 @@ class LoggedInUserDetails {
   LoggedInUserDetails({this.data});
 
   LoggedInUserDetails.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -22,13 +22,13 @@ class Data {
   Data({this.logIn});
 
   Data.fromJson(Map<String, dynamic> json) {
-    logIn = json['logIn'] != null ? new LoggedInData.fromJson(json['logIn']) : null;
+    logIn = json['logIn'] != null ? LoggedInData.fromJson(json['logIn']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.logIn != null) {
-      data['logIn'] = this.logIn!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (logIn != null) {
+      data['logIn'] = logIn!.toJson();
     }
     return data;
   }
@@ -75,18 +75,18 @@ class LoggedInData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uhid'] = this.uhid;
-    data['f_name'] = this.fName;
-    data['l_name'] = this.lName;
-    data['email'] = this.email;
-    data['number'] = this.number;
-    data['house_no'] = this.houseNo;
-    data['street'] = this.street;
-    data['area'] = this.area;
-    data['city'] = this.city;
-    data['state'] = this.state;
-    data['pincode'] = this.pincode;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uhid'] = uhid;
+    data['f_name'] = fName;
+    data['l_name'] = lName;
+    data['email'] = email;
+    data['number'] = number;
+    data['house_no'] = houseNo;
+    data['street'] = street;
+    data['area'] = area;
+    data['city'] = city;
+    data['state'] = state;
+    data['pincode'] = pincode;
     return data;
   }
 }

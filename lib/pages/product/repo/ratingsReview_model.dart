@@ -4,11 +4,11 @@ class RatingsAndReview {
   RatingsAndReview({this.data});
 
   RatingsAndReview.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -26,16 +26,16 @@ class Data {
       findReviewsAndRatingsByProductId = <FindReviewsAndRatingsByProductId>[];
       json['findReviewsAndRatingsByProductId'].forEach((v) {
         findReviewsAndRatingsByProductId!
-            .add(new FindReviewsAndRatingsByProductId.fromJson(v));
+            .add( FindReviewsAndRatingsByProductId.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.findReviewsAndRatingsByProductId != null) {
-      data['findReviewsAndRatingsByProductId'] = this
-          .findReviewsAndRatingsByProductId!
+    final Map<String, dynamic> data =  Map<String, dynamic>();
+    if (findReviewsAndRatingsByProductId != null) {
+      data['findReviewsAndRatingsByProductId'] =
+          findReviewsAndRatingsByProductId!
           .map((v) => v.toJson())
           .toList();
     }
@@ -66,12 +66,12 @@ class FindReviewsAndRatingsByProductId {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['customer_email'] = this.customerEmail;
-    data['customer_full_name'] = this.customerFullName;
-    data['rating'] = this.rating;
-    data['review'] = this.review;
-    data['product_ids'] = this.productIds;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['customer_email'] = customerEmail;
+    data['customer_full_name'] = customerFullName;
+    data['rating'] = rating;
+    data['review'] = review;
+    data['product_ids'] = productIds;
     return data;
   }
 }

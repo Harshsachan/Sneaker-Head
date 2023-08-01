@@ -29,7 +29,6 @@ class FetchReviewRepo{
         return reviews;
     }
         catch(err){
-          print("Error occurred: $err");
           throw Exception('Failed to fetch Reviews: $err');
         }
   }

@@ -1,10 +1,10 @@
 import 'dart:math';
 
+import 'package:SneakerHead/pages/loading_screen/loading_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
-import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
 import 'package:SneakerHead/main.dart';
 import 'package:SneakerHead/pages/memory/email.dart';
@@ -19,7 +19,7 @@ import '../bloc/createUser_state.dart';
 class CreateUser extends StatefulWidget {
   final CreateUserRepo createUserRepo;
    // CreateUser({Key? key,required this.createUserRepo}) : super(key: key);
-  CreateUser(this.createUserRepo);
+  const CreateUser(this.createUserRepo, {super.key});
 
   @override
   State<CreateUser> createState() => _CreateUserState();
@@ -32,7 +32,6 @@ class _CreateUserState extends State<CreateUser> {
 
   @override
   void initState() {
-    // TODO: implement initState
     loadUserEmail();
     super.initState();
   }
@@ -86,29 +85,6 @@ class _CreateUserState extends State<CreateUser> {
       state: state,
       pincode: int.tryParse(pincode),
     );
-    // Create the event with the logged in data
-    //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
-    // CreateUserPostUserDataEvent event = CreateUserPostUserDataEvent(loggedInData);
-    //
-    // // Dispatch the event to the appropriate bloc or handler
-    // context.read<CreateUserBloc>().add(event);
-
-    // Create the data payload
-    // var data = {
-    //   'fName': fName,
-    //   'lName': lName,
-    //   'email':userEmail,
-    //   'number':number,
-    //   'house_no':house_no,
-    //   'street':street,
-    //   'area':area,
-    //   'city':city,
-    //   'state':state,
-    //   'pincode':pincode,
-    //   // Add other properties as needed
-    // };
-    // print("ddata");
-    // print('${data}');
   }
 
 
@@ -121,30 +97,26 @@ class _CreateUserState extends State<CreateUser> {
         backgroundColor: CustomTheme.of(context).primaryText,
         elevation: 1,
         centerTitle: true,
-        title: AutoSizeText('Create Account'),
+        title: const AutoSizeText('Create Account'),
       ),
       body: BlocProvider(
             create: (_) => CreateUserBloc(widget.createUserRepo),
             child: BlocConsumer<CreateUserBloc, CreateUserPageState>(
                 listener: (context, state) {
-                  // TODO: implement listener
                   if (state is CreateUserPageSuccessState){
-                    print("user data posted successfully in db");
                     LoggedInData userDetails = state.loggedInData;
-                    print(state.loggedInData.toJson());
-                    print(userDetails);
                     userDetailsService.storeUserDataInSharedPreferences(userDetails);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyHomePage(),
+                        builder: (context) =>const MyHomePage(),
                       ),
                     );
                   }
                 },
                 builder: (context, state) {
                   if (state is CreateUserPageLoadingState) {
-                    return Center(child: CircularProgressIndicator());
+                    return LoadingScreen();
                   }
                   return SafeArea(
                                 top: true,
@@ -163,10 +135,10 @@ class _CreateUserState extends State<CreateUser> {
                                                 child: Column(
                                                   children: [
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment:const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding:const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -228,7 +200,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -248,10 +220,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -313,7 +285,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -333,10 +305,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -348,7 +320,7 @@ class _CreateUserState extends State<CreateUser> {
                                                               autofocus: false,
                                                               obscureText: false,
                                                               decoration: InputDecoration(
-                                                                labelText: '${userEmail}',
+                                                                labelText: '$userEmail',
                                                                 labelStyle: CustomTheme.of(context)
                                                                     .bodySmall
                                                                     .override(
@@ -356,7 +328,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                   color: CustomTheme.of(context)
                                                                       .secondaryBackground,
                                                                 ),
-                                                                hintText: '${userEmail}',
+                                                                hintText: '$userEmail',
                                                                 hintStyle: CustomTheme.of(context)
                                                                     .bodySmall
                                                                     .override(
@@ -399,7 +371,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -427,10 +399,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -492,7 +464,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -521,10 +493,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -586,7 +558,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -606,10 +578,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -671,7 +643,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -691,10 +663,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -756,7 +728,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -776,10 +748,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -841,7 +813,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -861,10 +833,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -926,7 +898,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -946,10 +918,10 @@ class _CreateUserState extends State<CreateUser> {
                                                       ),
                                                     ),
                                                     Align(
-                                                      alignment: AlignmentDirectional(0, 0),
+                                                      alignment: const AlignmentDirectional(0, 0),
                                                       child: Padding(
-                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                        child: Container(
+                                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                        child: SizedBox(
                                                           width: MediaQuery.of(context).size.width * 0.9,
                                                           child: Material(
                                                             borderRadius: BorderRadius.circular(10),
@@ -1011,7 +983,7 @@ class _CreateUserState extends State<CreateUser> {
                                                                 filled: true,
                                                                 fillColor: CustomTheme.of(context).forBtn,
                                                                 contentPadding:
-                                                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                               ),
                                                               style: CustomTheme.of(context)
                                                                   .bodyMedium
@@ -1062,8 +1034,6 @@ class _CreateUserState extends State<CreateUser> {
                                             sendDataToServer();
 
                                             context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
-                                            //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
-                                            //context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
                                           },
                                           border:  Border.fromBorderSide(
                                             BorderSide( color:CustomTheme.of(context).secondaryBackground, width: 1)

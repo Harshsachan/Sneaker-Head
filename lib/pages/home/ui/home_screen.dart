@@ -11,8 +11,6 @@ import 'package:shimmer/shimmer.dart';
 import '../../developer/meet_the_developer.dart';
 import '../../explore/bloc/explore_bloc.dart';
 import '../../explore/bloc/explore_state.dart';
-import '../../explore/ui/explore_screen.dart';
-import '../../loading_screen/loading_screen.dart';
 import '../../product/product_details.dart';
 import '../../../custom_theme/flutter_flow_icon_button.dart';
 import '../../../custom_theme/flutter_flow_theme.dart';
@@ -60,7 +58,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: SafeArea(
         top: true,
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0,0,0, 24),
+          padding: const EdgeInsetsDirectional.fromSTEB(0,0,0, 24),
           child: Container(
             width: double.infinity,
             height: double.infinity,
@@ -71,7 +69,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               child: BlocBuilder<ExploreBloc, ExplorePageState>(
                 builder: (context, state) {
                   if (state is ExplorePageLoadingState) {
-                    return Container(
+                    return SizedBox(
                       width: MediaQuery.of(context).size.width * 1,
                       child: Shimmer.fromColors(
                         baseColor: CustomTheme.of(context).primaryText,
@@ -156,7 +154,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Material(
                           shadowColor: CustomTheme.of(context).primaryBackground,
                           elevation: 2,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(48),
                               bottomRight: Radius.circular(48),
@@ -169,7 +167,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             height: MediaQuery.of(context).size.height * 0.2,
                             decoration: BoxDecoration(
                               color: CustomTheme.of(context).pBackground,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(48),
                                 bottomRight: Radius.circular(48),
                                 topLeft: Radius.circular(0),
@@ -180,7 +178,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24, 24, 24, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -202,14 +200,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           size: 24,
                                         ),
                                         onPressed: () {
-                                          print('IconButton pressed ...');
                                         },
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           AutoSizeText(
-                                            'Hey ${name}',
+                                            'Hey $name',
                                             style: CustomTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -229,10 +226,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 size: 12,
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
+                                                padding: const EdgeInsets.fromLTRB(
                                                     4, 0, 0, 0),
                                                 child: AutoSizeText(
-                                                  '${add}',
+                                                  '$add',
                                                   style: CustomTheme.of(context)
                                                       .bodyMedium
                                                       .override(
@@ -267,14 +264,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             context,
                                             MaterialPageRoute(builder: (context) => const MeetDeveloper()),
                                           );
-                                          print('IconButton pressed ...');
                                         },
                                       ),
                                     ],
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24, 24, 24, 0),
                                   child: TextFormField(
                                     autofocus: false,
@@ -342,8 +338,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                         // Popular shoes text
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(26, 20, 26, 0),
-                          child: Container(
+                          padding: const EdgeInsetsDirectional.fromSTEB(26, 20, 26, 0),
+                          child: SizedBox(
                             width: double.infinity,
                             height: MediaQuery.of(context).size.height * 0.05,
                             child: Row(
@@ -369,7 +365,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         _buildCategoryList("RECENT", recentProducts),
 
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -431,7 +427,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       ),
       items: products.map((product) {
         return Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(24, 08, 24, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(24, 08, 24, 0),
           child: Material(
             //color: Colors.red,
             shadowColor: CustomTheme.of(context).primaryBackground,
@@ -457,7 +453,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.network(
@@ -469,7 +465,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -516,11 +512,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   Widget _buildCategoryGrid(String category, List<ProductDetails> products) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1.0,
           crossAxisSpacing: 10.0,
@@ -563,12 +559,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width * 0.30,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

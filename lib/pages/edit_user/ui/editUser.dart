@@ -220,10 +220,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -285,7 +285,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -305,10 +305,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -371,7 +371,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -379,30 +379,16 @@ class _EditUserState extends State<EditUser> {
                                             fontFamily: 'Poppins',
                                             color: CustomTheme.of(context).primaryBackground,
                                           ),
-                                          // validator: (value) {
-                                          //   if (value == null || value.isEmpty) {
-                                          //     return 'Please enter your email';
-                                          //   }
-                                          //
-                                          //   // Email validation using regex
-                                          //   final emailRegex = RegExp(
-                                          //       r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-                                          //   if (!emailRegex.hasMatch(value)) {
-                                          //     return 'Please enter a valid email';
-                                          //   }
-                                          //
-                                          //   return null;
-                                          // },
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -464,7 +450,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -493,10 +479,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -558,7 +544,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -578,10 +564,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -643,7 +629,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -663,10 +649,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -728,7 +714,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -748,10 +734,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -813,7 +799,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -833,10 +819,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -898,7 +884,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium
@@ -918,10 +904,10 @@ class _EditUserState extends State<EditUser> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                    child: Container(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width * 0.9,
                                       child: Material(
                                         borderRadius: BorderRadius.circular(10),
@@ -983,7 +969,7 @@ class _EditUserState extends State<EditUser> {
                                             filled: true,
                                             fillColor: CustomTheme.of(context).forBtn,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                           ),
                                           style: CustomTheme.of(context)
                                               .bodyMedium

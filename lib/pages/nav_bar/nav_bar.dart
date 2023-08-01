@@ -1,10 +1,8 @@
 import 'package:SneakerHead/pages/view_orders/repo/view_orders_repo.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
-import 'package:SneakerHead/pages/emptyScreen.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 
@@ -12,12 +10,8 @@ import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';
 import '../explore/bloc/explore_bloc.dart';
 import '../explore/bloc/explore_event.dart';
-import '../explore/repo/explore_model.dart';
 import '../explore/ui/explore_screen.dart';
 import '../home/ui/home_screen.dart';
-import '../view_orders/bloc/view_orders_bloc.dart';
-import '../view_orders/bloc/view_orders_events.dart';
-import '../view_orders/repo/view_orders_model.dart';
 
 
 class NavBarPage extends StatefulWidget {
@@ -33,7 +27,7 @@ class _NavBarPageState extends State<NavBarPage> {
   String? userEmail="";
 
 
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
 
   int _currentIndex = 0;
   late final List<Widget> _screens;
@@ -52,9 +46,9 @@ class _NavBarPageState extends State<NavBarPage> {
     });
 
     _screens = [
-      HomePageWidget(),
-      ExplorePage(),
-      CartPage(),
+      const HomePageWidget(),
+      const ExplorePage(),
+      const CartPage(),
       Accountpage(viewPlacedOrderRepo: ViewPlacedOrderRepo(),),
     ];
     // Add the event to fetch data when ExplorePage is loaded
@@ -72,20 +66,21 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<bool> _onWillPop() async {
+    Future<bool> onWillPop() async {
       return (await showDialog(
         context: context,
+        //TODO : DESIGN ALERT BOX
         builder: (context) => AlertDialog(
-          title: Text('Exit App'),
-          content: Text('Are you sure you want to exit the app?'),
+          title: const Text('Exit App'),
+          content: const Text('Are you sure you want to exit the app?'),
           actions: <Widget>[
             ElevatedButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: Text('No'),
+              child: const Text('No'),
             ),
             ElevatedButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: Text('Yes'),
+              child: const Text('Yes'),
             ),
           ],
         ),
@@ -94,7 +89,7 @@ class _NavBarPageState extends State<NavBarPage> {
     }
 
     return WillPopScope(
-      onWillPop:_onWillPop,
+      onWillPop:onWillPop,
       child: Scaffold(
         backgroundColor: CustomTheme.of(context).primaryText,
         body: PageView(
@@ -127,8 +122,8 @@ class _NavBarPageState extends State<NavBarPage> {
           onTap: (index) {
             _pageController.jumpToPage(index);
           },
-          padding: EdgeInsets.only(left: 6, right: 6, bottom: 10),
-          cornerRadius: BorderRadius.only(
+          padding: const EdgeInsets.only(left: 6, right: 6, bottom: 10),
+          cornerRadius: const BorderRadius.only(
             topLeft: Radius.circular(8),
             topRight: Radius.circular(8),
             bottomRight: Radius.circular(24),

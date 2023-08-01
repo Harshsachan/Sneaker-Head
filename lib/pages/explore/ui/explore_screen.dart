@@ -29,7 +29,7 @@ class _ExplorePageState extends State<ExplorePage> {
     final updatedCartItems = await Navigator.push<List<ProductDetails>>(
       context,
       MaterialPageRoute(
-        builder: (context) => CartPage(),
+        builder: (context) => const CartPage(),
       ),
     );
 
@@ -67,7 +67,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     Container(
                       width: MediaQuery.of(context).size.width * 0.30,
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.40,
                       child: AutoSizeText(
                         'Explore Page',
@@ -82,7 +82,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       alignment: AlignmentDirectional.centerEnd,
                       width: MediaQuery.of(context).size.width * 0.30,
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
                         child: GestureDetector(
                           onTap: () {
                             navigateToCartPage();
@@ -101,7 +101,7 @@ class _ExplorePageState extends State<ExplorePage> {
               BlocBuilder<ExploreBloc, ExplorePageState>(
                 builder: (context, state) {
                   if (state is ExplorePageLoadingState) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -184,36 +184,21 @@ class _DataLoadState extends State<DataLoad> {
 
   void addToCart(ProductDetails product) async {
     if (!widget.cartItems.any((item) => item.id == product.id)) {
-      print("cartItems add");
       widget.cartItems.add(product);
       await cartService.saveCartItems(widget.cartItems);
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Added to cart')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Product already in cart')),
-      );
     }
   }
 
   void removeFromCart(ProductDetails product) async {
-    print("removeFromCart called");
     if (widget.cartItems.any((item) => item.id == product.id)) {
-      print("cartItem removed");
       widget.cartItems.removeWhere((element) => element.id == product.id);
-      // cartItems.remove(product);
       await cartService.saveCartItems(widget.cartItems);
-      print("cartItems");
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Removed from cart')),
-      );
     }
   }
 
@@ -240,24 +225,15 @@ class _DataLoadState extends State<DataLoad> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        // padding: EdgeInsets.zero,
-        // shrinkWrap: true,
-        // scrollDirection: Axis.vertical,
         itemCount: widget.productDetails.length,
         itemBuilder: (context, index) {
           final product = widget.productDetails[index];
           return GestureDetector(
             onTap: () {
               _navigateToSecondPage(product);
-              // Navigator.push(
-              //   context
-              //   MaterialPageRoute(
-              //     builder: (context) => SingleProductWidget(product: product),
-              //   ),
-              // );
             },
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 15, 15, 0),
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.15,
                 decoration: BoxDecoration(
@@ -271,7 +247,7 @@ class _DataLoadState extends State<DataLoad> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
@@ -334,30 +310,26 @@ class _DataLoadState extends State<DataLoad> {
                                     addToCart(product);
                                   }
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: CustomTheme.of(context).primary, // Use backgroundColor instead of primary
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                  textStyle: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
                                 child: AutoSizeText(
                                   isProductInCart(product) ? 'Remove' : 'Add',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
-                                    fontSize: CustomTheme.of(context)
-                                        .titleSmall
-                                        .fontSize,
+                                    fontSize: CustomTheme.of(context).titleSmall.fontSize,
                                   ),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                  primary: CustomTheme.of(context).primary,
-                                  onPrimary: Colors.white,
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 0),
-                                  textStyle: TextStyle(
-                                    fontFamily: 'Poppins',
-                                  ),
-                                ),
-                              ),
+                              )
                             ],
                           ),
                         ],

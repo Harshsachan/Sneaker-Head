@@ -1,7 +1,6 @@
 import 'package:SneakerHead/endPoint.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class EditUserRepo {
   final Dio _dio= Dio();
@@ -23,11 +22,9 @@ class EditUserRepo {
               '}',
         }
       );
-      print("user Details Updated");
       return respose;
     }
     catch(error){
-      print(error);
       throw error.toString();
     }
   }

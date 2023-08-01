@@ -21,14 +21,14 @@ class AfterOrder extends StatefulWidget {
 }
 
 class _AfterOrderState extends State<AfterOrder> {
-  ConfettiController _confettiController = ConfettiController();
+  final ConfettiController _confettiController = ConfettiController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _confettiController.play();
-    Timer(Duration(seconds: 6), () {
+    Timer(const Duration(seconds: 6), () {
       _confettiController.stop();
     });
   }
@@ -62,7 +62,7 @@ class _AfterOrderState extends State<AfterOrder> {
       MaterialPageRoute(
         builder: (context) => BlocProvider(
           create: (context) => ExploreBloc(AllProductDetails()),
-          child: NavBarPage(),
+          child: const NavBarPage(),
         ),
       ),
           (route) => false, // Removes all previous routes from the stack
@@ -98,7 +98,7 @@ class _AfterOrderState extends State<AfterOrder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +124,7 @@ class _AfterOrderState extends State<AfterOrder> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: AutoSizeText(
                     'Your Order is Placed.',
                     style: CustomTheme.of(context).titleSmall.override(
@@ -136,7 +136,7 @@ class _AfterOrderState extends State<AfterOrder> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: AutoSizeText(
                     'Happiness will be delivered soon!',
                     style: CustomTheme.of(context).titleSmall.override(
@@ -148,8 +148,8 @@ class _AfterOrderState extends State<AfterOrder> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
-                  child:Container(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
+                  child:SizedBox(
                     width: MediaQuery.of(context).size.width*0.5,
                     child: NeoPopTiltedButton(
                       isFloating: true,

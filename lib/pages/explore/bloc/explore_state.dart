@@ -2,7 +2,7 @@ import '../repo/explore_model.dart';
 
 abstract class ExplorePageState{}
 
-class ExplorePageIntialState extends ExplorePageState{}
+class ExplorePageInitialState extends ExplorePageState{}
 
 class ExplorePageLoadingState extends ExplorePageState{}
 

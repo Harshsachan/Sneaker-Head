@@ -131,7 +131,7 @@ class _ViewOrdersState extends State<ViewOrders> {
                             MediaQuery.of(context).size.width * 0.025,
                             color: Colors.white,
                           ),
-                          RatingUi(),
+                          const RatingUi(),
                         ],
                       ),
                     ),
@@ -146,7 +146,7 @@ class _ViewOrdersState extends State<ViewOrders> {
 
 class PlacedOrderDisplay extends StatefulWidget {
   final PlacedOrderData order;
-  PlacedOrderDisplay( {Key? key,required this.order}) : super(key: key);
+  const PlacedOrderDisplay( {Key? key,required this.order}) : super(key: key);
 
   @override
   State<PlacedOrderDisplay> createState() => _PlacedOrderDisplayState();
@@ -176,7 +176,7 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 10, 20),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
@@ -187,7 +187,7 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
                     ),
                   ),
                 ),
-                VerticalDivider(
+                const VerticalDivider(
                   width: 20,
                   thickness: 2,
                   indent: 20,
@@ -235,7 +235,7 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 10),
             child: Icon(
               Icons.arrow_forward_ios_outlined,
               color: CustomTheme.of(context).primaryBackground,

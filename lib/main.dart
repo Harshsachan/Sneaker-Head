@@ -31,15 +31,13 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: CustomTheme.of(context).pBackground, // Change body color to pink
       ),
-      //home: CreateUser(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
 
-  // final LoggedInData userDetails;
   const MyHomePage({super.key});
 
 
@@ -57,44 +55,20 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => InternetBloc(),
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
-          print(state.toString());
-          // final details =widget.userDetails;
-          // print(details.number.toString());
           if (state is InternetGainedState) {
             return BlocProvider(
               create: (context) => ExploreBloc(AllProductDetails()),
-              child: NavBarPage(),
+              child: const NavBarPage(),
             );
           }
           else if(state is InternetLostState){
-            return NoInternetScreen();
+            return const NoInternetScreen();
           }
           else {
-          return NoInternetScreen();
+          return const NoInternetScreen();
           }
         },
       ),
     );
   }
 }
-
-// MultiBlocProvider(
-// @override
-// Widget build(BuildContext context) {x
-//   return MultiBlocProvider(
-//     providers: [
-//       BlocProvider<ExploreBloc>(
-//         create: (context) => ExploreBloc(exploreRepository),
-//       ),
-//       BlocProvider<OtherBloc>(
-//         create: (context) => OtherBloc(otherRepository),
-//       ),
-//       // Add more BlocProviders for other pages if needed
-//     ],
-//     child: MaterialApp(
-//       title: 'My App',
-//       home: NavBarPage(),
-//     ),
-//   );
-// }
-

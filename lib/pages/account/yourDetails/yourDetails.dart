@@ -1,4 +1,3 @@
-import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -529,27 +528,24 @@ class _YourDetailsState extends State<YourDetails> {
                         ),
                       ),
                     ).then((updatedData) {
-                      print("came back from previous screen");
                       if (updatedData != null) {
                         setState(() {
-                          print("came back from previous screen");
-                          print('${updatedData}');
                           gotshareData = updatedData;
                           widget.onUpdateUserData(updatedData);
-                          print('${gotshareData?.fName}');
                         });
                       }
                     });
                   },
-                  child: Icon(Icons.edit),
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all(CircleBorder()),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    shape: MaterialStateProperty.all(const CircleBorder()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
                     backgroundColor: MaterialStateProperty.all(CustomTheme.of(context).primary), // <-- Button color
                     overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                      if (states.contains(MaterialState.pressed)) return CustomTheme.of(context).alternate; // <-- Splash color
+                      if (states.contains(MaterialState.pressed)) return CustomTheme.of(context).alternate;
+                      return null; // <-- Splash color
                     }),
                   ),
+                  child: const Icon(Icons.edit),
                 ),
               ),
           ],

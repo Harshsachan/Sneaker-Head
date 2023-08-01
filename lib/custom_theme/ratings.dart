@@ -9,7 +9,7 @@ class Rating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int starCount = 5;
+    const int starCount = 5;
     final int filledStars = rating.floor();
     final int halfStars = ((rating - filledStars) * 2).round();
 
@@ -33,7 +33,7 @@ class Rating extends StatelessWidget {
             }
           }),
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         AutoSizeText(
           rating == rating.toInt() ? '(${rating.toInt()}/5)' : '(${rating.toStringAsFixed(1)}/5)',
           style: CustomTheme.of(context).bodySmall.override(

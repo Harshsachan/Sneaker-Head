@@ -14,15 +14,12 @@ class EditUserBloc extends Bloc<EditUserPageEvent,EditUserPageState>{
 
   Future<void> _updateUserDetails(EditUserPageUpdateUserDetailsEvent event ,Emitter<EditUserPageState> emit)async{
     emit(EditUserPageLoadingState());
-    print("_updateUserDetails in bloc");
     try{
       final response =await _repositry.updateUserDetails(event.loggedInData);
-      print(response);
       emit(EditUserPageSuccessState(LoggedInData.fromJson(response.data['data']['updateUserInfo'])));
     }
     catch(error){
       emit(EditUserPageErrorState(error.toString()));
-      print(error.toString());
     }
   }
 }

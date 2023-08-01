@@ -10,7 +10,7 @@ import 'package:SneakerHead/pages/product/product_details.dart';
 import '../explore/repo/explore_model.dart';
 
 class CartPage extends StatefulWidget {
-  CartPage({Key? key});
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -22,13 +22,11 @@ class _CartPageState extends State<CartPage> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
       loadCartItems().then((value) => totalPrice());
       super.didChangeDependencies();
   }
 
   void navigateBack() {
-    print("going back");
     Navigator.pop(context, cartItems); // Pass the updated cart items when navigating back
   }
 
@@ -39,8 +37,6 @@ class _CartPageState extends State<CartPage> {
     setState(() {
       cartItems = items;
     });
-    print("check");
-    print(cartItems.length);
   }
 
   int totalPrice() {
@@ -63,9 +59,6 @@ class _CartPageState extends State<CartPage> {
       setState(() {
         // Update the UI
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Removed from cart')),
-      );
     }
   }
 
@@ -79,13 +72,12 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     bool showBackButton = Navigator.canPop(context);
-    print('${showBackButton}');
-    Future<bool> _onWillPop() async {
+    Future<bool> onWillPop() async {
        Navigator.pop(context, cartItems);
        return true; //<-- SEE HERE
     }
     return WillPopScope(
-        onWillPop:_onWillPop,
+        onWillPop:onWillPop,
       child: Scaffold(
           appBar:AppBar(
             backgroundColor: CustomTheme.of(context).primaryText,
@@ -102,7 +94,7 @@ class _CartPageState extends State<CartPage> {
                 fontSize: 22,
               ),
             ),
-            actions: [],
+
             centerTitle: true,
             elevation: 2,
           ),
@@ -154,7 +146,7 @@ class _CartPageState extends State<CartPage> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10, 10, 10, 10),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
@@ -167,7 +159,7 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: 100,
                                 child: Column(
@@ -221,29 +213,30 @@ class _CartPageState extends State<CartPage> {
                                             if (isProductInCart(product)) {
                                               removeFromCart(product);
                                             } else {
+                                              // Add your logic for the else case if needed
                                             }
                                           },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: CustomTheme.of(context).primary, // Use backgroundColor instead of primary
+                                            elevation: 3,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                                            textStyle: const TextStyle(
+                                              fontFamily: 'Poppins',
+                                            ),
+                                          ),
                                           child: AutoSizeText(
-                                           'Remove',
+                                            'Remove',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               color: Colors.white,
                                               fontSize: CustomTheme.of(context).titleSmall.fontSize,
                                             ),
                                           ),
-                                          style: ElevatedButton.styleFrom(
-                                            primary: CustomTheme.of(context).primary,
-                                            onPrimary: Colors.white,
-                                            elevation: 3,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8),
-                                            ),
-                                            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                                            textStyle: TextStyle(
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                        ),
+                                        )
+
                                       ],
                                     ),
                                   ],
@@ -278,14 +271,13 @@ class _CartPageState extends State<CartPage> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.13,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromRGBO(33, 33, 33, 1.0),
-                  //borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
+                    SizedBox(
                         width: MediaQuery.of(context).size.width * 0.40,
                         height: MediaQuery.of(context).size.height * 0.050,
                         child: Column(
@@ -301,7 +293,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ],
                         )),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width*0.50,
                       height: MediaQuery.of(context).size.height * 0.1,
 
@@ -310,7 +302,6 @@ class _CartPageState extends State<CartPage> {
                         child: NeoPopTiltedButton(
                           isFloating: true,
                           onTapUp: () {
-                            print("click");
                               Navigator.push(context,
                                 MaterialPageRoute(
                                 builder: (context) => CartCreateOrder(placeOrderRepo:PlaceOrderRepo()),
@@ -354,11 +345,3 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
-// "Total \$ - ${totalPrice()}"
-
-// Navigator.push(
-// context,
-// MaterialPageRoute(
-// builder: (context) => CartCreateOrder(placeOrderRepo:PlaceOrderRepo()),
-// ),
-// );

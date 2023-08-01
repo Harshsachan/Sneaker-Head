@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../custom_theme/flutter_flow_theme.dart';
 import '../../../custom_theme/flutter_flow_widgets.dart';
 class NoInternetScreen extends StatelessWidget {
+  const NoInternetScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("assets/images/noInternetScreen.jpg"),
@@ -41,27 +43,26 @@ class NoInternetScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(100, 10, 100, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(100, 10, 100, 0),
               child: Material(
                 borderRadius: BorderRadius.circular(10),
                 elevation: 20,
                 child: FFButtonWidget(
                   onPressed: () {
-                    print('Button pressed ...');
                   },
                   text: 'Try Again',
                   options: FFButtonOptions(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.width * 0.1,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: Colors.black,
                     textStyle:
                     CustomTheme.of(context).titleSmall.override(
                       fontFamily: 'Poppins',
                       color: Colors.white,
                     ),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),

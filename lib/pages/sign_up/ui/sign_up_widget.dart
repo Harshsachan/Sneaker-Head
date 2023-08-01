@@ -11,7 +11,6 @@ import '../../../custom_theme/flutter_flow_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 
 
@@ -28,7 +27,7 @@ import '../repo/signUp_model.dart';
 class SignUpPage extends StatefulWidget {
   final SignUpRepo userRepository;
 
-  SignUpPage(this.userRepository);
+  const SignUpPage(this.userRepository, {super.key});
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -50,18 +49,11 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Create User'),
-      // ),
       body: BlocProvider(
         create: (_) => SignUpBloc(widget.userRepository),
         child: BlocConsumer<SignUpBloc, SignUpPageState>(
           listener: (context, state) {
             if (state is SignUpPageSuccessState) {
-              SignUp userDetails = state.signup;
-              print("User Created Successfully");
-              print(state.signup);
-              print(userDetails);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -70,16 +62,14 @@ class _SignUpPageState extends State<SignUpPage> {
               );
               // User created successfully, navigate to another page or show a success message
             } else if (state is SignUpPageErrorState) {
-              print("in error state");
               final err =state.error;
-              print(err.toString());
               Center(child: Text("tu ${err.toString()}"),);
               // Handle error, show an error message
             }
           },
           builder: (context, state) {
             if (state is SignUpPageLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
 
             return SafeArea(
@@ -103,7 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         animate: true,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                         child: Text(
                           'Welcome !',
                           style:
@@ -116,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                         child: Text(
                           'Create Your Account Below',
                           style:
@@ -134,10 +124,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             children: [
                               // Email text controller
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                  child: Container(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width * 0.8,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(10),
@@ -191,27 +181,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                           fillColor: CustomTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                         ),
                                         style:
                                         CustomTheme.of(context).bodyMedium.override(
                                           fontFamily: 'Poppins',
                                           color: CustomTheme.of(context).accent1,
                                         ),
-                                        // validator: (value) {
-                                        //   if (value == null || value.isEmpty) {
-                                        //     return 'Please enter your email';
-                                        //   }
-                                        //
-                                        //   // Email validation using regex
-                                        //   final emailRegex = RegExp(
-                                        //       r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-                                        //   if (!emailRegex.hasMatch(value)) {
-                                        //     return 'Please enter a valid email';
-                                        //   }
-                                        //
-                                        //   return null;
-                                        // },
                                       ),
                                     ),
                                   ),
@@ -219,10 +195,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               // password text controller
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                  child: Container(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width * 0.8,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(10),
@@ -275,7 +251,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           fillColor: CustomTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                         ),
                                         style:
                                         CustomTheme.of(context).bodyMedium.override(
@@ -297,7 +273,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           )),
                       // Forget password
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(180, 15, 0, 15),
+                        padding: const EdgeInsetsDirectional.fromSTEB(180, 15, 0, 15),
                         child: AutoSizeText(
                           'Forget Password ?',
                           style: CustomTheme.of(context).bodyMedium.override(
@@ -309,21 +285,20 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       // Signin Button
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width*0.45,
                         child: NeoPopButton(
                           color: const Color.fromRGBO(0, 0, 0, 1),
                           buttonPosition: Position.center,
                           onTapUp: () async{
-                            // if (_formKey.currentState!.validate()) {
-                            // }
+
                             final email = _emailController.text;
                             final password = _passwordController.text;
                             String userEmail= _emailController.text;
                             await emailService.saveUserEmail(userEmail);
                             context.read<SignUpBloc>().add(SignUpPostEvent(email, password));
                           },
-                          border:  Border.fromBorderSide(
+                          border:  const Border.fromBorderSide(
                             BorderSide(color: Colors.white, width: .5),
                           ),
                           child: Padding(
@@ -347,7 +322,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
 
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: Text(
                           'Or continue with',
                           style: CustomTheme.of(context).bodyMedium.override(
@@ -358,7 +333,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -372,7 +347,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding: const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   borderRadius: BorderRadius.circular(5),
                                   elevation: 20,
@@ -388,7 +363,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -403,7 +377,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding: const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   elevation: 20,
                                   borderRadius: BorderRadius.circular(5),
@@ -419,7 +393,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -434,7 +407,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding: const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   elevation: 20,
                                   borderRadius: BorderRadius.circular(5),
@@ -450,7 +423,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -459,7 +431,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width*0.25,
                         child: NeoPopButton(
                           color: const Color.fromRGBO(0, 0, 0, 1),
@@ -468,11 +440,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>  SignInWidget(SignInrepo())
+                                builder: (context) =>  SignInWidget(SignInRepo())
                               ),
                             );
                           },
-                          border:  Border.fromBorderSide(
+                          border:  const Border.fromBorderSide(
                             BorderSide(color: Colors.white, width: .5),
                           ),
                           child: Padding(

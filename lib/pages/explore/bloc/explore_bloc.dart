@@ -6,7 +6,7 @@ import '../repo/explore_repo.dart';
 
 class ExploreBloc extends Bloc<ExplorePageEvent,ExplorePageState>{
   final AllProductDetails _repository;
-  ExploreBloc(this._repository):super(ExplorePageIntialState()){
+  ExploreBloc(this._repository):super(ExplorePageInitialState()){
     on<ExplorePageFetchProductEvent>((event, emit) => _fetchAllProducts(event, emit));
 
   }
