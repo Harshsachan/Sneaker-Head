@@ -16,7 +16,7 @@ class  SignInRepo{
               ' email: "$email", password: "$password" '
               '}) '
               ' { '
-              '    uhid, f_name, l_name ,email,number,house_no,street,area,city,state,pincode } '
+              '    uhid, f_name, l_name ,email,number,house_no,street,area,city,state,pincode,size } '
               ' }',
         }
       );

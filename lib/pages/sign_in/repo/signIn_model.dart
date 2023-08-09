@@ -46,6 +46,7 @@ class LoggedInData {
   String? city;
   String? state;
   int? pincode;
+  int? size;
 
   LoggedInData(
       {this.uhid,
@@ -58,7 +59,8 @@ class LoggedInData {
         this.area,
         this.city,
         this.state,
-        this.pincode});
+        this.pincode,
+        this.size});
 
   LoggedInData.fromJson(Map<String, dynamic> json) {
     uhid = json['uhid'];
@@ -72,6 +74,8 @@ class LoggedInData {
     city = json['city'];
     state = json['state'];
     pincode = json['pincode'];
+    size = json['size'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -87,6 +91,7 @@ class LoggedInData {
     data['city'] = city;
     data['state'] = state;
     data['pincode'] = pincode;
+    data['size'] = size;
     return data;
   }
 }

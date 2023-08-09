@@ -36,6 +36,7 @@ class _EditUserState extends State<EditUser> {
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
   final _pinCodeController = TextEditingController();
+  final _sizeController = TextEditingController();
   late LoggedInData loggedInData;
 
   @override
@@ -55,6 +56,7 @@ class _EditUserState extends State<EditUser> {
           _cityController.text=value.city!;
           _stateController.text=value.state!;
           _pinCodeController.text=value.pincode.toString();
+          _sizeController.text = value.size.toString();
           previousUserData= value;
         })
       }
@@ -73,6 +75,7 @@ class _EditUserState extends State<EditUser> {
     String city = _cityController.text;
     String state = _stateController.text;
     String pincode = _pinCodeController.text;
+    String size = _sizeController.text;
 
     // Get other data from the controller as needed
 
@@ -88,6 +91,7 @@ class _EditUserState extends State<EditUser> {
       city: city,
       state: state,
       pincode: int.tryParse(pincode),
+      size: int.tryParse(size)
     );
   }
 
@@ -987,6 +991,98 @@ class _EditUserState extends State<EditUser> {
                                             if (!pincodeRegex.hasMatch(value)) {
                                               return 'Please enter a valid Pin code ';
                                             }
+
+                                            return null;
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.9,
+                                      child: Material(
+                                        borderRadius: BorderRadius.circular(10),
+                                        elevation: 5,
+                                        shadowColor: Colors.white,
+                                        child: TextFormField(
+                                          controller: _sizeController,
+                                          autofocus: false,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'Enter Your US Size',
+                                            labelStyle: CustomTheme.of(context)
+                                                .bodySmall
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: CustomTheme.of(context)
+                                                  .secondaryBackground,
+                                            ),
+                                            hintText: '32',
+                                            hintStyle: CustomTheme.of(context)
+                                                .bodySmall
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: CustomTheme.of(context)
+                                                  .secondaryBackground,
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: CustomTheme.of(context)
+                                                    .secondaryText,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: CustomTheme.of(context)
+                                                    .secondaryBackground,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: CustomTheme.of(context)
+                                                    .secondaryBackground,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: CustomTheme.of(context)
+                                                    .secondaryBackground,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            filled: true,
+                                            fillColor: CustomTheme.of(context).forBtn,
+                                            contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                          ),
+                                          style: CustomTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: CustomTheme.of(context).primaryBackground,
+                                          ),
+                                          validator: (value) {
+                                            if (value == null || value.isEmpty) {
+                                              return 'Please enter your Shoe Size';
+                                            }
+
+                                            // Pincode validation using regex
+                                            // RegExp pincodeRegex = RegExp(r'^\d{6}$');
+                                            // if (!pincodeRegex.hasMatch(value)) {
+                                            //   return 'Please enter a valid Pin code ';
+                                            // }
 
                                             return null;
                                           },
