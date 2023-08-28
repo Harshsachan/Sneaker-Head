@@ -69,6 +69,7 @@ class _ViewOrdersState extends State<ViewOrders> {
               itemCount: widget.orders.length,
               itemBuilder: (context, index) {
                 PlacedOrderData order= widget.orders[index];
+                print(order.size);
                 DateTime dateTime = DateTime.parse(order.createdAt??"");
                 var dateLocal = dateTime.toLocal();
                 widget.orders[index].productIds;
@@ -159,7 +160,8 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
   Widget build(BuildContext context) {
     final order = widget.order;
     final product = order.product;
-
+    print("size");
+print(order.size);
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -220,7 +222,7 @@ class _PlacedOrderDisplayState extends State<PlacedOrderDisplay> {
                         maxLines: 1,
                       ),
                       AutoSizeText(
-                        "Size : 39",
+                        "Size : ${order.size.toString()}",
                         style: CustomTheme.of(context).titleMedium.override(
                           fontFamily: 'Poppins',
                           color: CustomTheme.of(context).primaryBackground,

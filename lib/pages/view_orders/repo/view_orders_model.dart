@@ -51,7 +51,7 @@ class PlacedOrderData {
   List<int>? productIds;
   String? createdAt;
   Product? product;
-
+  int? size;
   PlacedOrderData(
       {this.customerFullName,
         this.customerNumber,
@@ -59,7 +59,7 @@ class PlacedOrderData {
         this.address,
         this.totalPrice,
         this.productIds,
-        this.createdAt,this.product,});
+        this.createdAt,this.product,this.size});
 
   PlacedOrderData.fromJson(Map<String, dynamic> json) {
     customerFullName = json['customer_full_name'];
@@ -69,6 +69,7 @@ class PlacedOrderData {
     totalPrice = json['total_price'];
     productIds = json['product_ids'].cast<int>();
     createdAt = json['created_at'];
+    size = json['size'];
   }
 
   Map<String, dynamic> toJson() {
@@ -80,6 +81,7 @@ class PlacedOrderData {
     data['total_price'] = this.totalPrice;
     data['product_ids'] = this.productIds;
     data['created_at'] = this.createdAt;
+    data['size'] = this.size;
     return data;
   }
 }

@@ -131,7 +131,7 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                                   maxLines: 1,
                                 ),
                                 AutoSizeText(
-                                  "Size : 39",
+                                  "Size : ${widget.order.size}",
                                   style: CustomTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -389,7 +389,7 @@ class _ViewFullOrderDartState extends State<ViewFullOrderDart> {
                                     ),
                                   ),
                                   AutoSizeText(
-                                    '- \$${widget.product?.price}', // Replace with the actual tax value
+                                    '- \$ 0', // Replace with the actual tax value
                                     style: CustomTheme.of(context).bodyMedium.override(
                                       fontFamily: 'Poppins',
                                       color: CustomTheme.of(context).primaryBackground,

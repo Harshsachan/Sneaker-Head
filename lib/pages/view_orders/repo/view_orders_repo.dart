@@ -16,7 +16,7 @@ class ViewPlacedOrderRepo{
       final response = await _dio.post(
         endpoint,
         data: {
-          'query': 'query{ findOrderByUserMail(customer_email: "$email") { customer_full_name customer_number customer_email address total_price product_ids created_at } }',
+          'query': 'query{ findOrderByUserMail(customer_email: "$email") { customer_full_name customer_number customer_email address total_price product_ids created_at size } }',
         },
       );
       print("object");

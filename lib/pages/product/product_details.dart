@@ -27,21 +27,6 @@ class SingleProductWidget extends StatefulWidget {
 class _SingleProductWidgetState extends State<SingleProductWidget> {
   CartService cartService = CartService();
   List<ProductDetails> cartItems = [];
-  String? selectedSize = 'No option Selected';
-
-  final List<String> availableSizes = [
-    'No option Selected',
-    'US 6 / EU 36',
-    'US 6.5 / EU 37',
-    'US 7 / EU 38',
-    'US 7.5 / EU 39',
-    'US 8 / EU 40',
-    'US 8.5 / EU 41',
-    'US 9 / EU 42',
-    'US 9.5 / EU 43',
-    'US 10 / EU 44'
-    // Add more sizes as needed
-  ];
   final FetchReviewRepo _fetchReviewRepo = FetchReviewRepo();
   List<FindReviewsAndRatingsByProductId> reviews = [];
   @override
@@ -265,47 +250,6 @@ class _SingleProductWidgetState extends State<SingleProductWidget> {
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                decoration: BoxDecoration(
-                                  color:
-                                      CustomTheme.of(context).primaryBackground,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: DropdownButton<String>(
-                                  menuMaxHeight:
-                                      MediaQuery.of(context).size.height * 0.20,
-                                  value: selectedSize,
-                                  icon: Icon(
-                                    Icons.arrow_drop_down,
-                                    color: CustomTheme.of(context).primaryText,
-                                  ),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  style: TextStyle(
-                                      color: CustomTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 16),
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      selectedSize = newValue;
-                                    });
-                                  },
-                                  items: availableSizes.map((size) {
-                                    return DropdownMenuItem<String>(
-                                      value: size,
-                                      child: Text(
-                                        size,
-                                        style: TextStyle(
-                                          color: CustomTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(

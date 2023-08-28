@@ -164,7 +164,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           child: Container(
                             width: double.infinity,
-                            height: MediaQuery.of(context).size.height * 0.2,
+                            height: MediaQuery.of(context).size.height * 0.1,
                             decoration: BoxDecoration(
                               color: CustomTheme.of(context).pBackground,
                               borderRadius: const BorderRadius.only(
@@ -269,68 +269,68 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24, 24, 24, 0),
-                                  child: TextFormField(
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      labelText: 'Looking For shoes..',
-                                      labelStyle: CustomTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w200,
-                                          ),
-                                      hintStyle:
-                                          CustomTheme.of(context).labelMedium,
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: CustomTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(18),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: CustomTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(18),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: CustomTheme.of(context).error,
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(18),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: CustomTheme.of(context).error,
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(18),
-                                      ),
-                                      filled: true,
-                                      fillColor: CustomTheme.of(context)
-                                          .primaryBackground,
-                                      prefixIcon: Icon(
-                                        Icons.search,
-                                        color:
-                                            CustomTheme.of(context).secondaryText,
-                                        size: 12,
-                                      ),
-                                    ),
-                                    style: CustomTheme.of(context).bodyMedium,
-                                    // validator: _model.textControllerValidator
-                                    //     .asValidator(context),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsetsDirectional.fromSTEB(
+                                //       24, 24, 24, 0),
+                                //   child: TextFormField(
+                                //     autofocus: false,
+                                //     obscureText: false,
+                                //     decoration: InputDecoration(
+                                //       isDense: true,
+                                //       labelText: 'Looking For shoes..',
+                                //       labelStyle: CustomTheme.of(context)
+                                //           .bodySmall
+                                //           .override(
+                                //             fontFamily: 'Poppins',
+                                //             fontWeight: FontWeight.w200,
+                                //           ),
+                                //       hintStyle:
+                                //           CustomTheme.of(context).labelMedium,
+                                //       enabledBorder: OutlineInputBorder(
+                                //         borderSide: BorderSide(
+                                //           color: CustomTheme.of(context)
+                                //               .secondaryBackground,
+                                //           width: 2,
+                                //         ),
+                                //         borderRadius: BorderRadius.circular(18),
+                                //       ),
+                                //       focusedBorder: OutlineInputBorder(
+                                //         borderSide: BorderSide(
+                                //           color: CustomTheme.of(context)
+                                //               .secondaryBackground,
+                                //           width: 2,
+                                //         ),
+                                //         borderRadius: BorderRadius.circular(18),
+                                //       ),
+                                //       errorBorder: OutlineInputBorder(
+                                //         borderSide: BorderSide(
+                                //           color: CustomTheme.of(context).error,
+                                //           width: 2,
+                                //         ),
+                                //         borderRadius: BorderRadius.circular(18),
+                                //       ),
+                                //       focusedErrorBorder: OutlineInputBorder(
+                                //         borderSide: BorderSide(
+                                //           color: CustomTheme.of(context).error,
+                                //           width: 2,
+                                //         ),
+                                //         borderRadius: BorderRadius.circular(18),
+                                //       ),
+                                //       filled: true,
+                                //       fillColor: CustomTheme.of(context)
+                                //           .primaryBackground,
+                                //       prefixIcon: Icon(
+                                //         Icons.search,
+                                //         color:
+                                //             CustomTheme.of(context).secondaryText,
+                                //         size: 12,
+                                //       ),
+                                //     ),
+                                //     style: CustomTheme.of(context).bodyMedium,
+                                //     // validator: _model.textControllerValidator
+                                //     //     .asValidator(context),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
