@@ -1,1 +1,1 @@
-const endpoint="https://a464-122-173-153-8.ngrok-free.app/graphql";
+const endpoint="https://1210-122-171-120-11.ngrok-free.app/graphql";
