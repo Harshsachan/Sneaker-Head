@@ -466,6 +466,55 @@ class _YourDetailsState extends State<YourDetails> {
                   ),
                   Padding(
                     padding:
+                    const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.09,
+                      decoration: BoxDecoration(
+                        color: CustomTheme.of(context).primaryText,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            'Shoe Size',
+                            style: CustomTheme.of(context).bodySmall.override(
+                              color: CustomTheme.of(context).secondaryText,
+                              fontFamily:
+                              CustomTheme.of(context).bodySmallFamily,
+                              fontSize: 16,
+                              useGoogleFonts: GoogleFonts.asMap()
+                                  .containsKey(CustomTheme.of(context)
+                                  .bodySmallFamily),
+                            ),
+                          ),
+                          AutoSizeText(
+                            '${gotshareData?.size}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                              color:
+                              CustomTheme.of(context).primaryBackground,
+                              fontFamily: CustomTheme.of(context)
+                                  .headlineSmallFamily,
+                              fontSize: 18,
+                              useGoogleFonts: GoogleFonts.asMap()
+                                  .containsKey(CustomTheme.of(context)
+                                  .headlineSmallFamily),
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: CustomTheme.of(context).secondaryText,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
                         const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,

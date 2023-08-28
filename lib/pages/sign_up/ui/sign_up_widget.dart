@@ -1,3 +1,4 @@
+import 'package:blurry/blurry.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_icon_button.dart';
@@ -38,6 +39,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  String? toShow;
+  String? toShowTitle;
+  final passwordError= "Please check your password";
+  final emailError= "Please check your email";
 
   @override
   void dispose() {
@@ -62,8 +67,23 @@ class _SignUpPageState extends State<SignUpPage> {
               );
               // User created successfully, navigate to another page or show a success message
             } else if (state is SignUpPageErrorState) {
-              final err =state.error;
-              Center(child: Text("tu ${err.toString()}"),);
+              if(state.error.toString().startsWith("This") ){
+                toShow = emailError;
+                toShowTitle= "Email Not Correct";
+              }
+              else{
+                toShow = passwordError;
+                toShowTitle= state.error.toString();
+              }
+              Blurry.error(
+                  title:  '$toShowTitle',
+                  titleTextStyle:TextStyle(fontSize: 14),
+                  description:'${state.error.toString()} $toShow',
+                  confirmButtonText:  'Okay',
+                  onConfirmButtonPressed: () {
+                    Navigator.of(context).pop(true);
+                  })
+                  .show(context);
               // Handle error, show an error message
             }
           },
@@ -291,7 +311,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           color: const Color.fromRGBO(0, 0, 0, 1),
                           buttonPosition: Position.center,
                           onTapUp: () async{
-
                             final email = _emailController.text;
                             final password = _passwordController.text;
                             String userEmail= _emailController.text;
