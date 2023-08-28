@@ -41,6 +41,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
   String? userName = "";
   int? userNumber;
   String? address;
+  int? userSize;
 
   double orderPrice = 0;
   double couponSavings = 0;
@@ -64,6 +65,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
               setState(() {
                 userName = '${value.fName}  ${value.lName}';
                 userNumber = value.number;
+                userSize= value.size;
                 address =
                     '${value.houseNo} ${value.street} ${value.area} ${value.city} ${value.state} ${value.pincode.toString()}';
               })
@@ -1003,7 +1005,7 @@ class _CartCreateOrderState extends State<CartCreateOrder> {
                                             orderPrice.toInt(),
                                             userName,
                                             userNumber,
-                                            address));
+                                            address,userSize));
                                   },
                                   decoration: NeoPopTiltedButtonDecoration(
                                     //color:  Color.fromRGBO(255, 235, 52, 1),

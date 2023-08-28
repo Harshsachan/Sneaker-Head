@@ -7,7 +7,8 @@ class OrderPagePlaceOrderEvent extends OrderPageEvent{
   final String? userName;
   final int? userNumber;
   final String? address;
+  final int? userSize;
 
   OrderPagePlaceOrderEvent(this.userEmail,this.productIds,this.totalPrice,this.userName,
-      this.userNumber,this.address);
+      this.userNumber,this.address,this.userSize);
 }

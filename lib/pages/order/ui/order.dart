@@ -44,6 +44,8 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
   String? userName = "";
   int? userNumber;
   String? address;
+  int? userSize;
+
 
   double orderPrice = 0;
   double couponSavings = 0;
@@ -64,6 +66,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
               setState(() {
                 userName = '${value.fName}  ${value.lName}';
                 userNumber = value.number;
+                userSize=value.size;
                 address =
                     '${value.houseNo} ${value.street} ${value.area} ${value.city} ${value.state} ${value.pincode.toString()}';
               })
@@ -870,30 +873,33 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                           children: [
                             SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.40,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AutoSizeText(
-                                      "\$ $orderPrice",
-                                      style: CustomTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: CustomTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                    ),
-                                    AutoSizeText(
-                                      "View Details",
-                                      style: CustomTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: CustomTheme.of(context)
-                                                .primaryBackground,
-                                          ),
-                                    ),
-                                  ],
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      AutoSizeText(
+                                        "\$ $orderPrice",
+                                        style: CustomTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: CustomTheme.of(context)
+                                                  .secondaryBackground,
+                                            ),
+                                      ),
+                                      AutoSizeText(
+                                        "View Details",
+                                        style: CustomTheme.of(context)
+                                            .bodySmall
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: CustomTheme.of(context)
+                                                  .primaryBackground,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                 )),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.50,
@@ -910,7 +916,7 @@ class _OneCreateOrderState extends State<OneCreateOrder> {
                                             widget.product.price,
                                             userName,
                                             userNumber,
-                                            address));
+                                            address,userSize));
                                   },
                                   decoration: NeoPopTiltedButtonDecoration(
                                     //color:  Color.fromRGBO(255, 235, 52, 1),alternate
