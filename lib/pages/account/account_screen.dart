@@ -18,6 +18,7 @@ import '../view_orders/bloc/view_orders_events.dart';
 import '../view_orders/bloc/view_orders_state.dart';
 import '../view_orders/repo/view_orders_model.dart';
 import '../view_orders/repo/view_orders_repo.dart';
+import '../view_orders/ui/no_order.dart';
 
 class Accountpage extends StatefulWidget {
   final ViewPlacedOrderRepo viewPlacedOrderRepo;
@@ -66,12 +67,26 @@ class _AccountpageState extends State<Accountpage> {
     if(state is ViewAllOrderSuccessState)
       {
         List<PlacedOrderData> orders=state.placedOrderData;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ViewOrders(orders: orders),
-          ),
-        );
+        print("wanted");
+        print(orders.isEmpty);
+        if(orders.isEmpty){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NoOrder(),
+            ),
+          );
+
+        }
+        else{
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ViewOrders(orders: orders),
+            ),
+          );
+        }
+
       }
   },
   builder: (context, state) {

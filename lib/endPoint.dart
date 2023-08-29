@@ -1,1 +1,1 @@
-const endpoint="https://1210-122-171-120-11.ngrok-free.app/graphql";
+const endpoint="https://app-backend-harshsachan.vercel.app/graphql";

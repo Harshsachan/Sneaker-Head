@@ -58,6 +58,12 @@ dependencies:
   carousel_slider: ^4.2.1
   card_swiper: ^2.0.4
   shimmer: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/logo.png"
 
 dev_dependencies:
   flutter_test:
