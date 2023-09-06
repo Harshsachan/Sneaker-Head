@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:SneakerHead/endPoint.dart';
@@ -8,10 +7,9 @@ class PlaceOrderRepo {
 
   Future<Response<dynamic>> placeOrder(
       String? userEmail,List<int?> productIds,int? totalPrice, String? userName,int? userNumber,
-      String? address) async {
-    print("Place Order Api Called");
+      String? address,int? userSize) async {
     try {
-
+      print(userSize);
       final response = await _dio.post(endpoint, data: {
         'query':
         ' mutation{'
@@ -19,15 +17,11 @@ class PlaceOrderRepo {
             'product_ids:$productIds,'
             'customer_email:"$userEmail",'
         'total_price:$totalPrice, customer_full_name:"$userName"'
-        'customer_number:$userNumber,address:"$address"'
+        'customer_number:$userNumber,address:"$address",size:$userSize'
             '})}'
       });
-      print("Order placed Api call Succesfull");
-      print(response);
       return response;
     } catch (error) {
-      print("catch block");
-      print(error.toString());
       throw error.toString();
     }
   }

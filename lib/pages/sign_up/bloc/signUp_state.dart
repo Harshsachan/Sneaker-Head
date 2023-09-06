@@ -2,7 +2,7 @@ import 'package:SneakerHead/pages/sign_up/repo/signUp_model.dart';
 
 abstract class SignUpPageState{}
 
-class SignUpPageIntialState extends SignUpPageState{}
+class SignUpPageInitialState extends SignUpPageState{}
 
 class SignUpPageLoadingState extends SignUpPageState{}
 

@@ -2,7 +2,6 @@ import 'package:blurry/blurry.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:SneakerHead/main.dart';
 import 'package:SneakerHead/pages/memory/email.dart';
 import 'package:SneakerHead/pages/memory/user_details.dart';
@@ -13,17 +12,17 @@ import 'package:SneakerHead/pages/sign_in/repo/signIn_repo.dart';
 import 'package:SneakerHead/pages/sign_up/repo/signUp_repo.dart';
 import 'package:SneakerHead/pages/sign_up/ui/sign_up_widget.dart';
 
+import '../../loading_screen/loading_screen.dart';
 import '../bloc/signIn_event.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../../custom_theme/flutter_flow_icon_button.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInWidget extends StatefulWidget {
-  final SignInrepo userRepository;
-  SignInWidget(this.userRepository);
+  final SignInRepo userRepository;
+  const SignInWidget(this.userRepository, {super.key});
 
   @override
   _SignInWidgetState createState() => _SignInWidgetState();
@@ -37,8 +36,8 @@ class _SignInWidgetState extends State<SignInWidget> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  String? toshow;
-  String? toshowtitle;
+  String? toShow;
+  String? toShowTitle;
   final passwordError= "Please check your password";
   final emailError= "Please check your email or Signup with us";
 
@@ -64,39 +63,32 @@ class _SignInWidgetState extends State<SignInWidget> {
           listener: (context, state) {
             // TODO: implement listener
             if(state is SignInPageSuccessState){
-
               print("Data fetched in widget Successful");
               LoggedInData userDetails = state.loggedInData;
-              print(state.loggedInData.toJson());
-              print(userDetails);
-              print("From SShared Preference");
               userDetailsService.storeUserDataInSharedPreferences(userDetails);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
+                  builder: (context) => const MyHomePage(),
                 ),
               );
 
             }
             else if (state is SignInPageDataNotFoundState){
-              print("SignInPageDataNotFoundState");
-              print(state.error);
 
               if(state.error.toString().startsWith("This") ){
-                toshow = emailError;
-                toshowtitle= "Email Not found";
+                toShow = emailError;
+                toShowTitle= "Email Not found";
               }
               else{
-                toshow = passwordError;
-                toshowtitle= state.error.toString();
+                toShow = passwordError;
+                toShowTitle= state.error.toString();
               }
               Blurry.error(
-                  title:  '${toshowtitle}',
-                  description:'${state.error.toString()} ${toshow}',
+                  title:  '$toShowTitle',
+                  description:'${state.error.toString()} $toShow',
                   confirmButtonText:  'Okay',
                   onConfirmButtonPressed: () {
-                    print('hello world');
                     Navigator.of(context).pop(true);
                   })
                   .show(context);
@@ -107,7 +99,7 @@ class _SignInWidgetState extends State<SignInWidget> {
           },
           builder: (context, state) {
             if (state is SignInPageLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return LoadingScreen();
             }
             return SafeArea(
               child: Container(
@@ -130,7 +122,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         animate: true,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                        padding:const  EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                         child: Text(
                           'Welcome !',
                           style:
@@ -148,10 +140,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                             children: [
                               // Email text controller
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment:const  AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                  child: Container(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width * 0.8,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(10),
@@ -205,7 +197,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           fillColor: CustomTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                         ),
                                         style:
                                         CustomTheme.of(context).bodyMedium.override(
@@ -225,10 +217,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                               ),
                               // password text controller
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                  child: Container(
+                                  padding:const  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width * 0.8,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(10),
@@ -281,7 +273,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           fillColor: CustomTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                         ),
                                         style:
                                         CustomTheme.of(context).bodyMedium.override(
@@ -303,7 +295,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           )),
                       // Forget password
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(180, 15, 0, 15),
+                        padding:const EdgeInsetsDirectional.fromSTEB(180, 15, 0, 15),
                         child: AutoSizeText(
                           'Forget Password ?',
                           style: CustomTheme.of(context).bodyMedium.override(
@@ -314,8 +306,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                         ),
                       ),
-                      // Signin Button
-                      Container(
+                      // SignIn Button
+                      SizedBox(
                         width: MediaQuery.of(context).size.width*0.45,
                         child: NeoPopButton(
                           color: const Color.fromRGBO(0, 0, 0, 1),
@@ -327,8 +319,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                             await emailService.saveUserEmail(userEmail);
                             context.read<SignInBloc>().add(SignInFetchDataEvent(email, password));
                           },
-                          border:  Border.fromBorderSide(
-                            BorderSide(color: Colors.white, width: .5),
+                          border: const Border.fromBorderSide(
+                            BorderSide(color: Colors.white, width: 1),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
@@ -351,7 +343,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                       ),
 
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: Text(
                           'Or continue with',
                           style: CustomTheme.of(context).bodyMedium.override(
@@ -362,7 +354,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -376,7 +368,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding:const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   borderRadius: BorderRadius.circular(5),
                                   elevation: 20,
@@ -392,7 +384,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -407,7 +398,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding: const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   elevation: 20,
                                   borderRadius: BorderRadius.circular(5),
@@ -423,7 +414,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -438,7 +428,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                padding:const  EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: Material(
                                   elevation: 20,
                                   borderRadius: BorderRadius.circular(5),
@@ -454,7 +444,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      print('IconButton pressed ...');
                                     },
                                   ),
                                 ),
@@ -463,7 +452,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width*0.25,
                         child: NeoPopButton(
                           color: const Color.fromRGBO(0, 0, 0, 1),
@@ -476,7 +465,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                               ),
                             );
                           },
-                          border:  Border.fromBorderSide(
+                          border: const Border.fromBorderSide(
                             BorderSide(color: Colors.white, width: .5),
                           ),
                           child: Padding(
@@ -498,38 +487,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                         ),
                       ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                      //   child: InkWell(
-                      //     splashColor: Colors.transparent,
-                      //     focusColor: Colors.transparent,
-                      //     hoverColor: Colors.transparent,
-                      //     highlightColor: Colors.transparent,
-                      //     onTap: () async {
-                      //       await Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //           builder: (context) => CreateUserPage(SignUpRepo()),
-                      //         ),
-                      //       );
-                      //     },
-                      //     child: RichText(
-                      //       text: TextSpan(
-                      //         children: [
-                      //           TextSpan(
-                      //             text: 'SIGN UP',
-                      //             style: TextStyle(),
-                      //           )
-                      //         ],
-                      //         style: CustomTheme.of(context).bodyMedium.override(
-                      //           fontFamily: 'Poppins',
-                      //           color: CustomTheme.of(context).info,
-                      //           fontSize: 16,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
@@ -541,52 +498,3 @@ class _SignInWidgetState extends State<SignInWidget> {
     );
   }
 }
-// class Check extends StatelessWidget {
-//   const Check({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.all(16.0),
-//       child: Form(
-//         key: _formKey,
-//         child: Column(
-//           children: [
-//             TextFormField(
-//               controller: _emailController,
-//               decoration: InputDecoration(labelText: 'Email'),
-//               validator: (value) {
-//                 if (value!.isEmpty) {
-//                   return 'Please enter an email';
-//                 }
-//                 return null;
-//               },
-//             ),
-//             TextFormField(
-//               controller: _passwordController,
-//               decoration: InputDecoration(labelText: 'Password'),
-//               validator: (value) {
-//                 if (value!.isEmpty) {
-//                   return 'Please enter a password';
-//                 }
-//                 return null;
-//               },
-//             ),
-//             SizedBox(height: 16.0),
-//             ElevatedButton(
-//               onPressed: () {
-//                 print("sign up clicked");
-//                 if (_formKey.currentState!.validate()) {
-//                   final email = _emailController.text;
-//                   final password = _passwordController.text;
-//                   context.read<SignUpBloc>().add(SignUpPostEvent(email, password));
-//                 }
-//               },
-//               child: Text('Create'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

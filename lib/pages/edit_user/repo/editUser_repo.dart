@@ -1,7 +1,6 @@
 import 'package:SneakerHead/endPoint.dart';
 import 'package:SneakerHead/pages/sign_in/repo/signIn_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class EditUserRepo {
   final Dio _dio= Dio();
@@ -15,19 +14,17 @@ class EditUserRepo {
           'mutation { '
               'updateUserInfo(updateUserInput: '
               '{ '
-              ' f_name:"${userDetails.fName}",l_name:"${userDetails.lName}",email :"${userDetails.email}",number: ${userDetails.number},house_no: "${userDetails.houseNo}",street:"${userDetails.street}",area: "${userDetails.area}",city: "${userDetails.city}",state: "${userDetails.state}",pincode: ${userDetails.pincode} '
+              ' f_name:"${userDetails.fName}",l_name:"${userDetails.lName}",email :"${userDetails.email}",number: ${userDetails.number},house_no: "${userDetails.houseNo}",street:"${userDetails.street}",area: "${userDetails.area}",city: "${userDetails.city}",state: "${userDetails.state}",pincode: ${userDetails.pincode},size: ${userDetails.size}  '
               '}) '
               ' { '
-              '    uhid f_name l_name email number house_no street area city state pincode'
+              '    uhid f_name l_name email number house_no street area city state pincode size'
               ' }'
               '}',
         }
       );
-      print("user Details Updated");
       return respose;
     }
     catch(error){
-      print(error);
       throw error.toString();
     }
   }

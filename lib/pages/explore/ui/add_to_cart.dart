@@ -32,4 +32,9 @@ class CartService {
     cartItems.removeWhere((item) => item.id == product.id);
     await saveCartItems(cartItems);
   }
+
+  Future<void> clearCart() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(CART_KEY);
+  }
 }

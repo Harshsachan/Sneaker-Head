@@ -1,10 +1,9 @@
-import 'package:SneakerHead/pages/user/repo/createUser_repo.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../flutter_flow/flutter_flow_icon_button.dart';
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../custom_theme/flutter_flow_icon_button.dart';
+import '../../../custom_theme/flutter_flow_theme.dart';
 import '../../edit_user/repo/editUser_repo.dart';
 import '../../edit_user/ui/editUser.dart';
 import '../../sign_in/repo/signIn_model.dart';
@@ -467,6 +466,55 @@ class _YourDetailsState extends State<YourDetails> {
                   ),
                   Padding(
                     padding:
+                    const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.09,
+                      decoration: BoxDecoration(
+                        color: CustomTheme.of(context).primaryText,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            'Shoe Size',
+                            style: CustomTheme.of(context).bodySmall.override(
+                              color: CustomTheme.of(context).secondaryText,
+                              fontFamily:
+                              CustomTheme.of(context).bodySmallFamily,
+                              fontSize: 16,
+                              useGoogleFonts: GoogleFonts.asMap()
+                                  .containsKey(CustomTheme.of(context)
+                                  .bodySmallFamily),
+                            ),
+                          ),
+                          AutoSizeText(
+                            '${gotshareData?.size}',
+                            style: CustomTheme.of(context)
+                                .headlineSmall
+                                .override(
+                              color:
+                              CustomTheme.of(context).primaryBackground,
+                              fontFamily: CustomTheme.of(context)
+                                  .headlineSmallFamily,
+                              fontSize: 18,
+                              useGoogleFonts: GoogleFonts.asMap()
+                                  .containsKey(CustomTheme.of(context)
+                                  .headlineSmallFamily),
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: CustomTheme.of(context).secondaryText,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
                         const EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -529,27 +577,24 @@ class _YourDetailsState extends State<YourDetails> {
                         ),
                       ),
                     ).then((updatedData) {
-                      print("came back from previous screen");
                       if (updatedData != null) {
                         setState(() {
-                          print("came back from previous screen");
-                          print('${updatedData}');
                           gotshareData = updatedData;
                           widget.onUpdateUserData(updatedData);
-                          print('${gotshareData?.fName}');
                         });
                       }
                     });
                   },
-                  child: Icon(Icons.edit),
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all(CircleBorder()),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    shape: MaterialStateProperty.all(const CircleBorder()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
                     backgroundColor: MaterialStateProperty.all(CustomTheme.of(context).primary), // <-- Button color
                     overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                      if (states.contains(MaterialState.pressed)) return CustomTheme.of(context).alternate; // <-- Splash color
+                      if (states.contains(MaterialState.pressed)) return CustomTheme.of(context).alternate;
+                      return null; // <-- Splash color
                     }),
                   ),
+                  child: const Icon(Icons.edit),
                 ),
               ),
           ],

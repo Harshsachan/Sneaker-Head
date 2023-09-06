@@ -22,6 +22,7 @@ class AllProductDetails {
                 price
                 seller
                 category
+                averageRating
               }
             }
           ''',
@@ -31,7 +32,6 @@ class AllProductDetails {
          final products = results.map((item) => ProductDetails.fromJson(item)).toList();
          return products;
       } catch (error) {
-         print("Error occurred: $error");
          throw Exception('Failed to fetch products: $error');
       }
    }
