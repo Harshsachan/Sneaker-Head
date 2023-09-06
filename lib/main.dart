@@ -1,3 +1,4 @@
+import 'package:SneakerHead/pages/loading_screen/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:SneakerHead/custom_theme/flutter_flow_theme.dart';
@@ -37,22 +38,31 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
-  const MyHomePage({super.key});
-
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late InternetBloc internetBloc;
 
+  @override
+  void initState() {
+    super.initState();
+    internetBloc = InternetBloc();
+  }
+
+  @override
+  void dispose() {
+    internetBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
-      create: (context) => InternetBloc(),
+      create: (context) => internetBloc,
       child: BlocBuilder<InternetBloc, InternetState>(
         builder: (context, state) {
           if (state is InternetGainedState) {
@@ -60,12 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
               create: (context) => ExploreBloc(AllProductDetails()),
               child: const NavBarPage(),
             );
-          }
-          else if(state is InternetLostState){
+          } else if (state is InternetLostState) {
             return const NoInternetScreen();
-          }
-          else {
-          return const NoInternetScreen();
+          } else if (state is InternetInitialState) {
+
+            return LoadingScreen();
+          } else {
+            // Handle any other states here.
+            return const NoInternetScreen();
           }
         },
       ),
