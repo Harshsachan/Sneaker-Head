@@ -1,16 +1,14 @@
 # SneakerHead
 
-A new Flutter project.
-
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A new Flutter project.
+An Ecommerce app to sell luxury & rear Sneaker app with Frontend written on Flutter & Backendon Nest.js 
+Steps to use App
+ 1- User may Sign-up by their Email and creating their own password
+ 2- After Registering Email and password user has to create his/her profile  
+ 3- Now user may buy any Sneaker listed in the App 
 
-A few resources to get you started if this is your first Flutter project:
+## Want  to skip creating profile ? (( Email:- harshit.26sachan@gmail.com , pass:- test ))
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
