@@ -6,6 +6,8 @@ class CreateUserRepo{
   final Dio _dio = Dio();
   Future<Response<dynamic>> postUserDetails(LoggedInData userDetails) async{
     try{
+      print("trying");
+      print(userDetails);
       final response = await _dio.post(
           endpoint,
           data: {
@@ -20,11 +22,15 @@ class CreateUserRepo{
                 ' }'
             '}',
           }
+
+
       );
+      print("failed ");
       return response;
 
     }
     catch(errors){
+      print("in error");
       throw errors.toString();
     }
   }

@@ -1125,11 +1125,12 @@ class _CreateUserState extends State<CreateUser> {
                                           buttonPosition: Position.center,
                                           onTapUp: () {
                                             if (_formKey.currentState!.validate()) {
-                                            }
-                                            sendDataToServer();
-
-                                            context.read<CreateUserBloc>().add(CreateUserPostUserDataEvent(loggedInData));
-                                          },
+                                              sendDataToServer();
+                                              context.read<CreateUserBloc>()
+                                                  .add(
+                                                  CreateUserPostUserDataEvent(
+                                                      loggedInData));
+                                            }},
                                           border:  Border.fromBorderSide(
                                             BorderSide( color:CustomTheme.of(context).secondaryBackground, width: 1)
                                           ),

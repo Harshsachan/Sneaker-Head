@@ -1112,10 +1112,11 @@ class _EditUserState extends State<EditUser> {
                         buttonPosition: Position.center,
                         onTapUp: () {
                           if (_formKey.currentState!.validate()) {
-                          }
-                          sendDataToServer();
-                          context.read<EditUserBloc>().add(EditUserPageUpdateUserDetailsEvent(loggedInData));
-                        },
+                            sendDataToServer();
+                            context.read<EditUserBloc>().add(
+                                EditUserPageUpdateUserDetailsEvent(
+                                    loggedInData));
+                          }},
                         border:  Border.fromBorderSide(
                             BorderSide( color:CustomTheme.of(context).secondaryBackground, width: 1)
                         ),
